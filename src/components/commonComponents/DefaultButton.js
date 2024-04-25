@@ -25,18 +25,18 @@ export const DefaultButton = ({ data, customClasses = "", attributes, showArrow 
     return actionType === "modal" ? (
         <btn-modal-open
             group={data.action}
-            className={customClasses ? customClasses : 'btn-blue'}
+            class={customClasses ? customClasses : 'btn-blue'}
             data-cursor-style="off"
             {...attributes}
         >
             <span>{data.label}</span>
-            {showArrow && <i className="icon-arrow-right-2"></i>}
+            {showArrow && <i class="icon-arrow-right-2"></i>}
         </btn-modal-open>
     ) : (
         <DelayedLink to={data.action} target={actionType === "external_link" ? "_blank" : undefined}>
-            <button className={customClasses ? customClasses : 'btn-blue'} data-cursor-style="off" {...attributes}>
+            <button class={customClasses ? customClasses : 'btn-blue'} data-cursor-style="off" {...attributes}>
                 <span>{data.label}</span>
-                {showArrow && <i className="icon-arrow-right-2"></i>}
+                {showArrow && <i class="icon-arrow-right-2"></i>}
             </button>
         </DelayedLink>
     )

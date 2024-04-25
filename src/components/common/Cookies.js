@@ -1,4 +1,4 @@
-import React from 'react'
+import Link from 'next/link'
 
 const Cookies = () => {
   return (
@@ -12,9 +12,9 @@ const Cookies = () => {
             This website uses cookies to provide necessary website
             functionality, improve your experience and analyze our traffic. By
             using our website, you agree to our
-            <a className="link-underline white-1" href="/">
+            <Link className="link-underline white-1" href="/">
               Privacy Policy
-            </a>{" "}
+            </Link>{" "}
             and our cookies usage.
           </p>
 
