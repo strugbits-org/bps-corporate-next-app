@@ -15,7 +15,6 @@ import { handleCollectionLoaded } from "@/utils/pageLoadingAnimation";
 // import { changeProgress, handleCollectionLoaded } from "@/utils/pageLoadingAnimation";
 
 export default function Home({ heroSectionData, getInTouchData, studiosSectionData, homeSectionDetails, portfolioCollection, peopleReviewSliderData, marketsSectionData, rentalStoreData, rentalStoreFancyTitle, dreamBigData, socialSectionBlogs, socialSectionDetails, instaFeed }) {
-  handleCollectionLoaded();
   // const changeProgress = (percent) => {
   //   document.body.style.setProperty("--percentage", percent / 100);
   //   document.body.style.setProperty("--percentage2", `${percent}%`);
@@ -49,6 +48,10 @@ export default function Home({ heroSectionData, getInTouchData, studiosSectionDa
 
   //   }, 2000);
   // }
+
+  setTimeout(() => {
+  handleCollectionLoaded();
+  }, 1000);
 
   return (
     <>
