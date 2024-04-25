@@ -42,6 +42,8 @@ export default function Home({ heroSectionData, getInTouchData, studiosSectionDa
     
     setTimeout(() => {
       document.querySelector(".initScript").click();
+      document.querySelector(".updateWatchedTrigger").click();
+
     }, 2000);
   }
 
