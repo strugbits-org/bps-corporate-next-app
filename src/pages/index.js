@@ -15,43 +15,43 @@ import { handleCollectionLoaded } from "@/utils/pageLoadingAnimation";
 // import { changeProgress, handleCollectionLoaded } from "@/utils/pageLoadingAnimation";
 
 export default function Home({ heroSectionData, getInTouchData, studiosSectionData, homeSectionDetails, portfolioCollection, peopleReviewSliderData, marketsSectionData, rentalStoreData, rentalStoreFancyTitle, dreamBigData, socialSectionBlogs, socialSectionDetails, instaFeed }) {
-  // const changeProgress = (percent) => {
-  //   document.body.style.setProperty("--percentage", percent / 100);
-  //   document.body.style.setProperty("--percentage2", `${percent}%`);
-  //   const elProg = document.querySelector('[data-load-progress]');
-  //   if (elProg) elProg.dataset.loadProgress = percent;
-  // }
+  const changeProgress = (percent) => {
+    document.body.style.setProperty("--percentage", percent / 100);
+    document.body.style.setProperty("--percentage2", `${percent}%`);
+    const elProg = document.querySelector('[data-load-progress]');
+    if (elProg) elProg.dataset.loadProgress = percent;
+  }
 
-  // if (typeof window !== 'undefined') {
-  //   setTimeout(() => {
-  //     const body = document.body;
-  //     if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
-  //     window.scrollTo({ top: 0 });
-  //     body.classList.add("page-enter-active");
-  //     body.classList.remove("page-leave-active");
+  if (typeof window !== 'undefined') {
+    setTimeout(() => {
+      const body = document.body;
+      if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
+      window.scrollTo({ top: 0 });
+      body.classList.add("page-enter-active");
+      body.classList.remove("page-leave-active");
 
-  //     changeProgress(100);
+      changeProgress(100);
 
-  //     window.scrollTo({ top: 0 });
-  //     document.body.dataset.load = "first-leaving";
-  //     setTimeout(() => {
-  //       document.body.dataset.load = "first-done";
-  //     }, 1200);
-  //     document.body.classList.add("first-load-done");
+      window.scrollTo({ top: 0 });
+      document.body.dataset.load = "first-leaving";
+      setTimeout(() => {
+        document.body.dataset.load = "first-done";
+      }, 1200);
+      document.body.classList.add("first-load-done");
 
 
-  //   }, 2000);
+    }, 2000);
 
-  //   setTimeout(() => {
-  //     document.querySelector(".initScript").click();
-  //     document.querySelector(".updateWatchedTrigger").click();
+    setTimeout(() => {
+      document.querySelector(".initScript").click();
+      document.querySelector(".updateWatchedTrigger").click();
 
-  //   }, 2000);
-  // }
+    }, 2000);
+  }
 
-  setTimeout(() => {
-  handleCollectionLoaded();
-  }, 1000);
+  // setTimeout(() => {
+  //   handleCollectionLoaded();
+  // }, 1000);
 
   return (
     <>
