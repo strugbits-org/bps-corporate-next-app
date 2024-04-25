@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { generateImageUrl2 } from "../../common/functions/imageURL";
 import DelayedLink from "../../common/DelayedLink";
-import { pageLoadStart } from "../../utilis/animationsTriggers";
+import { pageLoadStart } from "@/utils/animationsTriggers";
 
 const SliderBanner = ({ data, type, sectionDetails }) => {
   const navigate = useNavigate();
