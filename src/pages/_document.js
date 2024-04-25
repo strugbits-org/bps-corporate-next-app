@@ -18,10 +18,10 @@ export default function Document() {
         <link rel="preload" as="style" href="/js/utils.css" />
         <link rel="preload" as="style" href="/js/app.css" />
 
-        <script type="module" src="/js/app2.js"></script>
-        <script type="module" src="/js/search.js"></script>
-        <script type="module" src="/js/forms.js"></script>
-        <script type="module" src="/js/chat.js"></script>
+        <script async type="module" src="/js/app2.js"></script>
+        <script async type="module" src="/js/search.js"></script>
+        <script async type="module" src="/js/forms.js"></script>
+        <script async type="module" src="/js/chat.js"></script>
         <link rel="stylesheet" href="/js/utils.css" />
         <link rel="stylesheet" href="/js/app.css" />
 
