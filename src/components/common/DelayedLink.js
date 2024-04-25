@@ -20,7 +20,6 @@ const DelayedLink = ({ to, children, className, target, attributes }) => {
     if (target === undefined) {
       // pageLoadStart();
       setTimeout(() => {
-        resetCount();
         router.push(to)
       }, 900);
     } else {
