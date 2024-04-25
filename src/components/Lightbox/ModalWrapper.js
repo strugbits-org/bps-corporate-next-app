@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const ModalWrapper = ({ children, name, no_wrapper = false }) => {
 
     return (

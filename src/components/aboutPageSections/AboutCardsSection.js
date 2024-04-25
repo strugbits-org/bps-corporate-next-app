@@ -1,8 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-const AboutCardsSection = () => {
-  const data = useSelector((state) => state.aboutus.aboutCards);
+const AboutCardsSection = ({data}) => {
 
   const properties = [
     {
@@ -38,7 +36,7 @@ const AboutCardsSection = () => {
         <div className="row">
           <div className="col-lg-8 offset-lg-2">
             <ul className="list-boards">
-              {data.map((item, index) => {
+              {data&&data.map((item, index) => {
                 const {
                   translateY,
                   rotateTo,

@@ -124,3 +124,68 @@ export const setSeo = ({ title = 'Blueprint Studios', description = '', noFollow
   }
 
 }
+
+export const changeProgress = (percent) => {
+  if (typeof window !== 'undefined') {
+    document.body.style.setProperty("--percentage", percent / 100);
+    document.body.style.setProperty("--percentage2", `${percent}%`);
+    const elProg = document.querySelector('[data-load-progress]');
+    if (elProg) elProg.dataset.loadProgress = percent;
+  }
+}
+
+export const initAnimations = () => {
+  if (typeof window !== 'undefined') {
+    setTimeout(() => {
+      document.querySelector(".initScript").click();
+    }, 200);
+  }
+};
+
+export const updatedWatched = () => {
+  if (typeof window !== 'undefined') {
+    setTimeout(() => {
+      document.querySelector(".updateWatchedTrigger").click();
+    }, 200);
+  }
+};
+
+export const loadPinterest = () => {
+  if (typeof window !== 'undefined') {
+    setTimeout(() => {
+      const script = document.createElement("script");
+      script.async = true;
+      script.type = "text/javascript";
+      script.dataset.pinBuild = "doBuild";
+      script.src = "//assets.pinterest.com/js/pinit.js";
+      document.body.appendChild(script);
+      if (window.doBuild) window.doBuild();
+    }, 1000);
+  }
+};
+
+export const markPageLoaded = () => {
+  if (typeof window !== 'undefined') {
+    setTimeout(() => window.scrollTo({ top: 0 }), 200);
+    setTimeout(initAnimations, 1000);
+    setTimeout(updatedWatched, 1500);
+    setTimeout(loadPinterest, 1500);
+    const isFirstLoadDone = document.body.classList.contains("first-load-done");
+    if (isFirstLoadDone) {
+      const body = document.body;
+      if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
+      body.classList.add("page-enter-active");
+      body.classList.remove("page-leave-active");
+      setTimeout(() => {
+        body.classList.remove("page-enter-active");
+      }, 900);
+    } else {
+      changeProgress(100);
+      document.body.dataset.load = "first-leaving";
+      setTimeout(() => {
+        document.body.dataset.load = "first-done";
+      }, 1200);
+      document.body.classList.add("first-load-done");
+    }
+  }
+}

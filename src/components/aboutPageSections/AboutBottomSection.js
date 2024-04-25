@@ -1,11 +1,7 @@
+import { generateImageURL } from "@/common/functions/imageURL";
 import React from "react";
-import { generateImageURL } from "../../common/functions/imageURL";
-import { useSelector } from "react-redux";
 
-const AboutBottomSection = () => {
-  const { sectionDetails } = useSelector((state) => state.aboutus);
-  // const loading = useSelector((state) => state.aboutus.SliderLoading);
-  // const error = useSelector((state) => state.aboutus.error);
+const AboutBottomSection = ({sectionDetails}) => {
 
   return (
     <>
@@ -20,7 +16,7 @@ const AboutBottomSection = () => {
                 </h2>
                 <div className="container-img">
                   <img
-                    src={generateImageURL({ wix_url: sectionDetails?.magazineCoverImage, w: "310", h: "410", fit:"fit", q: "95" })}
+                    src={generateImageURL({ wix_url: sectionDetails.magazineCoverImage, w: "310", h: "410", fit:"fit", q: "95" })}
                     data-preload
                     className="media"
                     alt=""

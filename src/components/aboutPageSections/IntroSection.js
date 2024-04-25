@@ -1,10 +1,9 @@
 import React from "react";
-import { generateImageURL } from "../../common/functions/imageURL";
-import { useSelector } from "react-redux";
 import { DefaultButton } from "../commonComponents/DefaultButton";
+import { generateImageURL } from "@/common/functions/imageURL";
 
-const IntroSection = () => {
-  const data = useSelector((state) => state.aboutus.IntroData);
+
+const IntroSection = ({data}) => {
 
   return (
     <>
