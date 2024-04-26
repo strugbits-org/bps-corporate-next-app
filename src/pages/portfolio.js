@@ -22,16 +22,13 @@ export default function portfolio({ homeSectionDetails, portfolioSectionDetails,
       const response = await listPortfolios({ pageSize, studios: selectedStudios, markets: selectedMarkets, disableLoader });
       setPortfolioCollection(response._items.filter(item => item.data.portfolioRef._id !== undefined).map(item => item.data));
       setPortfolioResponse(response);
-      handleCollectionLoaded();
     } catch (error) {
       console.error(error);
-      handleCollectionLoaded();
     }
   }
 
   return (
     <>
-      <div>portfolio</div>
       <PortfolioListing data={data} />
       <MarketSection data={marketsSectionData} homeSectionDetails={homeSectionDetails} />
       <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed} />
@@ -40,8 +37,6 @@ export default function portfolio({ homeSectionDetails, portfolioSectionDetails,
 }
 
 export const getServerSideProps = async () => {
-
-
   const [homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed, portfolio] = await Promise.all([
     getHomeSectionDetails(),
     getPortfolioSectionDetails(),

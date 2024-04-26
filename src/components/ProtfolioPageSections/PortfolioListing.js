@@ -1,50 +1,49 @@
-import { generateImageUrl2 } from '@/common/functions/imageURL';
+import React, { useState } from "react";
 import { useDetectClickOutside } from 'react-detect-click-outside';
-import DelayedLink from '../common/DelayedLink';
-import React from 'react';
+import DelayedLink from "../common/DelayedLink";
+import { generateImageUrl2 } from "@/common/functions/imageURL";
 
-const PortfolioListing = ({ data }) => {
-  let selectedStudios = [];
-  let selectedMarkets = [];
+const PortfolioListing = ({ data, seeMore, applyFilters }) => {
+  const [selectedStudios, setSelectedStudios] = useState([]);
+  const [selectedMarkets, setSelectedMarkets] = useState([]);
 
-  let studiosDropdownActive = false;
-  let marketsDropdownActive = false;
+  const [studiosDropdownActive, setSudiosDropdownActive] = useState(false);
+  const [marketsDropdownActive, setMarketsDropdownActive] = useState(false);
 
   const handleStudioFilter = (tag) => {
     if (selectedStudios.includes(tag)) {
       const _selectedStudios = selectedStudios.filter((el) => el !== tag);
-      selectedStudios = _selectedStudios;
-      // applyFilters({ selectedStudios: _selectedStudios, selectedMarkets });
+      setSelectedStudios(_selectedStudios);
+      applyFilters({ selectedStudios: _selectedStudios, selectedMarkets });
     } else {
       const _selectedStudios = [...selectedStudios, tag];
-      selectedStudios = _selectedStudios;
-      // applyFilters({ selectedStudios: _selectedStudios, selectedMarkets });
+      setSelectedStudios(_selectedStudios);
+      applyFilters({ selectedStudios: _selectedStudios, selectedMarkets });
     }
-    console.log("selectedStudios", selectedStudios);
   };
   const handleMarketFilter = (category) => {
     if (selectedMarkets.includes(category)) {
       const _selectedMarkets = selectedMarkets.filter((el) => el !== category);
-      selectedMarkets = _selectedMarkets;
-      // applyFilters({ selectedStudios, selectedMarkets: _selectedMarkets });
+      setSelectedMarkets(_selectedMarkets);
+      applyFilters({ selectedStudios, selectedMarkets: _selectedMarkets });
     } else {
       const _selectedMarkets = [...selectedMarkets, category];
-      selectedMarkets = _selectedMarkets;
-      // applyFilters({ selectedStudios, selectedMarkets: _selectedMarkets });
+      setSelectedMarkets(_selectedMarkets);
+      applyFilters({ selectedStudios, selectedMarkets: _selectedMarkets });
     }
   };
 
   const resetFilter = (type) => {
     if (type === "studios") {
-      selectedStudios = [];
-      // applyFilters({ selectedStudios: [], selectedMarkets });
+      setSelectedStudios([]);
+      applyFilters({ selectedStudios: [], selectedMarkets });
     } else if (type === "markets") {
-      selectedMarkets = [];
-      // applyFilters({ selectedStudios, selectedMarkets: [] });
+      setSelectedMarkets([]);
+      applyFilters({ selectedStudios, selectedMarkets: [] });
     }
   }
-  const studiosDropdownref = useDetectClickOutside({ onTriggered: () => { if (studiosDropdownActive) studiosDropdownActive = false } });
-  const marketsDropdownref = useDetectClickOutside({ onTriggered: () => { if (marketsDropdownActive) marketsDropdownActive = false } });
+  const studiosDropdownref = useDetectClickOutside({ onTriggered: () => { if (studiosDropdownActive) setSudiosDropdownActive(false) } });
+  const marketsDropdownref = useDetectClickOutside({ onTriggered: () => { if (marketsDropdownActive) setMarketsDropdownActive(false) } });
 
   return (
     <section className="portfolio-intro pt-lg-145 pt-mobile-105">
@@ -61,7 +60,7 @@ const PortfolioListing = ({ data }) => {
             >
               <div ref={studiosDropdownref} className="portfolio-tags">
                 <button
-                  onClick={() => { studiosDropdownActive = !studiosDropdownActive }}
+                  onClick={() => { setSudiosDropdownActive(!studiosDropdownActive) }}
                   className={`btn-tag-mobile no-desktop ${studiosDropdownActive ? "active" : ""}`}
                 >
                   <span>All Studios</span>
@@ -105,7 +104,7 @@ const PortfolioListing = ({ data }) => {
               <div ref={marketsDropdownref} className={`market-tags ${data?.markets?.length === 0 ? "hidden" : ""}`}
               >
                 <button
-                  onClick={() => { marketsDropdownActive = !marketsDropdownActive }}
+                  onClick={() => { setMarketsDropdownActive(!marketsDropdownActive) }}
                   className={`btn-tag-mobile no-desktop ${marketsDropdownActive ? "active" : ""}`}
                 >
                   <span>All Markets</span>
