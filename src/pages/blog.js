@@ -4,9 +4,13 @@ import { listBlogs } from "@/api/listing";
 import BlogListing from "@/components/blogPageSections/BlogListing";
 import SocialSection from "@/components/commonComponents/SocialSection";
 import { markPageLoaded } from "@/utils/utilityFunctions";
+import { useState } from "react";
 
 export default function blog({ blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed, blog }) {
   markPageLoaded();
+  // const [blogResponse, setBlogResponse] = useState(null);
+  // const [blogCollection, setBlogCollection] = useState([]);
+
   const data = {
     pageSize: 8,
     markets: marketsSectionData,
@@ -15,6 +19,17 @@ export default function blog({ blogSectionDetails, marketsSectionData, studios, 
     studios: studios.filter(x => x.filters),
     totalCount: blog?._totalCount
   }
+
+  const handleSeeMore = async ({ selectedStudios = [], selectedMarkets = [], disableLoader = false }) => {
+    const response = await listBlogs({ pageSize: 8, skip: blog.length, studios: selectedStudios, markets: selectedMarkets, disableLoader });
+    console.log("response", response);
+    // setBlogCollection((prev) => [
+    //   ...prev,
+    //   ...response._items.map((item) => item.data),
+    // ]);
+    // setBlogResponse(response);
+    // updatedWatched();
+  };
 
   const applyFilters = async ({ selectedStudios = [], selectedMarkets = [], disableLoader = false }) => {
     try {
@@ -28,7 +43,7 @@ export default function blog({ blogSectionDetails, marketsSectionData, studios, 
 
   return (
     <>
-      <BlogListing data={data} />
+      <BlogListing data={data} seeMore={handleSeeMore} />
       <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed} />
     </>
   )
