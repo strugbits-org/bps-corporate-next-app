@@ -10,7 +10,7 @@ import {
 } from "@/api/home.js";
 
 import {
-    getFetchPortfolio,
+    fetchPortfolio,
     getMarketCollection,
     getMarketSection,
     getMarketsPostPageSectionDetails,
@@ -95,7 +95,7 @@ export const getServerSideProps = async (context) => {
         getMarketSection(context.query.id),
         getMarketsPostPageSectionDetails(),
         getMarketCollection(),
-        getFetchPortfolio(context.query.id),
+        fetchPortfolio(context.query.id),
         getHomeSectionDetails(),
         getPeopleReviewSliderData(),
         getMarketsSectionData(),

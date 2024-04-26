@@ -56,7 +56,7 @@ export const getMarketCollection = async () => {
     }
 }
 
-export const getFetchPortfolio = async ({ pageSize = 4, excludeItem = null }) => {
+export const fetchPortfolio = async ({ pageSize = 4, excludeItem = null }) => {
     try {
         const options = {
           pageSize: pageSize,
