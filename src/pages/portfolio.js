@@ -7,7 +7,7 @@ import SocialSection from "@/components/commonComponents/SocialSection";
 import { markPageLoaded, updatedWatched } from "@/utils/utilityFunctions";
 import { useEffect, useState } from "react";
 
-export default function portfolio({ homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
+export default function Portfolio({ homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
   
   const [portfolioResponse, setPortfolioResponse] = useState(null);
   const [portfolioCollection, setPortfolioCollection] = useState([]);
