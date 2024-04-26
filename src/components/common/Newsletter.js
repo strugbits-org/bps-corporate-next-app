@@ -22,7 +22,7 @@ const Newsletter = ({ data }) => {
   };
 
   const validationSchema = Yup.object().shape({
-    email_ac30: Yup.string()
+    email_f932: Yup.string()
       .email("Invalid email address")
       .required("Required"),
   });
@@ -60,7 +60,6 @@ const Newsletter = ({ data }) => {
           el.classList.remove("preenchido")
         );
       }, 3000);
-      // Clean up the timeout
       return () => clearTimeout(timeoutId);
     }
   }, [success, error, reset]);
@@ -95,18 +94,18 @@ const Newsletter = ({ data }) => {
             </label>
 
             <input
-              id="email_ac30"
-              name="email_ac30"
+              id="email_f932"
+              name="email_f932"
               type="email"
-              {...register("email_ac30")}
+              {...register("email_f932")}
               required
               disabled={loading}
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
             />
 
-            {formErrors.email_ac30 && (
-              <span className="error">{formErrors.email_ac30.message}</span>
+            {formErrors.email_f932 && (
+              <span className="error">{formErrors.email_f932.message}</span>
             )}
           </div>
           <div className="container-submit">

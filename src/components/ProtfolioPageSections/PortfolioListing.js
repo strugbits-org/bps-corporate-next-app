@@ -1,6 +1,7 @@
 import { generateImageUrl2 } from '@/common/functions/imageURL';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 import DelayedLink from '../common/DelayedLink';
+import React from 'react';
 
 const PortfolioListing = ({ data }) => {
   let selectedStudios = [];

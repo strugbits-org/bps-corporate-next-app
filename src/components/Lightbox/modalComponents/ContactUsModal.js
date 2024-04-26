@@ -1,13 +1,13 @@
 import React from "react";
-import ContactForm from "../../../common/ContactForm";
-import ContactDetails from "../../commonComponents/ContactDetails";
 import { ModalWrapper } from "../ModalWrapper";
+import ContactForm from "@/components/common/ContactForm";
+// import ContactDetails from "@/components/commonComponents/ContactDetails";
 
 const ContactUsModal = () => {
   return (
     <ModalWrapper name={"modal-contact"}>
-      <ContactForm />
-      <ContactDetails />
+      {/* <ContactForm /> */}
+      {/* <ContactDetails /> */}
     </ModalWrapper>
   );
 };

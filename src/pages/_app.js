@@ -5,6 +5,7 @@ import Footer from "@/layout/footer/Footer";
 import Navbar from "@/layout/header/Navbar";
 import { getMarketsSectionData, getSearchSectionDetails, getStudiosSectionData } from "@/api/home.js";
 import { getContactData, getFooterData, getSocialLinks } from "@/api/footer";
+// import ContactUsModal from "@/components/Lightbox/modalComponents/ContactUsModal";
 
 export default function App({ Component, pageProps, studios, markets, searchContent, footerData, contactData, socialLinks }) {
   const router = useRouter();
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps, studios, markets, searchCont
     <>
       <Loading />
       <Cookies />
+      {/* <ContactUsModal /> */}
       <Navbar studios={studios} markets={markets} searchContent={searchContent} />
       <div id="main-transition">
         <div id={`pg-${cleanPath}`} className="wrapper" data-scroll-container>
