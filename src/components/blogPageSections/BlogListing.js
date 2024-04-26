@@ -1,8 +1,8 @@
+import { generateImageURL } from "@/common/functions/imageURL";
 import React, { useState } from "react";
-import DelayedLink from "../../common/DelayedLink";
-import { generateImageURL } from "../../common/functions/imageURL";
-import formatDate from "../../common/functions/dateFormat";
 import { useDetectClickOutside } from 'react-detect-click-outside';
+import DelayedLink from "../common/DelayedLink";
+import formatDate from "@/common/functions/dateFormat";
 
 const BlogListing = ({ data, seeMore, applyFilters }) => {
 

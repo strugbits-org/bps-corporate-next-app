@@ -9,7 +9,6 @@ import SliderBanner from "@/components/commonComponents/SliderBanner";
 import OurFamily from "@/components/aboutPageSections/OurFamily";
 import OurDream from "@/components/aboutPageSections/OurDream";
 import { markPageLoaded } from "@/utils/utilityFunctions";
-import AboutUsVideoModal from "@/components/Lightbox/modalComponents/AboutUsVideoModal";
 
 const About = ({ aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed }) => {
 
@@ -25,7 +24,6 @@ const About = ({ aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSecti
             <AboutBottomSection sectionDetails={aboutUsSectionDetails} />
             <DreamBigSection data={dreamBigData} />
             <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed}/>
-            <AboutUsVideoModal data={aboutUsIntroSection}/>
         </>
     );
 };
