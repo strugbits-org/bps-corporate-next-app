@@ -1,34 +1,33 @@
-import React, { useState } from "react";
-import DelayedLink from "../../common/DelayedLink";
-import { generateImageUrl2 } from "../../common/functions/imageURL";
+import { generateImageUrl2 } from '@/common/functions/imageURL';
 import { useDetectClickOutside } from 'react-detect-click-outside';
+import DelayedLink from '../common/DelayedLink';
 
-const PortfolioListing = ({ data, seeMore, applyFilters }) => {
-  const [selectedStudios, setSelectedStudios] = useState([]);
-  const [selectedMarkets, setSelectedMarkets] = useState([]);
+const PortfolioListing = ({ data }) => {
+  let selectedStudios = [];
+  let selectedMarkets = [];
 
-  const [studiosDropdownActive, setSudiosDropdownActive] = useState(false);
-  const [marketsDropdownActive, setMarketsDropdownActive] = useState(false);
+  let studiosDropdownActive = false;
+  let marketsDropdownActive = false;
 
   const handleStudioFilter = (tag) => {
     if (selectedStudios.includes(tag)) {
       const _selectedStudios = selectedStudios.filter((el) => el !== tag);
-      setSelectedStudios(_selectedStudios);
+      selectedStudios = _selectedStudios;
       applyFilters({ selectedStudios: _selectedStudios, selectedMarkets });
     } else {
       const _selectedStudios = [...selectedStudios, tag];
-      setSelectedStudios(_selectedStudios);
+      selectedStudios = _selectedStudios;
       applyFilters({ selectedStudios: _selectedStudios, selectedMarkets });
     }
   };
   const handleMarketFilter = (category) => {
     if (selectedMarkets.includes(category)) {
       const _selectedMarkets = selectedMarkets.filter((el) => el !== category);
-      setSelectedMarkets(_selectedMarkets);
+      selectedMarkets = _selectedMarkets;
       applyFilters({ selectedStudios, selectedMarkets: _selectedMarkets });
     } else {
       const _selectedMarkets = [...selectedMarkets, category];
-      setSelectedMarkets(_selectedMarkets);
+      selectedMarkets = _selectedMarkets;
       applyFilters({ selectedStudios, selectedMarkets: _selectedMarkets });
     }
   };
@@ -42,8 +41,8 @@ const PortfolioListing = ({ data, seeMore, applyFilters }) => {
       applyFilters({ selectedStudios, selectedMarkets: [] });
     }
   }
-  const studiosDropdownref = useDetectClickOutside({ onTriggered: () => { if (studiosDropdownActive) setSudiosDropdownActive(false) } });
-  const marketsDropdownref = useDetectClickOutside({ onTriggered: () => { if (marketsDropdownActive) setMarketsDropdownActive(false) } });
+  const studiosDropdownref = useDetectClickOutside({ onTriggered: () => { if (studiosDropdownActive) studiosDropdownActive = false } });
+  const marketsDropdownref = useDetectClickOutside({ onTriggered: () => { if (marketsDropdownActive) marketsDropdownActive = false } });
 
   return (
     <section className="portfolio-intro pt-lg-145 pt-mobile-105">
@@ -60,7 +59,7 @@ const PortfolioListing = ({ data, seeMore, applyFilters }) => {
             >
               <div ref={studiosDropdownref} className="portfolio-tags">
                 <button
-                  onClick={() => { setSudiosDropdownActive(!studiosDropdownActive) }}
+                  onClick={() => { studiosDropdownActive = !studiosDropdownActive }}
                   className={`btn-tag-mobile no-desktop ${studiosDropdownActive ? "active" : ""}`}
                 >
                   <span>All Studios</span>
@@ -104,7 +103,7 @@ const PortfolioListing = ({ data, seeMore, applyFilters }) => {
               <div ref={marketsDropdownref} className={`market-tags ${data?.markets?.length === 0 ? "hidden" : ""}`}
               >
                 <button
-                  onClick={() => { setMarketsDropdownActive(!marketsDropdownActive) }}
+                  onClick={() => { marketsDropdownActive = !marketsDropdownActive }}
                   className={`btn-tag-mobile no-desktop ${marketsDropdownActive ? "active" : ""}`}
                 >
                   <span>All Markets</span>
