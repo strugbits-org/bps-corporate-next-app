@@ -35,18 +35,18 @@ export const getServerSideProps = async () => {
     getHomeSectionDetails(),
     getHeroSectionData(),
     getTouchSectionData(),
+    getStudiosSectionData(),
     getPortfolioCollection(),
+    getPeopleReviewSliderData(),
     getMarketsSectionData(),
     getRentalStoreData(),
     getRentalStoreFancyTitle(),
-    getStudiosSectionData(),
-    getPeopleReviewSliderData(),
     getDreamBigData(),
     getSocialSectionDetails(),
     getSocialSectionBlogs(),
     fetchInstaFeed(),
   ]);
-
+  
   return {
     props: { homeSectionDetails, heroSectionData, getInTouchData, studiosSectionData, portfolioCollection, peopleReviewSliderData, marketsSectionData, rentalStoreData, rentalStoreFancyTitle, dreamBigData, socialSectionBlogs, socialSectionDetails, instaFeed, },
   };
