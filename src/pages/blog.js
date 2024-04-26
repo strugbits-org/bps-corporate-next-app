@@ -15,7 +15,7 @@ export default function blog({ blogSectionDetails, marketsSectionData, studios, 
     pageSize,
     markets: marketsSectionData,
     blogSectionDetails,
-    items: blogCollection?._items && blogCollection?._items.map(item => item.data) || [],
+    items: blogCollection,
     studios: studios.filter(x => x.filters),
     totalCount: blogResponse?._totalCount
   }
@@ -48,7 +48,6 @@ export default function blog({ blogSectionDetails, marketsSectionData, studios, 
 
   return (
     <>
-      updatedWatched();
       <BlogListing data={data} seeMore={handleSeeMore} applyFilters={applyFilters} />
       <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed} />
     </>
