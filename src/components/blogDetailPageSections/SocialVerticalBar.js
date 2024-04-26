@@ -1,10 +1,9 @@
+import Link from "next/link";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
-const SocialVerticalBar = ({ title }) => {
-
+const SocialVerticalBar = ({ title, slug }) => {
   const [copied, setCopied] = useState(false);
-  const url = window.location.href;
+  const url = slug;
   const copyURLToClipboard = (e) => {
     navigator.clipboard
       .writeText(url)
@@ -24,6 +23,7 @@ const SocialVerticalBar = ({ title }) => {
     <ul className="list-share">
       <li>
         <Link
+          href={""}
           data-cursor-style="off"
           onClick={(e) => {
             window.open(
@@ -40,6 +40,7 @@ const SocialVerticalBar = ({ title }) => {
       </li>
       <li>
         <Link
+          href={""}
           data-cursor-style="off"
           onClick={(e) => {
             window.open(
@@ -56,6 +57,7 @@ const SocialVerticalBar = ({ title }) => {
       </li>
       <li>
         <Link
+          href={""}
           to={`mailto:?subject=${title}&body=Hey check out this post at ${url}`}
           data-cursor-style="off"
         >
@@ -64,7 +66,7 @@ const SocialVerticalBar = ({ title }) => {
         </Link>
       </li>
       <li>
-        <Link onClick={copyURLToClipboard} className="copy-link">
+        <Link href={""} onClick={copyURLToClipboard} className="copy-link">
           <span>{copied}</span>
           <i className="icon-link"></i>
         </Link>

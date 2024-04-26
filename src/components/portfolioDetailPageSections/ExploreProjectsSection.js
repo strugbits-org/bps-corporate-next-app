@@ -1,19 +1,12 @@
-import React, { useEffect } from "react";
-import DelayedLink from "../../common/DelayedLink";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPortfolio } from "../../redux/reducers/portfolioData";
-import { generateImageUrl2 } from "../../common/functions/imageURL";
+import { generateImageUrl2 } from "@/common/functions/imageURL";
+import DelayedLink from "../common/DelayedLink";
+import React from "react";
 import { DefaultButton } from "../commonComponents/DefaultButton";
 
-const ExploreProjectsSection = ({ id }) => {
-  const dispatch = useDispatch();
-  const portfolioCollection = useSelector((state) => state.portfolio.portfolioData);
-  const { portfolioSectionDetails } = useSelector((state) => state.portfolio);
-
-  useEffect(() => {
-    dispatch(fetchPortfolio({ pageSize: 4, excludeItem: id }));
-  }, [dispatch, id]);
-
+const ExploreProjectsSection = ({
+  portfolioSectionDetails,
+  portfolioCollection,
+}) => {
   return (
     <section className="project-explore-projects pt-lg-310 pt-tablet-100 pt-phone-160 pb-lg-190 pb-mobile-100">
       <div className="container-fluid">
@@ -44,7 +37,13 @@ const ExploreProjectsSection = ({ id }) => {
                         >
                           <div className="wrapper-img">
                             <img
-                              src={generateImageUrl2({ wix_url: data?.portfolioRef.coverImage.imageInfo, w: "470", h: "580", q: "90" })}
+                              src={generateImageUrl2({
+                                wix_url:
+                                  data?.portfolioRef.coverImage.imageInfo,
+                                w: "470",
+                                h: "580",
+                                q: "90",
+                              })}
                               data-preload
                               className="media"
                               alt=""
@@ -54,19 +53,14 @@ const ExploreProjectsSection = ({ id }) => {
                         <div className="container-text">
                           <ul className="list-tags-small">
                             {data.markets.map((market, index) => (
-                              <li
-                                key={index}
-                                className={"tag-small"}
-                              >
+                              <li key={index} className={"tag-small"}>
                                 <span>{market.cardname}</span>
                               </li>
                             ))}
                             {data.studios.map((studio, index) => (
                               <React.Fragment key={index}>
                                 {index < 2 && (
-                                  <li
-                                    className={"tag-small"}
-                                  >
+                                  <li className={"tag-small"}>
                                     <span>{studio.cardName}</span>
                                   </li>
                                 )}
@@ -97,7 +91,7 @@ const ExploreProjectsSection = ({ id }) => {
               customClasses={"btn-border-blue"}
               data={{
                 label: portfolioSectionDetails?.seeMoreButtonText,
-                action: portfolioSectionDetails?.seeMoreButtonAction
+                action: portfolioSectionDetails?.seeMoreButtonAction,
               }}
               attributes={{
                 "data-cursor-style": "off",

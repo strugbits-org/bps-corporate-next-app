@@ -1,6 +1,6 @@
+import { generateImageURL } from "@/common/functions/imageURL";
+import DelayedLink from "../common/DelayedLink";
 import React from "react";
-import DelayedLink from "../../common/DelayedLink";
-import { generateImageURL } from "../../common/functions/imageURL";
 
 const ProductCartSlider = ({ data }) => {
   const EXTERNAL_SITE_URL = "https://www.rentals.blueprintstudios.com";
@@ -18,13 +18,25 @@ const ProductCartSlider = ({ data }) => {
                     <i className="icon-bookmark-full"></i>
                   </button> */}
 
-                  <DelayedLink to={EXTERNAL_SITE_URL + item.productPageUrl} target={"blank"} className="product-link">
-                    <h3 className="product-name productSlider-label">{item.name}</h3>
+                  <DelayedLink
+                    to={EXTERNAL_SITE_URL + item.productPageUrl}
+                    target={"blank"}
+                    className="product-link"
+                  >
+                    <h3 className="product-name productSlider-label">
+                      {item.name}
+                    </h3>
 
                     <div className="wrapper-img">
                       <div className="container-img">
                         <img
-                          src={generateImageURL({ wix_url: item.mainMedia,w: "200", h: "200", fit: "fit", q: "95" })}
+                          src={generateImageURL({
+                            wix_url: item.mainMedia,
+                            w: "200",
+                            h: "200",
+                            fit: "fit",
+                            q: "95",
+                          })}
                           data-preload
                           className="media"
                           alt=""
@@ -39,50 +51,75 @@ const ProductCartSlider = ({ data }) => {
                         <i className="icon-arrow-diagonal-right"></i>
                       </div>
                       <ul className="list-thumb">
-                        {item.productOptions.Color ? (
-                          item.productOptions.Color.choices.map((option, index) => (
-                            <React.Fragment key={index}>
-                              {index < 4 && (
-                                <li key={index}>
-                                  <div className="container-img">
-                                    <img
-                                      src={generateImageURL({ wix_url: option.mainMedia ? option.mainMedia : item.mainMedia,w: "24", h: "24", fit: "fit", q: "95" })}
-                                      data-preload
-                                      className="media"
-                                      alt=""
-                                    />
-                                  </div>
-                                </li>
-                              )}
-                            </React.Fragment>
-                          ))
-                        )
-                          : item.productOptions["Color "] ?
-                            item.productOptions["Color "].choices.map((option, index) => (
-                              <React.Fragment key={index}>
-                                {index < 4 && (
-                                  <li key={index}>
-                                    <div className="container-img">
-                                      <img
-                                        src={generateImageURL({ wix_url: option.mainMedia ? option.mainMedia : item.mainMedia,w: "24", h: "24", fit: "fit", q: "95" })}
-                                        data-preload
-                                        className="media"
-                                        alt=""
-                                      />
-                                    </div>
-                                  </li>
-                                )}
-                              </React.Fragment>
-                            ))
-                            : null}
+                        {item.productOptions.Color
+                          ? item.productOptions.Color.choices.map(
+                              (option, index) => (
+                                <React.Fragment key={index}>
+                                  {index < 4 && (
+                                    <li key={index}>
+                                      <div className="container-img">
+                                        <img
+                                          src={generateImageURL({
+                                            wix_url: option.mainMedia
+                                              ? option.mainMedia
+                                              : item.mainMedia,
+                                            w: "24",
+                                            h: "24",
+                                            fit: "fit",
+                                            q: "95",
+                                          })}
+                                          data-preload
+                                          className="media"
+                                          alt=""
+                                        />
+                                      </div>
+                                    </li>
+                                  )}
+                                </React.Fragment>
+                              )
+                            )
+                          : item.productOptions["Color "]
+                          ? item.productOptions["Color "].choices.map(
+                              (option, index) => (
+                                <React.Fragment key={index}>
+                                  {index < 4 && (
+                                    <li key={index}>
+                                      <div className="container-img">
+                                        <img
+                                          src={generateImageURL({
+                                            wix_url: option.mainMedia
+                                              ? option.mainMedia
+                                              : item.mainMedia,
+                                            w: "24",
+                                            h: "24",
+                                            fit: "fit",
+                                            q: "95",
+                                          })}
+                                          data-preload
+                                          className="media"
+                                          alt=""
+                                        />
+                                      </div>
+                                    </li>
+                                  )}
+                                </React.Fragment>
+                              )
+                            )
+                          : null}
                       </ul>
-                      {item.productOptions.Color && item.productOptions.Color.choices.length > 4 ? (
+                      {item.productOptions.Color &&
+                      item.productOptions.Color.choices.length > 4 ? (
                         <div className="colors-number">
-                          <span>+{item.productOptions.Color.choices.length - 4}</span>
+                          <span>
+                            +{item.productOptions.Color.choices.length - 4}
+                          </span>
                         </div>
-                      ) : item.productOptions["Color "] && item.productOptions["Color "].choices.length > 4 ? (
+                      ) : item.productOptions["Color "] &&
+                        item.productOptions["Color "].choices.length > 4 ? (
                         <div className="colors-number">
-                          <span>+{item.productOptions["Color "].choices.length - 4}</span>
+                          <span>
+                            +{item.productOptions["Color "].choices.length - 4}
+                          </span>
                         </div>
                       ) : null}
                     </div>

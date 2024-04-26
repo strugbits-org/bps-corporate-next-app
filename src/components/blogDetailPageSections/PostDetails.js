@@ -1,31 +1,35 @@
-import React, { useEffect, useState } from "react";
-import formatDate from "../../common/functions/dateFormat";
-import { blogGalleryImageURL, generateImageURL } from "../../common/functions/imageURL";
+import formatDate from "@/common/functions/dateFormat";
+import {
+  blogGalleryImageURL,
+  generateImageURL,
+} from "@/common/functions/imageURL";
+import { useEffect, useState } from "react";
 import ProductCartSlider from "../commonComponents/ProductCartSlider";
 import SocialVerticalBar from "./SocialVerticalBar";
-import ReactPlayer from "react-player";
-import { getblogTags } from "../../redux/reducers/blogData";
-import { useDispatch, useSelector } from "react-redux";
 
-const PostDetails = () => {
-  const dispatch = useDispatch();
-
-  const { blogSectionDetails } = useSelector((state) => state.blog);
-  const data = useSelector((state) => state.blog.singleBlogData);
-
-  const tags = useSelector((state) => state.blog.blogTags);
+const PostDetails = ({ data, blogSectionDetails }) => {
   const [singleData, setSingleData] = useState([]);
 
   const title = data?.blogRef?.title;
   const date = formatDate(data?.blogRef?.lastPublishedDate?.$date);
-  const profileImage = generateImageURL({ wix_url: data?.author?.profilePhoto, w: "35", h: "35", q: "90" });
+  const profileImage = generateImageURL({
+    wix_url: data?.author?.profilePhoto,
+    w: "35",
+    h: "35",
+    q: "90",
+  });
   const authorName = data?.author?.nickname;
 
   useEffect(() => {
     const singlePost = async () => {
       let blogData = [];
       if (data?.blogRef?.coverImage) {
-        const image = generateImageURL({ wix_url: data?.blogRef?.coverImage, w: "1280", h: "670", q: "90" });
+        const image = generateImageURL({
+          wix_url: data?.blogRef?.coverImage,
+          w: "1280",
+          h: "670",
+          q: "90",
+        });
         blogData.push({
           type: "cover",
           image: image,
@@ -138,7 +142,12 @@ const PostDetails = () => {
           const gallery = [];
           item?.galleryData?.items?.forEach((item) => {
             if (item.image?.media?.src) {
-              const image = blogGalleryImageURL({ wix_url: item.image?.media?.src.url,w: "960", h: "540", q: "90" });
+              const image = blogGalleryImageURL({
+                wix_url: item.image?.media?.src.url,
+                w: "960",
+                h: "540",
+                q: "90",
+              });
               gallery.push({
                 type: "cover",
                 image: image,
@@ -152,7 +161,12 @@ const PostDetails = () => {
             sq: 0,
           });
         } else if (item.type === "IMAGE") {
-          const imageURL = generateImageURL({ wix_url: item.imageData.image.src._id,w: "960", h: "540", q: "90" });
+          const imageURL = generateImageURL({
+            wix_url: item.imageData.image.src._id,
+            w: "960",
+            h: "540",
+            q: "90",
+          });
           blogData.push({ type: "image", image: imageURL });
         }
       });
@@ -163,11 +177,11 @@ const PostDetails = () => {
     singlePost();
   }, [data]);
 
-  useEffect(() => {
-    if (data?.blogRef?.tags) {
-      dispatch(getblogTags(data?.blogRef?.tags));
-    }
-  }, [dispatch, data?.blogRef?.tags]);
+  // useEffect(() => {
+  //   if (data?.blogRef?.tags) {
+  //     dispatch(getblogTags(data?.blogRef?.tags));
+  //   }
+  // }, [dispatch, data?.blogRef?.tags]);
 
   return (
     <section className="article-intro pt-lg-150 pt-mobile-125">
@@ -295,7 +309,7 @@ const PostDetails = () => {
                   })}
                 </div>
               </div>
-              {tags.length !== 0 && (
+              {/* {tags.length !== 0 && (
                 <div className="article-tags mt-lg-140 mt-tablet-40 mt-phone-115">
                   <h3
                     className="fs--22 mb-lg-25 mb-tablet-40 mb-phone-25 split-words"
@@ -315,15 +329,16 @@ const PostDetails = () => {
                     })}
                   </ul>
                 </div>
-              )}
+              )} */}
             </div>
 
             {/* Product Cart Slider start */}
 
             {data?.storeProducts && data?.storeProducts.length !== 0 && (
               <div
-                className={`container-slider-produtcts mt-lg-padding-fluid mt-tablet-100 mt-phone-105 ${data?.storeProducts?.length === 0 ? "hidden" : ""
-                  }`}
+                className={`container-slider-produtcts mt-lg-padding-fluid mt-tablet-100 mt-phone-105 ${
+                  data?.storeProducts?.length === 0 ? "hidden" : ""
+                }`}
               >
                 <h2 className="slider-title">
                   {blogSectionDetails?.featuredProductsTitle}
