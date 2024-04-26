@@ -3,8 +3,6 @@ import Link from "next/link";
 import DelayedLink from "../common/DelayedLink";
 
 const SocialSection = ({ data, posts, insta_feed }) => {
-  // const insta_feed = useSelector((state) => state.socialSectionData.insta_feed);
-
   return (
     <section className="section-lets-get-social z-5 pt-lg-195 pt-tablet-105 pt-phone-155 pb-lg-130 pb-tablet-105 pb-phone-140 mt-lg-240">
       <div
@@ -57,21 +55,32 @@ const SocialSection = ({ data, posts, insta_feed }) => {
                         <li key={data._id}>
                           <DelayedLink
                             to={`/article/${encodeURIComponent(data.slug)}`}
-                            className="link-blog">
+                            className="link-blog"
+                          >
                             <div
                               className="container-img"
                               data-cursor-style="view"
                             >
                               <img
-                                src={generateImageUrl2({ wix_url: data?.blogRef?.coverImage, h: "150", w: "150", q: "95" })}
+                                src={generateImageUrl2({
+                                  wix_url: data?.blogRef?.coverImage,
+                                  h: "150",
+                                  w: "150",
+                                  q: "95",
+                                })}
                                 data-preload
                                 className="media"
                                 alt=""
                               />
                             </div>
                             <div className="container-text">
-                              <h4 className="blog-title"> {data?.blogRef?.title}</h4>
-                              <p className="blog-text">{data?.blogRef?.excerpt}</p>
+                              <h4 className="blog-title">
+                                {" "}
+                                {data?.blogRef?.title}
+                              </h4>
+                              <p className="blog-text">
+                                {data?.blogRef?.excerpt}
+                              </p>
                             </div>
                           </DelayedLink>
                         </li>
