@@ -1,8 +1,11 @@
 import { getContactUsContent } from "@/api/contact";
+import { getContactData, getSocialLinks } from "@/api/footer";
 import getFullVideoURL from "@/common/functions/videoURL";
+import ContactForm from "@/components/common/ContactForm";
+import ContactDetails from "@/components/commonComponents/ContactDetails";
 import { markPageLoaded } from "@/utils/utilityFunctions";
 
-export default function contact({ data }) {
+export default function contact({ data, contactData, socialLinks }) {
   markPageLoaded();
   return (
     <>
@@ -53,11 +56,11 @@ export default function contact({ data }) {
         <div className="container-fluid">
           <div className="row contact-info">
             {/* contact form start.. */}
-            {/* <ContactForm /> */}
+            <ContactForm data={data} />
             {/* contact form end.. */}
 
             {/* contactDetails here */}
-            {/* <ContactDetails /> */}
+            <ContactDetails contactData={contactData} contactusData={data} socialLinks={socialLinks} />
           </div>
 
           <div className="row mt-135 no-mobile">
@@ -75,11 +78,13 @@ export default function contact({ data }) {
 }
 
 export const getServerSideProps = async () => {
-  const [data] = await Promise.all([
+  const [data, contactData, socialLinks] = await Promise.all([
     getContactUsContent(),
+    getContactData(),
+    getSocialLinks(),
   ]);
 
   return {
-    props: { data },
+    props: { data, contactData, socialLinks },
   };
 }

@@ -1,21 +1,20 @@
 import { fetchInstaFeed, getHomeSectionDetails, getMarketsSectionData, getSocialSectionBlogs, getSocialSectionDetails, getStudiosSectionData } from "@/api/home.js";
+import { listPortfolios } from "@/api/listing";
 import { getPortfolioSectionDetails } from "@/api/portfolio";
 import PortfolioListing from "@/components/ProtfolioPageSections/PortfolioListing";
 import MarketSection from "@/components/commonComponents/MarketSection";
 import SocialSection from "@/components/commonComponents/SocialSection";
 import { markPageLoaded } from "@/utils/utilityFunctions";
 
-export default function portfolio({ homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
+export default function portfolio({ homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed, portfolio }) {
   markPageLoaded();
   const data = {
     pageSize: 8,
     markets: marketsSectionData,
     portfolioSectionDetails,
-    // items: portfolioCollection,
-    items: [],
+    items: portfolio._items.map(item => item.data),
     studios: studios.filter(x => x.filters),
-    // totalCount: portfolioResponse?._totalCount
-    totalCount: 0
+    totalCount: portfolio?._totalCount
   }
 
   const applyFilters = async ({ selectedStudios = [], selectedMarkets = [], disableLoader = false }) => {
@@ -41,7 +40,9 @@ export default function portfolio({ homeSectionDetails, portfolioSectionDetails,
 }
 
 export const getServerSideProps = async () => {
-  const [homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
+
+
+  const [homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed, portfolio] = await Promise.all([
     getHomeSectionDetails(),
     getPortfolioSectionDetails(),
     getMarketsSectionData(),
@@ -49,9 +50,10 @@ export const getServerSideProps = async () => {
     getSocialSectionDetails(),
     getSocialSectionBlogs(),
     fetchInstaFeed(),
+    listPortfolios({ pageSize: 8, studios: [], markets: [] })
   ]);
 
   return {
-    props: { homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed },
+    props: { homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed, portfolio },
   };
 }

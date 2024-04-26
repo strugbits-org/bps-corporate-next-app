@@ -1,12 +1,7 @@
 import React from "react";
-import DelayedLink from "../../common/DelayedLink";
-import { useSelector } from "react-redux";
+import DelayedLink from "../common/DelayedLink";
 
-const ContactDetails = () => {
-
-  const contactData = useSelector((state) => state.footer.data.contactData);
-  const contactusData = useSelector((state) => state.contactus.contactusData);
-  const socialLinks = useSelector((state) => state.footer.socialLinks);
+const ContactDetails = ({ contactData, contactusData, socialLinks }) => {
 
   return (
     <div className="column-2">

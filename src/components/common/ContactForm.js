@@ -2,18 +2,16 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch, useSelector } from "react-redux";
-import { postFormData } from "../redux/reducers/contactus";
 import contactFormSchema from "@/utils/scehma/contact";
-const ContactForm = ({data}) => {
+import { postForm } from "@/api";
 
-  const dispatch = useDispatch();
-
+const ContactForm = ({ data }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
-  const { loadingForm, successForm, errorForm } = useSelector(
-    (state) => state.contact
-  );
+  const [loadingForm, setLoadingForm] = useState(false);
+  const [successForm, setSuccessForm] = useState(false);
+  const [errorForm, setErrorForm] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -22,35 +20,29 @@ const ContactForm = ({data}) => {
   } = useForm({
     resolver: yupResolver(contactFormSchema),
   });
-  const onSubmit = (data) => {
-    dispatch(postFormData(data));
-  };
-  useEffect(() => {
-    if (successForm) {
+
+  const onSubmit = async (formData) => {
+    setLoadingForm(true);
+    try {
+      const res = await postForm("contact", formData);
+      console.log("res", res);
+      setSuccessForm(true);
       setShowSuccess(true);
-      const timeoutId = setTimeout(() => {
+      reset();
+      setTimeout(() => {
         setShowSuccess(false);
-        reset();
-        Array.from(document.querySelectorAll(".preenchido")).forEach((el) =>
-          el.classList.remove("preenchido")
-        );
       }, 3000);
-      // Clean up the timeout
-      return () => clearTimeout(timeoutId);
-    }
-    if (errorForm) {
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setErrorForm(true);
       setShowError(true);
-      const timeoutId = setTimeout(() => {
+      setTimeout(() => {
         setShowError(false);
-        // reset();
-        // Array.from(document.querySelectorAll(".preenchido")).forEach((el) =>
-        //   el.classList.remove("preenchido")
-        // );
       }, 3000);
-      // Clean up the timeout
-      return () => clearTimeout(timeoutId);
+    } finally {
+      setLoadingForm(false);
     }
-  }, [successForm, errorForm, reset]);
+  };
 
   return (
     <div className="column-1">
@@ -62,85 +54,79 @@ const ContactForm = ({data}) => {
         className={`container-contact mt-lg-140 mt-tablet-65 ${
           showSuccess ? "form-success" : ""
         } ${showError ? "formError" : ""}`}
-        // data-form-container
       >
         <form className="form-contact" onSubmit={handleSubmit(onSubmit)}>
-          {/* <input type="hidden" name="assunto" value="[contact]" /> */}
           <div className="container-input col-md-6">
-            <label htmlFor="contact-first-name">{data?.firstNamePlaceholder}</label>
+            <label htmlFor="contact-first-name">
+              {data?.firstNamePlaceholder}
+            </label>
             <input
-              id="first_name_584c"
-              name="first_name_584c"
+              id="first_name_3469"
+              name="first_name_3469"
               type="text"
               required
               disabled={loadingForm}
-              {...register("first_name_584c")}
+              {...register("first_name_3469")}
             />
-            {formErrors.first_name_584c && (
+            {formErrors.first_name_3469 && (
               <span className="error">
-                {formErrors.first_name_584c.message}
+                {formErrors.first_name_3469.message}
               </span>
             )}
           </div>
           <div className="container-input col-md-6">
             <label htmlFor="contact-last-name">{data?.lastNamePlaceholder}</label>
             <input
-              id="last_name_51ee"
-              name="last_name_51ee"
+              id="last_name_425e"
+              name="last_name_425e"
               type="text"
               required
-              {...register("last_name_51ee")}
+              {...register("last_name_425e")}
               disabled={loadingForm}
             />
-            {formErrors.last_name_51ee && (
-              <span className="error">{formErrors.last_name_51ee.message}</span>
+            {formErrors.last_name_425e && (
+              <span className="error">{formErrors.last_name_425e.message}</span>
             )}
           </div>
           <div className="container-input col-12">
             <label htmlFor="contact-email">{data?.emailPlaceholder}</label>
             <input
-              id="email_bd82"
-              name="email_bd82"
+              id="email_d74b"
+              name="email_d74b"
               type="email"
               required
-              {...register("email_bd82")}
+              {...register("email_d74b")}
               disabled={loadingForm}
             />
-            {formErrors.email_bd82 && (
-              <span className="error">{formErrors.email_bd82.message}</span>
+            {formErrors.email_d74b && (
+              <span className="error">{formErrors.email_d74b.message}</span>
             )}
           </div>
           <div className="container-textarea col-12">
             <label htmlFor="contact-message">{data?.messageBoxPlaceholder}</label>
             <textarea
-              id="long_answer_afda"
-              name="long_answer_afda"
-              {...register("long_answer_afda")}
+              id="long_answer_e038"
+              name="long_answer_e038"
+              {...register("long_answer_e038")}
               disabled={loadingForm}
             ></textarea>
-            {formErrors.long_answer_afda && (
+            {formErrors.long_answer_e038 && (
               <span className="error">
-                {formErrors.long_answer_afda.message}
+                {formErrors.long_answer_e038.message}
               </span>
             )}
           </div>
           <div className="container-submit col-12">
-            <button type="submit" className="bt-submit btn-medium">
-              <span className="submit-text">
-              {data?.formSubmitButton}
-              </span>
+            <button type="submit" className="bt-submit btn-medium" disabled={loadingForm}>
+              <span className="submit-text">{data?.formSubmitButton}</span>
             </button>
           </div>
         </form>
-        {/* Error message */}
-        {showError && (
-          <h3 className="disable-css" data-form-error>
-            Error, Try again!
-          </h3>
-        )}
-        {showSuccess && <h3 data-form-success>Success!</h3>}
+        {showError && <h3>Error, Try again!</h3>}
+        {showSuccess && <h3>Success!</h3>}
       </div>
     </div>
   );
 };
+
 export default ContactForm;

@@ -1,8 +1,7 @@
 import { fetchCollection, fetchCollectionSp } from ".";
 
-export const listPortfolios = async ({ pageSize = 10, skip = 0, searchTerm = "", studios = [], markets = [], disableLoader = false, excludeItem = null }) => {
+export const listPortfolios = async ({ pageSize = 10, skip = 0, searchTerm = "", studios = [], markets = [], excludeItem = null }) => {
     try {
-        console.log("markets", markets);
         const data = {
             "dataCollectionId": "PortfolioCollection",
             "includeReferencedItems": ["portfolioRef", "locationFilteredVariant", "storeProducts", "studios", "markets", "gallery", "media"],
