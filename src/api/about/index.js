@@ -48,12 +48,13 @@ export const getAboutUsDreamTeamSection = async () => {
             "find": {},
             "contains": null,
             "eq": null,
-            "limit": null
+            "limit": 100
         }
         const response = await fetchCollection(data);
         return response._items.map((x) => x.data).sort((a, b) => a.orderNumber - b.orderNumber);
 
     } catch (error) {
+        console.log("error.message", error);
         throw new Error(error.message);
     }
 }
