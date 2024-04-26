@@ -5,6 +5,7 @@ import DelayedLink from "../common/DelayedLink";
 import formatDate from "@/common/functions/dateFormat";
 
 const BlogListing = ({ data, seeMore, applyFilters }) => {
+    console.log("data", data);
 
     const [selectedStudios, setSelectedStudios] = useState([]);
     const [selectedMarkets, setSelectedMarkets] = useState([]);
