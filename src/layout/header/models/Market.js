@@ -7,9 +7,12 @@ import DelayedLink from "@/components/common/DelayedLink";
 const Market = () => {
   const [data, setData] = useState([]);
 
-  useEffect(async() => {
-    const data = await getMarketsSectionData();
-    setData(data.filter(x => x.menuItem));
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getMarketsSectionData();
+      setData(data.filter(x => x.menuItem));
+    }
+    fetchData();
   }, []);
 
   return (

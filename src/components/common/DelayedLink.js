@@ -1,3 +1,4 @@
+import { closeModals } from '@/utils/utilityFunctions';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -6,7 +7,7 @@ const DelayedLink = ({ to, children, className, target, attributes }) => {
 
   const delayedRedirect = (e) => {
     e.preventDefault();
-
+    closeModals();
     if (to === undefined) return;
 
     if (router.pathname === to) {

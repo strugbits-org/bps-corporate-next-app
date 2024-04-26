@@ -1,5 +1,4 @@
 import { fetchCollection } from "..";
-import { listBlogs, listPortfolios } from "../listing";
 
 export const getContactUsContent = async () => {
     try {

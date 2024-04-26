@@ -103,7 +103,6 @@ export const closeModals = () => {
       }, 500);
     });
   }
-
 }
 
 export const setSeo = ({ title = 'Blueprint Studios', description = '', noFollowTag = false, subpage = false, seo_title = "", seo_description = "", no_follow_subpage = false, }) => {

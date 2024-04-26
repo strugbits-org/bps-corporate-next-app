@@ -1,24 +1,23 @@
-import { useSelector } from 'react-redux';
-import DelayedLink from '../../common/DelayedLink'
-import { generateImageUrl2 } from '../../common/functions/imageURL';
-import { DefaultButton } from '../commonComponents/DefaultButton';
-import { useEffect, useState } from 'react';
+import { generateImageUrl2 } from "@/common/functions/imageURL";
+import DelayedLink from "../common/DelayedLink";
+import { DefaultButton } from "../commonComponents/DefaultButton";
 
-const ExplorePortfolio = ({ slug }) => {
+const ExplorePortfolio = ({ marketSectionDetails,portfolioCollection,slug }) => {
+  // const { marketSectionDetails } = useSelector((state) => state.market);
+  // const portfolioCollection = useSelector((state) => state.portfolio.portfolioData);
 
-  const { marketSectionDetails } = useSelector((state) => state.market);
-  const portfolioCollection = useSelector((state) => state.portfolio.portfolioData);
-  const [filteredPortfolioCollection, setFilteredPortfolioCollection] = useState(portfolioCollection);
-  useEffect(() => {
-    const filteredProjects = portfolioCollection.filter(item => {
-      const marketLabels = item.markets.map((item) => item.cardname.toLowerCase())
-      return ([slug].some(r => marketLabels.includes(r)))
-    });
-    setFilteredPortfolioCollection(filteredProjects);
-  }, [portfolioCollection, slug]);
+  
+  // const [filteredPortfolioCollection, setFilteredPortfolioCollection] = useState(portfolioCollection);
+  // useEffect(() => {
+  //   const filteredProjects = portfolioCollection.filter(item => {
+  //     const marketLabels = item.markets.map((item) => item.cardname.toLowerCase())
+  //     return ([slug].some(r => marketLabels.includes(r)))
+  //   });
+  //   setFilteredPortfolioCollection(filteredProjects);
+  // }, [portfolioCollection, slug]);
 
   return (
-    filteredPortfolioCollection && filteredPortfolioCollection.length > 0 &&
+    // filteredPortfolioCollection && filteredPortfolioCollection.length > 0 &&
     <section className="market-explore-portfolio overflow-hidden pt-lg-270 pb-lg-220 py-tablet-100 pt-phone-145 pb-phone-190">
       <div className="container-fluid">
         <div className="row">
@@ -36,7 +35,7 @@ const ExplorePortfolio = ({ slug }) => {
                   data-aos="d:loop"
                 >
                   {/* <!-- Slides --> */}
-                  {filteredPortfolioCollection?.map((item, index) => {
+                  {portfolioCollection?.map((item, index) => {
                     return (
                       <div key={index} className="swiper-slide grid-item">
                         <DelayedLink to={`/project/${item.slug}`} className="link">

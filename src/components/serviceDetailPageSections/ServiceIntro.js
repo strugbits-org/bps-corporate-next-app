@@ -1,9 +1,7 @@
-import { useSelector } from "react-redux";
-import { generateImageURL } from "../../common/functions/imageURL";
+import { generateImageURL } from "@/common/functions/imageURL";
 import { DefaultButton } from "../commonComponents/DefaultButton";
 
-const ServiceIntro = () => {
-  const data = useSelector((state) => state.services.servicesData);
+const ServiceIntro = ({ data }) => {
 
   return (
     <>
