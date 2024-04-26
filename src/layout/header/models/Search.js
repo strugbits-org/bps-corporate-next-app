@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import debounce from "lodash/debounce";
-import { getSearchSectionDetails, getStudiosSectionData } from "@/api/home.js";
+import { getStudiosSectionData } from "@/api/home.js";
 import DelayedLink from "@/components/common/DelayedLink";
 import { getMarketCollection } from "@/api/market";
 import {
@@ -16,24 +16,8 @@ import {
 } from "@/common/functions/imageURL";
 import formatDate from "@/common/functions/dateFormat";
 
-const Search = () => {
-  // const searchContent = useSelector((state) => state.searchContent.data);
+const Search = ({ studios, markets, searchContent }) => {
 
-  const [markets, setMarkets] = useState();
-  const [studios, setStudios] = useState();
-
-  const getData = async () => {
-    const res = await getStudiosSectionData();
-    setStudios(res);
-    const res1 = await getMarketCollection();
-    setMarkets(res1);
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      getData();
-    }, 3000);
-  }, []);
   const EXTERNAL_SITE_URL = "https://www.rentals.blueprintstudios.com";
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -241,15 +225,13 @@ const Search = () => {
                               onClick={() => {
                                 handleStudioFilter(item._id);
                               }}
-                              className={`link-studios ${
-                                selectedStudios.includes(item._id)
+                              className={`link-studios ${selectedStudios.includes(item._id)
                                   ? "active"
                                   : ""
-                              } ${
-                                resultStudios.includes(item._id)
+                                } ${resultStudios.includes(item._id)
                                   ? ""
                                   : "disabled"
-                              }`}
+                                }`}
                             >
                               <h3 className="title-all-studios">
                                 <span>{item.cardName}</span>
@@ -263,9 +245,8 @@ const Search = () => {
 
                   <div className="column-results">
                     <div
-                      className={`result-rental ${
-                        productCollection.length === 0 ? "hidden" : ""
-                      }`}
+                      className={`result-rental ${productCollection.length === 0 ? "hidden" : ""
+                        }`}
                     >
                       <div className="container-title-results">
                         <h2 className="title-results split-chars" data-aos>
@@ -350,7 +331,7 @@ const Search = () => {
                                                                 option.mainMedia
                                                                   ? option.mainMedia
                                                                   : item.product
-                                                                      .mainMedia,
+                                                                    .mainMedia,
                                                               w: "30",
                                                               h: "30",
                                                               fit: "fit",
@@ -390,9 +371,8 @@ const Search = () => {
                     </div>
 
                     <div
-                      className={`result-portfolio mt-lg-60 mt-mobile-40 ${
-                        filteredPortfolioCollection.length === 0 ? "hidden" : ""
-                      }`}
+                      className={`result-portfolio mt-lg-60 mt-mobile-40 ${filteredPortfolioCollection.length === 0 ? "hidden" : ""
+                        }`}
                     >
                       <div className="container-title-results">
                         <h2 className="title-results split-chars" data-aos>
@@ -492,15 +472,13 @@ const Search = () => {
                               onClick={() => {
                                 handleMarketFilter(item._id);
                               }}
-                              className={`market-link project-link ${
-                                selectedMarkets.includes(item._id)
+                              className={`market-link project-link ${selectedMarkets.includes(item._id)
                                   ? "active"
                                   : ""
-                              } ${
-                                resultMarkets.includes(item._id)
+                                } ${resultMarkets.includes(item._id)
                                   ? ""
                                   : "disabled"
-                              }`}
+                                }`}
                               data-cursor-style="default"
                               data-menu-close
                             >
@@ -536,9 +514,8 @@ const Search = () => {
                   </div>
 
                   <div
-                    className={`result-blog ${
-                      filteredBlogCollection.length === 0 ? "hidden" : ""
-                    }`}
+                    className={`result-blog ${filteredBlogCollection.length === 0 ? "hidden" : ""
+                      }`}
                   >
                     <div className="container-title-results">
                       <h2 className="title-results split-chars" data-aos>
@@ -626,9 +603,8 @@ const Search = () => {
                   </div>
 
                   <div
-                    className={`result-order-pages ${
-                      otherPagesResults.length === 0 ? "hidden" : ""
-                    }`}
+                    className={`result-order-pages ${otherPagesResults.length === 0 ? "hidden" : ""
+                      }`}
                   >
                     <div className="container-title-results">
                       <h2 className="title-results split-chars" data-aos>

@@ -13,32 +13,33 @@ const PortfolioListing = ({ data }) => {
     if (selectedStudios.includes(tag)) {
       const _selectedStudios = selectedStudios.filter((el) => el !== tag);
       selectedStudios = _selectedStudios;
-      applyFilters({ selectedStudios: _selectedStudios, selectedMarkets });
+      // applyFilters({ selectedStudios: _selectedStudios, selectedMarkets });
     } else {
       const _selectedStudios = [...selectedStudios, tag];
       selectedStudios = _selectedStudios;
-      applyFilters({ selectedStudios: _selectedStudios, selectedMarkets });
+      // applyFilters({ selectedStudios: _selectedStudios, selectedMarkets });
     }
+    console.log("selectedStudios", selectedStudios);
   };
   const handleMarketFilter = (category) => {
     if (selectedMarkets.includes(category)) {
       const _selectedMarkets = selectedMarkets.filter((el) => el !== category);
       selectedMarkets = _selectedMarkets;
-      applyFilters({ selectedStudios, selectedMarkets: _selectedMarkets });
+      // applyFilters({ selectedStudios, selectedMarkets: _selectedMarkets });
     } else {
       const _selectedMarkets = [...selectedMarkets, category];
       selectedMarkets = _selectedMarkets;
-      applyFilters({ selectedStudios, selectedMarkets: _selectedMarkets });
+      // applyFilters({ selectedStudios, selectedMarkets: _selectedMarkets });
     }
   };
 
   const resetFilter = (type) => {
     if (type === "studios") {
-      setSelectedStudios([]);
-      applyFilters({ selectedStudios: [], selectedMarkets });
+      selectedStudios = [];
+      // applyFilters({ selectedStudios: [], selectedMarkets });
     } else if (type === "markets") {
-      setSelectedMarkets([]);
-      applyFilters({ selectedStudios, selectedMarkets: [] });
+      selectedMarkets = [];
+      // applyFilters({ selectedStudios, selectedMarkets: [] });
     }
   }
   const studiosDropdownref = useDetectClickOutside({ onTriggered: () => { if (studiosDropdownActive) studiosDropdownActive = false } });

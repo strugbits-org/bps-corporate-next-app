@@ -4,7 +4,7 @@ import Market from "./models/Market";
 import Search from "./models/Search";
 // import Search from "./models/Search";
 
-const Navbar = ({studios, markets}) => {
+const Navbar = ({ studios, markets, searchContent }) => {
   const EXTERNAL_SITE_URL = "https://www.rentals.blueprintstudios.com";
 
   return (
@@ -208,7 +208,7 @@ const Navbar = ({studios, markets}) => {
               {/* market model component end */}
 
               {/* search model component start */}
-              <Search />
+              <Search studios={studios} markets={markets} searchContent={searchContent} />
 
               {/* search model component end */}
             </div>
