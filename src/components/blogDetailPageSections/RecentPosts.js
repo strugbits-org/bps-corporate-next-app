@@ -1,24 +1,15 @@
-import React, { useEffect } from "react";
-import DelayedLink from "../../common/DelayedLink";
-import { useDispatch, useSelector } from "react-redux";
-import { getblogPostData } from "../../redux/reducers/blogData";
-import { generateImageUrl2 } from "../../common/functions/imageURL";
-import formatDate from "../../common/functions/dateFormat";
+import React from "react";
+import DelayedLink from "../common/DelayedLink";
+import { generateImageUrl2 } from "@/common/functions/imageURL";
+import formatDate from "@/common/functions/dateFormat";
 import { DefaultButton } from "../commonComponents/DefaultButton";
 
-const RecentPosts = ({ id }) => {
-  const dispatch = useDispatch();
-  const posts = useSelector((state) => state?.blog?.blogPostData);
-  const { blogSectionDetails } = useSelector((state) => state.blog);
-
-  useEffect(() => {
-    dispatch(getblogPostData({ pageSize: 4, excludeItem: id }));
-  }, [dispatch, id]);
-
+const RecentPosts = ({ id, posts, blogSectionDetails }) => {
   return (
     <section
-      className={`article-recent-posts pt-lg-245 pt-tablet-105 pt-phone-150 pb-lg-150 pb-mobile-100 ${posts.length === 0 ? "hidden" : ""
-        }`}
+      className={`article-recent-posts pt-lg-245 pt-tablet-105 pt-phone-150 pb-lg-150 pb-mobile-100 ${
+        posts.length === 0 ? "hidden" : ""
+      }`}
     >
       <div className="container-fluid">
         <div className="row">
@@ -50,9 +41,13 @@ const RecentPosts = ({ id }) => {
                           >
                             <div className="wrapper-img">
                               <img
-                                src={
-                                  generateImageUrl2({ wix_url: data?.blogRef?.coverImage, w: "480", h: "320", fit: "fit", q: "80" })
-                                }
+                                src={generateImageUrl2({
+                                  wix_url: data?.blogRef?.coverImage,
+                                  w: "480",
+                                  h: "320",
+                                  fit: "fit",
+                                  q: "80",
+                                })}
                                 data-preload
                                 className="media"
                                 alt=""
@@ -68,7 +63,9 @@ const RecentPosts = ({ id }) => {
                               </div>
                               <div className="date">
                                 <span>
-                                  {formatDate(data?.blogRef.lastPublishedDate.$date)}
+                                  {formatDate(
+                                    data?.blogRef.lastPublishedDate.$date
+                                  )}
                                 </span>
                               </div>
                             </div>
@@ -98,8 +95,9 @@ const RecentPosts = ({ id }) => {
                                   {index < 2 && (
                                     <li
                                       className={`tag-small 
-                                                            ? ${index === 0
-                                        } "active"
+                                                            ? ${
+                                                              index === 0
+                                                            } "active"
                                                             : ""
                                                             }`}
                                     >
@@ -130,7 +128,7 @@ const RecentPosts = ({ id }) => {
               customClasses={"btn-border-blue"}
               data={{
                 label: blogSectionDetails?.recentPostsButtonText,
-                action: blogSectionDetails?.recentPostsButtonAction
+                action: blogSectionDetails?.recentPostsButtonAction,
               }}
               attributes={{
                 "data-cursor-style": "off",
