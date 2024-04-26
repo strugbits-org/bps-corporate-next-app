@@ -1,14 +1,19 @@
-import React from "react";
-import DelayedLink from "../../../common/DelayedLink";
-import { useSelector } from "react-redux";
-import { generateImageURL } from "../../../common/common_functions/imageURL";
+"use client"
+import React, { useEffect, useState } from "react";
+import { getMarketsSectionData } from "@/api/home.js";
+import { generateImageURL } from "@/common/functions/imageURL";
+import DelayedLink from "@/components/common/DelayedLink";
 
 const Market = () => {
+  const [data, setData] = useState([]);
 
-  const data = useSelector((state) => state.market.marketModel);
-  const marketItems = data ? data.filter(market => market.menuItem) : [];
-  // const loading = useSelector((state) => state.market.marketModelLoading);
-  // const error = useSelector((state) => state.market.error);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getMarketsSectionData();
+      setData(data.filter(x => x.menuItem));
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="wrapper-submenu-market wrapper-submenu">
@@ -20,7 +25,7 @@ const Market = () => {
         </button>
       </div>
       <ul className="list-submenu-market list-submenu list-projects font-submenu">
-        {marketItems.map((item) => {
+        {data.map((item) => {
           return (
             <li key={item._id} className="list-item">
               <DelayedLink

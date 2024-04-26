@@ -1,12 +1,8 @@
+import { generateImageURL } from "@/common/functions/imageURL";
 import React from "react";
-import { generateImageURL } from "../../common/functions/imageURL";
-import { useSelector } from "react-redux";
 import { DefaultButton } from "../commonComponents/DefaultButton";
 
-const OurDream = () => {
-  const data = useSelector((state) => state.aboutus.OurDreamData);
-  const { sectionDetails } = useSelector((state) => state.aboutus);
-
+const OurDream = ({data,sectionDetails}) => {
   // const loading = useSelector((state) => state.aboutus.OurDreamLoading);
   // const error = useSelector((state) => state.aboutus.error);
 

@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
-import { generateImageURL } from "../../common/functions/imageURL"
-import getFullVideoURL from "../../common/functions/videoURL"
+import { generateImageURL } from "@/common/functions/imageURL"
 import { DefaultButton } from "../commonComponents/DefaultButton"
+import getFullVideoURL from "@/common/functions/videoURL"
 
-const MarketTopSection = () => {
-  const data = useSelector((state) => state.market.marketTopData);
+const MarketTopSection = ({data}) => {
 
   return (
     <>

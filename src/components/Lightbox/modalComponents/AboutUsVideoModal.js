@@ -1,10 +1,8 @@
 import React from "react";
 import { ModalWrapper } from "../ModalWrapper";
-import { useSelector } from "react-redux";
-import getFullVideoURL from '../../../common/functions/videoURL';
+import getFullVideoURL from "@/common/functions/videoURL";
 
-const AboutUsVideoModal = () => {
-  const data = useSelector((state) => state.aboutus.IntroData);
+const AboutUsVideoModal = ({data}) => {
 
   return (
     <ModalWrapper name={"modal-about-video"} no_wrapper={true}>

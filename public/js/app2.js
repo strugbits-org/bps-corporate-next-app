@@ -281,6 +281,7 @@ var require_app2 = __commonJS({
       updateWatched();
     });
     const updateWatched = function () {
+      console.log("watched called");
       watched = [];
       obs.disconnect();
       obsAttrbutes.disconnect();
@@ -16183,9 +16184,6 @@ var require_app2 = __commonJS({
       }
     }
 
-    setTimeout(() => {
-      whenContainerReady();
-    }, 3000);
     document.querySelector(".initScript").addEventListener("click", () => {
       whenContainerReady();
       if (!firstLoad) {

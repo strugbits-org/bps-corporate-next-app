@@ -24061,6 +24061,7 @@ body.page-leave-active[data-load="first-done"] .overlay {
 .list-pinterest>span>span:nth-child(2) {
   height: 100% !important;
   max-height: 55vh !important;
+  width: 100%;
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1600px) {

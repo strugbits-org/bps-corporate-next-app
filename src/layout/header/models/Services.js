@@ -1,10 +1,19 @@
-import DelayedLink from "../../../common/DelayedLink";
-import React from "react";
-import { useSelector } from "react-redux";
-import { generateImageURL } from "../../../common/common_functions/imageURL";
+"use client"
+import React, { useEffect, useState } from "react";
+import { getStudiosSectionData } from "@/api/home.js";
+import { generateImageURL } from "@/common/functions/imageURL";
+import DelayedLink from "@/components/common/DelayedLink";
 
 const Services = () => {
-  const data = useSelector((state) => state.home.studioData).filter(service => service.menuItem);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getStudiosSectionData();
+      setData(data.filter(x => x.menuItem));
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="wrapper-submenu-services wrapper-submenu">

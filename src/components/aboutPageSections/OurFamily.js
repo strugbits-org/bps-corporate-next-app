@@ -1,11 +1,8 @@
+import { generateImageURL } from "@/common/functions/imageURL";
 import React from "react";
-import { generateImageURL } from "../../common/functions/imageURL";
-import { useSelector } from "react-redux";
 import { DefaultButton } from "../commonComponents/DefaultButton";
 
-const OurFamily = () => {
-  const data = useSelector((state) => state.aboutus.OurFamilyData);
-  const { sectionDetails } = useSelector((state) => state.aboutus);
+const OurFamily = ({data,sectionDetails}) => {
 
   return (
     <section className="about-meet-the-rest-of-the-family pt-lg-245 pt-mobile-205">

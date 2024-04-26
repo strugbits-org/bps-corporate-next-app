@@ -1,17 +1,18 @@
-import { useNavigate } from "react-router-dom";
-import { generateImageUrl2 } from "../../common/functions/imageURL";
-import DelayedLink from "../../common/DelayedLink";
-import { pageLoadStart } from "@/utils/animationsTriggers";
+import { generateImageUrl2 } from "@/common/functions/imageURL";
+import { useRouter } from "next/router";
+import DelayedLink from "../common/DelayedLink";
 
 const SliderBanner = ({ data, type, sectionDetails }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   if (data.length === 0) return;
 
   const handleNavigate = (path) => {
-    pageLoadStart();
+    if (typeof window !== 'undefined') {
+      document.body.classList.add("page-leave-active");
+    }
     setTimeout(() => {
-      navigate(path)
+      router.push(path)
     }, 900);
   }
   return (
