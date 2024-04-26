@@ -1,10 +1,14 @@
-import { generateImageURL } from "@/common/functions/imageURL";
-import React from "react";
+// import { generateImageURL } from "@/common/functions/imageURL";
+// import React from "react";
 // import { useSelector } from "react-redux";
-import DelayedLink from "@/components/common/DelayedLink";
+// import DelayedLink from "@/components/common/DelayedLink";
 // import Newsletter from "@/components/common/Newsletter";
 
-const Footer = () => {
+import { generateImageURL } from "@/common/functions/imageURL";
+import DelayedLink from "@/components/common/DelayedLink";
+import Newsletter from "@/components/common/Newsletter";
+
+const Footer = ({ footerData, contactData, socialLinks }) => {
   const EXTERNAL_SITE_URL = "https://www.rentals.blueprintstudios.com";
 
   // const footerData = useSelector((state) => state.footer.data.footerData);
@@ -63,7 +67,7 @@ const Footer = () => {
           <div className="col-lg-5 column-2 pt-lg-65 pt-mobile-50">
             <div className="wrapper-newsletter-menu">
 
-              {/* <Newsletter /> */}
+              <Newsletter data={footerData} />
 
               <div className="container-footer-menu mt-lg-165 mt-tablet-55 mt-phone-125">
                 <ul className="list-footer-menu">
