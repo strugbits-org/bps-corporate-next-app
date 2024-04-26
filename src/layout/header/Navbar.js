@@ -1,6 +1,7 @@
 import DelayedLink from "@/components/common/DelayedLink";
 import Services from "./models/Services";
 import Market from "./models/Market";
+import Search from "./models/Search";
 // import Search from "./models/Search";
 
 const Navbar = () => {
@@ -207,7 +208,7 @@ const Navbar = () => {
               {/* market model component end */}
 
               {/* search model component start */}
-              {/* <Search /> */}
+              <Search />
 
               {/* search model component end */}
             </div>
