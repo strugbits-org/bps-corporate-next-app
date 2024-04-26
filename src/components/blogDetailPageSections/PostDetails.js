@@ -6,6 +6,7 @@ import {
 import { useEffect, useState } from "react";
 import ProductCartSlider from "../commonComponents/ProductCartSlider";
 import SocialVerticalBar from "./SocialVerticalBar";
+import ReactPlayer from "react-player";
 
 const PostDetails = ({ data, blogSectionDetails }) => {
   const [singleData, setSingleData] = useState([]);

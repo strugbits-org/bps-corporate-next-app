@@ -6,7 +6,7 @@ import SocialSection from "@/components/commonComponents/SocialSection";
 import { markPageLoaded, updatedWatched } from "@/utils/utilityFunctions";
 import { useEffect, useState } from "react";
 
-export default function blog({ blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
+export default function Blog({ blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
 
   const [blogResponse, setBlogResponse] = useState(null);
   const [blogCollection, setBlogCollection] = useState([]);
