@@ -1,5 +1,4 @@
 import { generateImageURL } from "@/common/functions/imageURL";
-import React from "react";
 
 const AboutBottomSection = ({sectionDetails}) => {
 

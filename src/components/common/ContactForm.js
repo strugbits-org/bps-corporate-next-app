@@ -1,14 +1,13 @@
+"use client"
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import contactusSchema from "../common/schema/contactusSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { postFormData } from "../redux/reducers/contactus";
-const ContactForm = () => {
+import contactFormSchema from "@/utils/scehma/contact";
+const ContactForm = ({data}) => {
 
   const dispatch = useDispatch();
-
-  const data = useSelector((state) => state.contactus.contactusData);
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -21,7 +20,7 @@ const ContactForm = () => {
     reset,
     formState: { errors: formErrors },
   } = useForm({
-    resolver: yupResolver(contactusSchema),
+    resolver: yupResolver(contactFormSchema),
   });
   const onSubmit = (data) => {
     dispatch(postFormData(data));
