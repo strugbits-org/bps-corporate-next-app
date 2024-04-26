@@ -1,20 +1,7 @@
-"use client"
-import React, { useEffect, useState } from "react";
-import { getStudiosSectionData } from "@/api/home.js";
 import { generateImageURL } from "@/common/functions/imageURL";
 import DelayedLink from "@/components/common/DelayedLink";
 
-const Services = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getStudiosSectionData();
-      setData(data.filter(x => x.menuItem));
-    }
-    fetchData();
-  }, []);
-
+const Services = ({data}) => {
   return (
     <div className="wrapper-submenu-services wrapper-submenu">
       <div className="container-title-mobile">
@@ -25,7 +12,7 @@ const Services = () => {
         </button>
       </div>
       <ul className="list-submenu-services list-submenu">
-        {data.map((service, index) => (
+        {data.filter(x => x.menuItem).map((service, index) => (
           <li key={index}>
             <DelayedLink
               to={`/services/${service.slug}`}

@@ -11,9 +11,9 @@ export const getMarketSection = async (slug) => {
             "contains": null,
             "eq": ["slug", slug],
             "limit": null
-          }
-          const response = await fetchCollection(data);
-          return response._items.map((x) => x.data)[0];
+        }
+        const response = await fetchCollection(data);
+        return response._items.map((x) => x.data)[0];
     } catch (error) {
         throw new Error(error.message);
     }
@@ -30,9 +30,9 @@ export const getMarketsPostPageSectionDetails = async () => {
             "contains": null,
             "eq": null,
             "limit": null
-          }
-          const response = await fetchCollection(data);
-          return response._items.map((x) => x.data)[0];
+        }
+        const response = await fetchCollection(data);
+        return response._items.map((x) => x.data)[0];
     } catch (error) {
         throw new Error(error.message);
     }
@@ -48,24 +48,26 @@ export const getMarketCollection = async () => {
             "contains": null,
             "eq": null,
             "limit": null
-          }
-          const response = await fetchCollection(data);
-          return response._items.map((x) => x.data).sort((a, b) => a.orderNumber - b.orderNumber);
+        }
+        const response = await fetchCollection(data);
+        return response._items.map((x) => x.data).sort((a, b) => a.orderNumber - b.orderNumber);
     } catch (error) {
         throw new Error(error.message);
     }
 }
 
-export const fetchPortfolio = async ({ pageSize = 4, excludeItem = null }) => {
+export const fetchPortfolio = async ({ pageSize = 4, id }) => {
     try {
+        console.log("id",id);
         const options = {
-          pageSize: pageSize,
-          disableLoader: true,
-          excludeItem
+            pageSize: pageSize,
+            disableLoader: true,
+            markets: [id],
         };
+
         const portfolio = await listPortfolios(options);
         return portfolio._items.map(item => item.data);
-      } catch (error) {
+    } catch (error) {
         throw new Error(error.message);
-      }
     }
+}

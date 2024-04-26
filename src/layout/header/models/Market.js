@@ -1,20 +1,7 @@
-"use client"
-import React, { useEffect, useState } from "react";
-import { getMarketsSectionData } from "@/api/home.js";
 import { generateImageURL } from "@/common/functions/imageURL";
 import DelayedLink from "@/components/common/DelayedLink";
 
-const Market = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getMarketsSectionData();
-      setData(data.filter(x => x.menuItem));
-    }
-    fetchData();
-  }, []);
-
+const Market = ({data}) => {
   return (
     <div className="wrapper-submenu-market wrapper-submenu">
       <div className="container-title-mobile">
@@ -25,7 +12,7 @@ const Market = () => {
         </button>
       </div>
       <ul className="list-submenu-market list-submenu list-projects font-submenu">
-        {data.map((item) => {
+        {data.filter(x => x.menuItem).map((item) => {
           return (
             <li key={item._id} className="list-item">
               <DelayedLink

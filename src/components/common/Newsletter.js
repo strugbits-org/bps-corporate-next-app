@@ -1,17 +1,17 @@
+"use client"
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import { postNewsletter } from "../redux/reducers/contactus";
-// import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-const Newsletter = () => {
-  // const dispatch = useDispatch();
+import { postForm } from "@/api";
 
+const Newsletter = ({ data }) => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const [isLabelHidden, setIsLabelHidden] = useState(false);
-  const { loading, success, error } = useSelector((state) => state.contact);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
-  const data = useSelector((state) => state.footer.data.footerData);
 
   const handleInputFocus = () => {
     setIsLabelHidden(true);
@@ -35,26 +35,25 @@ const Newsletter = () => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-  const onSubmit = (data) => {
-    dispatch(postNewsletter(data));
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+    try {
+      await postForm("newsletter", data);
+      setSuccess(true);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    if (success) {
-      setShowSuccess(true);
+    if (success || error) {
       const timeoutId = setTimeout(() => {
+        setSuccess(false);
+        setError(false);
         setShowSuccess(false);
-        reset();
-        Array.from(document.querySelectorAll(".preenchido")).forEach((el) =>
-          el.classList.remove("preenchido")
-        );
-      }, 3000);
-      // Clean up the timeout
-      return () => clearTimeout(timeoutId);
-    }
-    if (error) {
-      setShowError(true);
-      const timeoutId = setTimeout(() => {
         setShowError(false);
         reset();
         Array.from(document.querySelectorAll(".preenchido")).forEach((el) =>
@@ -65,12 +64,12 @@ const Newsletter = () => {
       return () => clearTimeout(timeoutId);
     }
   }, [success, error, reset]);
+
   return (
     <div
-      className={`container-newsletter ${
-        showSuccess ? "letter-success" : ""
-      }  ${showError ? "formError" : ""}`}
-      // data-form-container
+      className={`container-newsletter ${showSuccess ? "letter-success" : ""} ${
+        showError ? "formError" : ""
+      }`}
     >
       <div className="container-text">
         <h3 className="fs-25 white-1">{data?.newsletterTitle}</h3>
@@ -111,9 +110,9 @@ const Newsletter = () => {
             )}
           </div>
           <div className="container-submit">
-            <button type="submit" className="bt-submit">
+            <button type="submit" className="bt-submit" disabled={loading}>
               <span className="submit-text">
-              {data?.newsletterSubmitButtonText}
+                {data?.newsletterSubmitButtonText}
               </span>
             </button>
           </div>

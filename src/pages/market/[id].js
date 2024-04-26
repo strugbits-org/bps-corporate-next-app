@@ -30,7 +30,6 @@ import { useRouter } from "next/router";
 const Market = ({
     marketSection,
     marketsPostPageSectionDetails,
-    marketCollection,
     portfolioData,
     homeSectionDetails,
     peopleReviewSliderData,
@@ -78,24 +77,12 @@ const Market = ({
 };
 
 export const getServerSideProps = async (context) => {
-    const [
-        marketSection,
-        marketsPostPageSectionDetails,
-        marketCollection,
-        portfolioData,
-        homeSectionDetails,
-        peopleReviewSliderData,
-        marketsSectionData,
-        studiosSectionData,
-        dreamBigData,
-        socialSectionDetails,
-        socialSectionBlogs,
-        instaFeed,
-    ] = await Promise.all([
-        getMarketSection(context.query.id),
+    const marketSection = await getMarketSection(context.query.id);
+
+    const [marketsPostPageSectionDetails, marketCollection, portfolioData, homeSectionDetails, peopleReviewSliderData, marketsSectionData, studiosSectionData, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
         getMarketsPostPageSectionDetails(),
         getMarketCollection(),
-        fetchPortfolio(context.query.id),
+        fetchPortfolio({ id: marketSection._id }),
         getHomeSectionDetails(),
         getPeopleReviewSliderData(),
         getMarketsSectionData(),
