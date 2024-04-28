@@ -1,26 +1,10 @@
-"use client"
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
 import { postForm } from "@/api";
+import { useEffect, useState } from "react";
 
 const Newsletter = ({ data }) => {
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
-  const [isLabelHidden, setIsLabelHidden] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
-
-  const handleInputFocus = () => {
-    setIsLabelHidden(true);
-  };
-
-  const handleInputBlur = () => {
-    setIsLabelHidden(false);
-  };
-
   const validationSchema = Yup.object().shape({
     email_f932: Yup.string()
       .email("Invalid email address")
@@ -36,40 +20,38 @@ const Newsletter = ({ data }) => {
     resolver: yupResolver(validationSchema),
   });
 
+  const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState(null);
+
   const onSubmit = async (data) => {
     setLoading(true);
     try {
       await postForm("newsletter", data);
-      setSuccess(true);
+      setFeedback("success");
     } catch (error) {
-      setError(true);
+      setFeedback("error");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    if (success || error) {
+    if (feedback) {
       const timeoutId = setTimeout(() => {
-        setSuccess(false);
-        setError(false);
-        setShowSuccess(false);
-        setShowError(false);
-        reset();
-        Array.from(document.querySelectorAll(".preenchido")).forEach((el) =>
-          el.classList.remove("preenchido")
-        );
+        setFeedback(null);
+        if (feedback === "success") {
+          reset();
+          Array.from(document.querySelectorAll(".preenchido")).forEach((el) =>
+            el.classList.remove("preenchido")
+          );
+        }
       }, 3000);
       return () => clearTimeout(timeoutId);
     }
-  }, [success, error, reset]);
+  }, [feedback]);
 
   return (
-    <div
-      className={`container-newsletter ${showSuccess ? "letter-success" : ""} ${
-        showError ? "formError" : ""
-      }`}
-    >
+    <div className={`container-newsletter ${feedback === "success" ? "letter-success" : ""} ${feedback === "error" ? "formError" : ""}`}>
       <div className="container-text">
         <h3 className="fs-25 white-1">{data?.newsletterTitle}</h3>
         <p className="fs--16 fs-phone-15 font-2 white-1 mt-5">
@@ -78,18 +60,10 @@ const Newsletter = ({ data }) => {
       </div>
 
       <div className="container-newsletter mt-mobile-25">
-        <form
-          className={`form-newsletter ${showSuccess ? "letter-success" : ""} ${
-            showError ? "formError" : ""
-          }`}
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="form-newsletter" onSubmit={handleSubmit(onSubmit)}>
           <input type="hidden" name="assunto" value="[newsletter]" />
           <div className="container-input">
-            <label
-              htmlFor="newsletter-email"
-              className={isLabelHidden ? "hidden" : ""}
-            >
+            <label htmlFor="newsletter-email">
               {data?.newsletterPlaceholder}
             </label>
 
@@ -100,8 +74,6 @@ const Newsletter = ({ data }) => {
               {...register("email_f932")}
               required
               disabled={loading}
-              onFocus={handleInputFocus}
-              onBlur={handleInputBlur}
             />
 
             {formErrors.email_f932 && (
@@ -117,11 +89,11 @@ const Newsletter = ({ data }) => {
           </div>
         </form>
 
-        {showSuccess && (
+        {feedback === "success" && (
           <h3 className="feedback-newsletter white-1">Success!</h3>
         )}
 
-        {showError && (
+        {feedback === "error" && (
           <h3 className="feedback-newsletter white-1">Error, Try again!</h3>
         )}
       </div>

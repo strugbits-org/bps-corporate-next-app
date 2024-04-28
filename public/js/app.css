@@ -3239,10 +3239,15 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .section-slider-banner .slider-banner .swiper-slide a .container-project .project,
 #pg-market .market-how-we-do-it .list-how-we-do-it .list-column-text .column-title,
 .contact-info .column-2 .list-address li .city,
-.container-contact [data-form-success] {
+.container-contact [data-form-success],
+.container-contact h3.data-form-success {
   line-height: 1.125em;
   letter-spacing: 0;
   font-weight: 600;
+}
+
+.container-contact h3.data-form-error {
+  font-size: clamp(14px, 1.6rem, 1.6rem);
 }
 
 @media only screen and (min-width: 1025.1px) {
@@ -3251,7 +3256,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .section-slider-banner .slider-banner .swiper-slide a .container-project .project,
   #pg-market .market-how-we-do-it .list-how-we-do-it .list-column-text .column-title,
   .contact-info .column-2 .list-address li .city,
-  .container-contact [data-form-success] {
+  .container-contact [data-form-success],
+  .container-contact h3.data-form-success {
     font-size: 4rem;
   }
 }
@@ -3262,7 +3268,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .section-slider-banner .slider-banner .swiper-slide a .container-project .project,
   #pg-market .market-how-we-do-it .list-how-we-do-it .list-column-text .column-title,
   .contact-info .column-2 .list-address li .city,
-  .container-contact [data-form-success] {
+  .container-contact [data-form-success],
+  .container-contact h3.data-form-success {
     font-size: 2.5rem;
   }
 }
@@ -3273,7 +3280,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .section-slider-banner .slider-banner .swiper-slide a .container-project .project,
   #pg-market .market-how-we-do-it .list-how-we-do-it .list-column-text .column-title,
   .contact-info .column-2 .list-address li .city,
-  .container-contact [data-form-success] {
+  .container-contact [data-form-success],
+  .container-contact h3.data-form-success {
     font-size: 2.5rem;
   }
 }
@@ -5192,7 +5200,8 @@ body:after {
   }
 }
 
-.container-contact [data-form-success] {
+.container-contact [data-form-success],
+.container-contact h3.data-form-success {
   position: absolute;
   top: 50%;
   right: auto;
@@ -23973,7 +23982,7 @@ body.page-leave-active[data-load="first-done"] .overlay {
   border-radius: 2rem;
 }
 
-.result-our-markets .market-link.project-link.active .container-text {
+.result-our-markets .grid-item.active .market-link.project-link .container-text {
   color: #0f41fa;
 }
 

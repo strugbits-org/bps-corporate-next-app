@@ -1,4 +1,3 @@
-"use client"
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,11 +5,8 @@ import contactFormSchema from "@/utils/scehma/contact";
 import { postForm } from "@/api";
 
 const ContactForm = ({ data }) => {
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
-  const [loadingForm, setLoadingForm] = useState(false);
-  const [successForm, setSuccessForm] = useState(false);
-  const [errorForm, setErrorForm] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState(null);
 
   const {
     register,
@@ -22,39 +18,40 @@ const ContactForm = ({ data }) => {
   });
 
   const onSubmit = async (formData) => {
-    setLoadingForm(true);
+    setLoading(true);
     try {
-      const res = await postForm("contact", formData);
-      console.log("res", res);
-      setSuccessForm(true);
-      setShowSuccess(true);
-      reset();
-      setTimeout(() => {
-        setShowSuccess(false);
-      }, 3000);
+      await postForm("contact", formData);
+      setFeedback("success");
     } catch (error) {
       console.error("Error submitting form:", error);
-      setErrorForm(true);
-      setShowError(true);
-      setTimeout(() => {
-        setShowError(false);
-      }, 3000);
+      setFeedback("error");
     } finally {
-      setLoadingForm(false);
+      setLoading(false);
     }
   };
 
+  useEffect(() => {
+    if (feedback) {
+      const timeoutId = setTimeout(() => {
+        setFeedback(null);
+        if (feedback === "success") {
+          reset();
+          Array.from(document.querySelectorAll(".preenchido")).forEach((el) =>
+            el.classList.remove("preenchido")
+          );
+        }
+      }, 3000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [feedback]);
+  
   return (
     <div className="column-1">
       <h2 className="fs--60 title">
         <span>{data?.formTitle}</span>
         <i className="icon-arrow-down"></i>
       </h2>
-      <div
-        className={`container-contact mt-lg-140 mt-tablet-65 ${
-          showSuccess ? "form-success" : ""
-        } ${showError ? "formError" : ""}`}
-      >
+      <div className={`container-contact mt-lg-140 mt-tablet-65 ${feedback === "success" ? "form-success" : ""} ${feedback === "error" ? "formError" : ""}`}>
         <form className="form-contact" onSubmit={handleSubmit(onSubmit)}>
           <div className="container-input col-md-6">
             <label htmlFor="contact-first-name">
@@ -65,7 +62,7 @@ const ContactForm = ({ data }) => {
               name="first_name_3469"
               type="text"
               required
-              disabled={loadingForm}
+              disabled={loading}
               {...register("first_name_3469")}
             />
             {formErrors.first_name_3469 && (
@@ -82,7 +79,7 @@ const ContactForm = ({ data }) => {
               type="text"
               required
               {...register("last_name_425e")}
-              disabled={loadingForm}
+              disabled={loading}
             />
             {formErrors.last_name_425e && (
               <span className="error">{formErrors.last_name_425e.message}</span>
@@ -96,7 +93,7 @@ const ContactForm = ({ data }) => {
               type="email"
               required
               {...register("email_d74b")}
-              disabled={loadingForm}
+              disabled={loading}
             />
             {formErrors.email_d74b && (
               <span className="error">{formErrors.email_d74b.message}</span>
@@ -108,7 +105,7 @@ const ContactForm = ({ data }) => {
               id="long_answer_e038"
               name="long_answer_e038"
               {...register("long_answer_e038")}
-              disabled={loadingForm}
+              disabled={loading}
             ></textarea>
             {formErrors.long_answer_e038 && (
               <span className="error">
@@ -117,15 +114,15 @@ const ContactForm = ({ data }) => {
             )}
           </div>
           <div className="container-submit col-12">
-            <button type="submit" className="bt-submit btn-medium" disabled={loadingForm}>
+            <button type="submit" className="bt-submit btn-medium" disabled={loading}>
               <span className="submit-text">{data?.formSubmitButton}</span>
             </button>
           </div>
         </form>
-        {showError && <h3>Error, Try again!</h3>}
-        {showSuccess && <h3>Success!</h3>}
+        {feedback === "error" && <h3 className="data-form-error">Error, Try again!</h3>}
+        {feedback === "success" && <h3 className="data-form-success">Success!</h3>}
       </div>
-    </div>
+    </div >
   );
 };
 

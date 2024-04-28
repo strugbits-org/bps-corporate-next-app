@@ -3,7 +3,7 @@ import { getBlogSectionDetails } from "@/api/blog";
 import { listBlogs } from "@/api/listing";
 import BlogListing from "@/components/blogPageSections/BlogListing";
 import SocialSection from "@/components/commonComponents/SocialSection";
-import { markPageLoaded, updatedWatched } from "@/utils/utilityFunctions";
+import { markPageLoaded, pageLoadEnd, pageLoadStart, updatedWatched } from "@/utils/utilityFunctions";
 import { useEffect, useState } from "react";
 
 export default function Blog({ blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
@@ -30,20 +30,22 @@ export default function Blog({ blogSectionDetails, marketsSectionData, studios, 
     updatedWatched();
   };
 
-  const applyFilters = async ({ selectedStudios = [], selectedMarkets = [], disableLoader = false }) => {
+  const applyFilters = async ({ selectedStudios = [], selectedMarkets = [], firstLoad = false }) => {
     try {
-      const response = await listBlogs({ pageSize, studios: selectedStudios, markets: selectedMarkets, disableLoader });
+      if (!firstLoad) pageLoadStart();
+      const response = await listBlogs({ pageSize, studios: selectedStudios, markets: selectedMarkets });
       setBlogCollection(response._items.filter(item => item.data.blogRef && item.data.blogRef._id !== undefined).map(item => item.data));
       setBlogResponse(response);
       updatedWatched();
+      if (!firstLoad) pageLoadEnd();
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    applyFilters({ disableLoader: true });
-    markPageLoaded();
+    applyFilters({ firstLoad: true });
+    markPageLoaded(false);
   }, []);
 
   return (

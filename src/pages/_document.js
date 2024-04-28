@@ -3,13 +3,8 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
-      <body data-scroll-direction="initial" data-search-container>
-        <span className="updateWatchedTrigger d-none"></span>
-        <span className="triggerSplitWordAnimation d-none"></span>
-        <span className="initScript d-none"></span>
-        <span className="stickyAnimationTrigger d-none"></span>
-
+      <Head>
+        <link rel='shortcut icon' href='/favicon.png' />
         <link rel="modulepreload" href="/js/app2.js" />
         <link rel="modulepreload" href="/js/all.js" />
         <link rel="modulepreload" href="/js/search.js" />
@@ -24,7 +19,12 @@ export default function Document() {
         <script async type="module" src="/js/chat.js"></script>
         <link rel="stylesheet" href="/js/utils.css" />
         <link rel="stylesheet" href="/js/app.css" />
-
+      </Head>
+      <body data-scroll-direction="initial" data-search-container>
+        <span className="updateWatchedTrigger d-none"></span>
+        <span className="triggerSplitWordAnimation d-none"></span>
+        <span className="initScript d-none"></span>
+        <span className="stickyAnimationTrigger d-none"></span>
         <Main />
         <NextScript />
       </body>

@@ -1,4 +1,4 @@
-import { closeModals } from '@/utils/utilityFunctions';
+import { closeModals, pageLoadEnd, pageLoadStart } from '@/utils/utilityFunctions';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -11,28 +11,15 @@ const DelayedLink = ({ to, children, className, target, attributes }) => {
     if (to === undefined) return;
 
     if (router.pathname === to) {
-      if (typeof window !== 'undefined') {
-        document.body.classList.add("page-leave-active");
-      }
+      pageLoadStart();
       setTimeout(() => {
-        if (window && typeof window !== 'undefined') {
-          window.scrollTo({ top: 0 });
-          const body = document.body;
-          if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
-          body.classList.add("page-enter-active");
-          body.classList.remove("page-leave-active");
-          setTimeout(() => {
-            body.classList.remove("page-enter-active");
-          }, 900);
-        }
+        pageLoadEnd();
       }, 900);
       return;
     }
 
     if (target === undefined) {
-      if (typeof window !== 'undefined') {
-        document.body.classList.add("page-leave-active");
-      }
+      pageLoadStart();
       setTimeout(() => {
         router.push(to)
       }, 900);

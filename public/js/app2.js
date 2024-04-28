@@ -16168,7 +16168,7 @@ var require_app2 = __commonJS({
         })
       })
 
-      const modal_group = document.querySelector('modal-group');
+      const modal_group = document.querySelector("modal-group[name='modal-about-video']");
       if (modal_group) {
         modal_group.addEventListener("click", (e) => {
           if (e.target !== e.currentTarget) return;
@@ -16178,8 +16178,8 @@ var require_app2 = __commonJS({
               x.currentTime = 0;
             }, 500);
           });
-          const btn_modal_close = document.querySelector('btn-modal-close');
-          if (btn_modal_close) btn_modal_close.click();
+          const btn_modal_close = document.querySelectorAll('btn-modal-close');
+          if (btn_modal_close) btn_modal_close.forEach(x => x.click());
         });
       }
     }
