@@ -342,7 +342,7 @@ const Search = ({ studios, markets, searchContent }) => {
                         </div>
                       </div>
                     </div>
-                    {productCollection.length === 0 && filteredPortfolioCollection.length === 0 && <h6 style={{ width: "100%" }} className="ml-4 mt-3-cs fs--40">No products or projects were found for "{searchTerm}"</h6>}
+                    {productCollection.length === 0 && filteredPortfolioCollection.length === 0 && <h6 style={{ width: "100%" }} className="ml-4 mt-3-cs fs--40">No products or projects were found for {searchTerm}</h6>}
                   </div>
 
 
