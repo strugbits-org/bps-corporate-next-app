@@ -89,13 +89,10 @@ export const closeModals = () => {
   if (typeof window !== 'undefined') {
     const submenu = document.querySelector('.submenu');
     if (submenu) submenu.classList.remove('active');
-    const modal_group = document.querySelectorAll('modal-group');
-    if (modal_group) modal_group.forEach(x => x.classList.remove('active'));
-    const modal_item = document.querySelectorAll('modal-item');
-    if (modal_item) modal_item.forEach(x => x.classList.remove('active'));
+    const btn_modal_close = document.querySelectorAll('btn-modal-close');
+    if (btn_modal_close) btn_modal_close.forEach(x => x.click());
     const wrapperCursor = document.querySelector('#wrapper-cursor');
     if (wrapperCursor) wrapperCursor.click();
-
     document.querySelectorAll(".player-video").forEach((x) => {
       x.pause();
       setTimeout(() => {
@@ -163,12 +160,12 @@ export const loadPinterest = () => {
   }
 };
 
-export const markPageLoaded = () => {
+export const markPageLoaded = (watched = true) => {
   if (typeof window !== 'undefined') {
     setTimeout(() => window.scrollTo({ top: 0 }), 200);
-    setTimeout(initAnimations, 1000);
-    setTimeout(updatedWatched, 1500);
-    setTimeout(loadPinterest, 1500);
+    setTimeout(initAnimations, 750);
+    if (watched) setTimeout(updatedWatched, 1000);
+    setTimeout(loadPinterest, 1200);
     const isFirstLoadDone = document.body.classList.contains("first-load-done");
     if (isFirstLoadDone) {
       const body = document.body;
@@ -186,5 +183,23 @@ export const markPageLoaded = () => {
       }, 1200);
       document.body.classList.add("first-load-done");
     }
+  }
+}
+
+export const pageLoadStart = () => {
+  if (typeof window !== 'undefined') {
+    document.body.classList.add("page-leave-active");
+  }
+}
+export const pageLoadEnd = () => {
+  if (window && typeof window !== 'undefined') {
+    window.scrollTo({ top: 0 });
+    const body = document.body;
+    if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
+    body.classList.add("page-enter-active");
+    body.classList.remove("page-leave-active");
+    setTimeout(() => {
+      body.classList.remove("page-enter-active");
+    }, 900);
   }
 }

@@ -1,19 +1,8 @@
-"use client";
 import React, { useEffect, useMemo, useState } from "react";
 import debounce from "lodash/debounce";
-import { getStudiosSectionData } from "@/api/home.js";
 import DelayedLink from "@/components/common/DelayedLink";
-import { getMarketCollection } from "@/api/market";
-import {
-  listBlogs,
-  listPortfolios,
-  listProducts,
-  searchAllPages,
-} from "@/api/listing";
-import {
-  generateImageURL,
-  generateImageUrl2,
-} from "@/common/functions/imageURL";
+import { generateImageURL, generateImageUrl2 } from "@/common/functions/imageURL";
+import { listBlogs, listPortfolios, listProducts, searchAllPages } from "@/api/listing";
 import formatDate from "@/common/functions/dateFormat";
 
 const Search = ({ studios, markets, searchContent }) => {
@@ -35,18 +24,10 @@ const Search = ({ studios, markets, searchContent }) => {
   const [searchActive, setSearchActive] = useState(false);
 
   useEffect(() => {
-    const portfolioStudios = portfolioCollection.flatMap((item) =>
-      item.studios.map((studio) => studio._id)
-    );
-    const blogStudios = blogCollection.flatMap((item) =>
-      item.studios.map((studio) => studio._id)
-    );
-    const portfolioMarkets = portfolioCollection.flatMap((item) =>
-      item.markets.map((market) => market._id)
-    );
-    const blogMarkets = blogCollection.flatMap((item) =>
-      item.markets.map((market) => market._id)
-    );
+    const portfolioStudios = portfolioCollection.flatMap(item => item.studios.map(studio => studio._id));
+    const blogStudios = blogCollection.flatMap(item => item.studios.map(studio => studio._id));
+    const portfolioMarkets = portfolioCollection.flatMap(item => item.markets.map(market => market._id));
+    const blogMarkets = blogCollection.flatMap(item => item.markets.map(market => market._id));
 
     setResultStudios([...new Set([...portfolioStudios, ...blogStudios])]);
     setResultMarkets([...new Set([...portfolioMarkets, ...blogMarkets])]);
@@ -55,32 +36,24 @@ const Search = ({ studios, markets, searchContent }) => {
   const filterColection = (collection, selectedStudios, selectedMarkets) => {
     let data = collection;
     if (selectedStudios.length > 0 && selectedMarkets.length > 0) {
-      data = data.filter(
-        (item) =>
-          item.studios.some((studio) => selectedStudios.includes(studio._id)) ||
-          item.markets.some((market) => selectedMarkets.includes(market._id))
+      data = data.filter(item =>
+        item.studios.some(studio => selectedStudios.includes(studio._id)) ||
+        item.markets.some(market => selectedMarkets.includes(market._id))
       );
     } else if (selectedStudios.length > 0) {
-      data = data.filter((item) =>
-        item.studios.some((studio) => selectedStudios.includes(studio._id))
+      data = data.filter(item =>
+        item.studios.some(studio => selectedStudios.includes(studio._id))
       );
     } else if (selectedMarkets.length > 0) {
-      data = data.filter((item) =>
-        item.markets.some((market) => selectedMarkets.includes(market._id))
+      data = data.filter(item =>
+        item.markets.some(market => selectedMarkets.includes(market._id))
       );
     }
     return data;
-  };
+  }
 
-  const filteredPortfolioCollection = useMemo(
-    () =>
-      filterColection(portfolioCollection, selectedStudios, selectedMarkets),
-    [selectedStudios, selectedMarkets, portfolioCollection]
-  );
-  const filteredBlogCollection = useMemo(
-    () => filterColection(blogCollection, selectedStudios, selectedMarkets),
-    [selectedStudios, selectedMarkets, blogCollection]
-  );
+  const filteredPortfolioCollection = useMemo(() => filterColection(portfolioCollection, selectedStudios, selectedMarkets), [selectedStudios, selectedMarkets, portfolioCollection]);
+  const filteredBlogCollection = useMemo(() => filterColection(blogCollection, selectedStudios, selectedMarkets), [selectedStudios, selectedMarkets, blogCollection]);
 
   const handleStudioFilter = (tag) => {
     if (selectedStudios.includes(tag)) {
@@ -97,53 +70,43 @@ const Search = ({ studios, markets, searchContent }) => {
     }
   };
 
+
   const searchCollections = async (term = "") => {
     try {
       const options = {
         pageSize: 50,
         searchTerm: term,
-        disableLoader: true,
+        disableLoader: true
       };
 
       const [portfolio, products, blog, otherPages] = await Promise.all([
         listPortfolios(options),
         listProducts(options),
         listBlogs(options),
-        searchAllPages(options),
+        searchAllPages(options)
       ]);
 
-      setPortfolioCollection(
-        portfolio._items
-          .filter((item) => item.data.portfolioRef._id !== undefined)
-          .map((item) => item.data)
-      );
-      setProductCollection(
-        products._items
-          .filter(
-            (item) => item.data.product._id !== undefined && !item.data.hidden
-          )
-          .map((item) => item.data)
-      );
-      setBlogCollection(
-        blog._items
-          .filter((item) => item.data.blogRef._id !== undefined)
-          .map((item) => item.data)
-      );
+      setPortfolioCollection(portfolio._items.filter(item => item.data.portfolioRef._id !== undefined).map(item => item.data));
+      setProductCollection(products._items.filter(item => item.data.product._id !== undefined && !item.data.hidden).map(item => item.data));
+      setBlogCollection(blog._items.filter(item => item.data.blogRef._id !== undefined).map(item => item.data));
       setOtherPagesResults(otherPages);
     } catch (error) {
       console.log("error", error);
+    } finally {
+      setSelectedStudios([]);
+      setSelectedMarkets([]);
     }
   };
 
+
   useEffect(() => {
     if (searchActive) {
-      const delayedSearch = debounce(() => {
-        searchCollections(searchTerm);
-      }, 1000);
+      const delayedSearch = debounce(() => { searchCollections(searchTerm) }, 1000);
       delayedSearch();
       return () => delayedSearch.cancel();
     }
   }, [searchActive, searchTerm]);
+
 
   const handleInputChange = (e) => {
     const value = e.target.value.toLowerCase();
@@ -158,6 +121,7 @@ const Search = ({ studios, markets, searchContent }) => {
     }
     e.preventDefault();
   };
+
 
   return (
     <section className="menu-search" data-get-submenu="search">
@@ -200,10 +164,7 @@ const Search = ({ studios, markets, searchContent }) => {
               </div>
 
               <div className="container-results">
-                <div
-                  className="inner-container-results"
-                  data-cursor-style="default"
-                >
+                <div className="inner-container-results" data-cursor-style="default">
                   <button className="btn-close-results" data-search-remove>
                     X
                   </button>
@@ -221,18 +182,8 @@ const Search = ({ studios, markets, searchContent }) => {
                       {studios?.map((item, index) => {
                         return (
                           <li key={index} className="grid-item">
-                            <div
-                              onClick={() => {
-                                handleStudioFilter(item._id);
-                              }}
-                              className={`link-studios ${selectedStudios.includes(item._id)
-                                  ? "active"
-                                  : ""
-                                } ${resultStudios.includes(item._id)
-                                  ? ""
-                                  : "disabled"
-                                }`}
-                            >
+                            <div onClick={() => { handleStudioFilter(item._id) }}
+                              className={`link-studios ${selectedStudios.includes(item._id) ? "active" : ""} ${resultStudios.includes(item._id) ? "" : "disabled"}`}>
                               <h3 className="title-all-studios">
                                 <span>{item.cardName}</span>
                               </h3>
@@ -244,14 +195,11 @@ const Search = ({ studios, markets, searchContent }) => {
                   </div>
 
                   <div className="column-results">
-                    <div
-                      className={`result-rental ${productCollection.length === 0 ? "hidden" : ""
-                        }`}
-                    >
+
+                    <div className={`result-rental ${productCollection.length === 0 ? "hidden" : ""}`}>
                       <div className="container-title-results">
                         <h2 className="title-results split-chars" data-aos>
-                          {searchContent?.rentalTitle}{" "}
-                          <span>{`"${searchTerm}"`}</span>
+                          {searchContent?.rentalTitle} <span>{`"${searchTerm}"`}</span>
                         </h2>
                         <DelayedLink
                           to="https://www.rentals.blueprintstudios.com/"
@@ -272,112 +220,73 @@ const Search = ({ studios, markets, searchContent }) => {
                             data-aos
                             data-cursor-style="default"
                           >
-                            {productCollection
-                              .slice(0, 3)
-                              .map((item, index) => {
-                                return (
-                                  <div
-                                    key={index}
-                                    className="swiper-slide grid-item"
-                                  >
-                                    <div className="rental-product-link">
-                                      <DelayedLink
-                                        to={
-                                          EXTERNAL_SITE_URL +
-                                          item.product.productPageUrl
-                                        }
-                                        target={"blank"}
-                                        className="product-link"
-                                      >
-                                        <h3 className="product-name">
-                                          {item.product.name}
-                                        </h3>
+                            {productCollection.slice(0, 3).map((item, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  className="swiper-slide grid-item"
+                                >
+                                  <div className="rental-product-link">
+                                    <DelayedLink to={EXTERNAL_SITE_URL + item.product.productPageUrl} target={"blank"} className="product-link">
+                                      <h3 className="product-name">
+                                        {item.product.name}
+                                      </h3>
 
-                                        <div className="wrapper-img">
-                                          <div className="container-img">
-                                            <img
-                                              src={generateImageURL({
-                                                wix_url:
-                                                  item?.product?.mainMedia,
-                                                w: "220",
-                                                h: "220",
-                                                fit: "fit",
-                                                q: "95",
-                                              })}
-                                              data-preload
-                                              className="media"
-                                              alt=""
-                                            />
-                                          </div>
+                                      <div className="wrapper-img">
+                                        <div className="container-img">
+                                          <img
+                                            src={generateImageURL({ wix_url: item?.product?.mainMedia, w: "220", h: "220", fit: "fit", q: "95" })}
+                                            data-preload
+                                            className="media"
+                                            alt=""
+                                          />
                                         </div>
-                                        <div className="container-bottom">
-                                          <div className="view-more">
-                                            <span className="view">
-                                              <span>View more</span>
-                                            </span>
-                                            <i className="icon-arrow-diagonal-right"></i>
-                                          </div>
-                                          <ul className="list-thumb">
-                                            {item.product?.productOptions?.Color?.choices.map(
-                                              (option, index) => (
-                                                <React.Fragment key={index}>
-                                                  {index < 4 && (
-                                                    <li key={index}>
-                                                      <div className="container-img">
-                                                        <img
-                                                          src={generateImageURL(
-                                                            {
-                                                              wix_url:
-                                                                option.mainMedia
-                                                                  ? option.mainMedia
-                                                                  : item.product
-                                                                    .mainMedia,
-                                                              w: "30",
-                                                              h: "30",
-                                                              fit: "fit",
-                                                              q: "95",
-                                                            }
-                                                          )}
-                                                          data-preload
-                                                          className="media"
-                                                          alt=""
-                                                        />
-                                                      </div>
-                                                    </li>
-                                                  )}
-                                                </React.Fragment>
-                                              )
-                                            )}
-                                          </ul>
-                                          {item.product?.productOptions?.Color
-                                            ?.choices?.length > 4 ? (
-                                            <div className="colors-number">
-                                              <span>
-                                                +
-                                                {item.product.productOptions
-                                                  .Color.choices.length - 4}
-                                              </span>
-                                            </div>
-                                          ) : null}
+                                      </div>
+                                      <div className="container-bottom">
+                                        <div className="view-more">
+                                          <span className="view">
+                                            <span>View more</span>
+                                          </span>
+                                          <i className="icon-arrow-diagonal-right"></i>
                                         </div>
-                                      </DelayedLink>
-                                    </div>
+                                        <ul className="list-thumb">
+                                          {item.product?.productOptions?.Color?.choices.map((option, index) => (
+                                            <React.Fragment key={index}>
+                                              {index < 4 && (
+                                                <li key={index}>
+                                                  <div className="container-img">
+                                                    <img
+                                                      src={generateImageURL({ wix_url: option.mainMedia ? option.mainMedia : item.product.mainMedia, w: "30", h: "30", fit: "fit", q: "95" })}
+                                                      data-preload
+                                                      className="media"
+                                                      alt=""
+                                                    />
+                                                  </div>
+                                                </li>
+                                              )}
+                                            </React.Fragment>
+                                          ))}
+                                        </ul>
+                                        {item.product?.productOptions?.Color?.choices?.length > 4 ? (
+                                          <div className="colors-number">
+                                            <span>+{item.product.productOptions.Color.choices.length - 4}</span>
+                                          </div>
+                                        ) : null}
+                                      </div>
+                                    </DelayedLink>
                                   </div>
-                                );
-                              })}
+                                </div>
+                              );
+                            })}
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div
-                      className={`result-portfolio mt-lg-60 mt-mobile-40 ${filteredPortfolioCollection.length === 0 ? "hidden" : ""
-                        }`}
-                    >
+                    <div className={`result-portfolio mt-lg-60 mt-mobile-40 ${filteredPortfolioCollection.length === 0 ? "hidden" : ""}`}>
                       <div className="container-title-results">
                         <h2 className="title-results split-chars" data-aos>
-                          {searchContent?.portfolioTitle}{" "}
-                          <span>{`"${searchTerm}"`}</span>
+                          {searchContent?.portfolioTitle} <span>{`"${searchTerm}"`}</span>
                         </h2>
                         <DelayedLink
                           to={`/portfolio`}
@@ -397,62 +306,45 @@ const Search = ({ studios, markets, searchContent }) => {
                             data-aos
                             data-cursor-style="default"
                           >
-                            {filteredPortfolioCollection
-                              ?.slice(0, 5)
-                              .map((data) => {
-                                return (
-                                  <div
-                                    key={data._id}
-                                    className="swiper-slide grid-item"
+                            {filteredPortfolioCollection?.slice(0, 5).map((data) => {
+                              return (
+                                <div
+                                  key={data._id}
+                                  className="swiper-slide grid-item"
+                                >
+                                  <DelayedLink
+                                    to={`/project/${data.slug}`}
+                                    className="link-portfolio"
                                   >
-                                    <DelayedLink
-                                      to={`/project/${data.slug}`}
-                                      className="link-portfolio"
+                                    <div
+                                      className="container-img bg-blue"
+                                      data-cursor-style="view"
                                     >
-                                      <div
-                                        className="container-img bg-blue"
-                                        data-cursor-style="view"
-                                      >
-                                        <div className="wrapper-img">
-                                          <img
-                                            src={generateImageUrl2({
-                                              wix_url:
-                                                data?.portfolioRef?.coverImage
-                                                  .imageInfo,
-                                              fit: "fit",
-                                              w: "220",
-                                              h: "320",
-                                              q: "95",
-                                            })}
-                                            data-preload
-                                            className="media"
-                                            alt=""
-                                          />
-                                        </div>
+                                      <div className="wrapper-img">
+                                        <img
+                                          src={generateImageUrl2({ wix_url: data?.portfolioRef?.coverImage.imageInfo, fit: "fit", w: "220", h: "320", q: "95" })}
+                                          data-preload
+                                          className="media"
+                                          alt=""
+                                        />
                                       </div>
-                                      <div className="container-text">
-                                        <h2 className="title-portfolio">
-                                          {data.portfolioRef.title}
-                                        </h2>
-                                      </div>
-                                    </DelayedLink>
-                                  </div>
-                                );
-                              })}
+                                    </div>
+                                    <div className="container-text">
+                                      <h2 className="title-portfolio">
+                                        {data.portfolioRef.title}
+                                      </h2>
+                                    </div>
+                                  </DelayedLink>
+                                </div>
+                              );
+                            })}
                           </div>
                         </div>
                       </div>
                     </div>
-                    {productCollection.length === 0 &&
-                      filteredPortfolioCollection.length === 0 && (
-                        <h6
-                          style={{ width: "100%" }}
-                          className="ml-4 mt-3-cs fs--40"
-                        >
-                          No products or projects were found for {searchTerm}
-                        </h6>
-                      )}
+                    {productCollection.length === 0 && filteredPortfolioCollection.length === 0 && <h6 style={{ width: "100%" }} className="ml-4 mt-3-cs fs--40">No products or projects were found for "{searchTerm}"</h6>}
                   </div>
+
 
                   <div className="result-our-markets">
                     <div className="container-title-results">
@@ -467,18 +359,10 @@ const Search = ({ studios, markets, searchContent }) => {
                     >
                       {markets?.map((item, index) => {
                         return (
-                          <li key={index} className="grid-item">
+                          <li key={index} className={`grid-item ${selectedMarkets.includes(item._id) ? "active" : ""}`}>
                             <div
-                              onClick={() => {
-                                handleMarketFilter(item._id);
-                              }}
-                              className={`market-link project-link ${selectedMarkets.includes(item._id)
-                                  ? "active"
-                                  : ""
-                                } ${resultMarkets.includes(item._id)
-                                  ? ""
-                                  : "disabled"
-                                }`}
+                              onClick={() => { handleMarketFilter(item._id) }}
+                              className={`market-link project-link ${!resultMarkets.includes(item._id) ? "disabled" : ""}`}
                               data-cursor-style="default"
                               data-menu-close
                             >
@@ -488,13 +372,7 @@ const Search = ({ studios, markets, searchContent }) => {
                               >
                                 {resultMarkets.includes(item._id) && (
                                   <img
-                                    src={generateImageURL({
-                                      wix_url: item?.image,
-                                      fit: "fit",
-                                      w: "500",
-                                      h: "500",
-                                      q: "95",
-                                    })}
+                                    src={generateImageURL({ wix_url: item?.image, fit: "fit", w: "500", h: "500", q: "95" })}
                                     data-preload
                                     className="media"
                                     alt=""
@@ -510,17 +388,14 @@ const Search = ({ studios, markets, searchContent }) => {
                           </li>
                         );
                       })}
+
                     </ul>
                   </div>
 
-                  <div
-                    className={`result-blog ${filteredBlogCollection.length === 0 ? "hidden" : ""
-                      }`}
-                  >
+                  <div className={`result-blog ${filteredBlogCollection.length === 0 ? "hidden" : ""}`}>
                     <div className="container-title-results">
                       <h2 className="title-results split-chars" data-aos>
-                        {searchContent?.blogTitle}{" "}
-                        <span>{`"${searchTerm}"`}</span>
+                        {searchContent?.blogTitle} <span>{`"${searchTerm}"`}</span>
                       </h2>
                       <DelayedLink
                         to="/blog"
@@ -555,20 +430,14 @@ const Search = ({ studios, markets, searchContent }) => {
                                     data-cursor-style="view"
                                   >
                                     <div className="wrapper-img">
-                                      {blog.blogRef.coverImage && (
+                                      {blog.blogRef.coverImage &&
                                         <img
-                                          src={generateImageURL({
-                                            wix_url: blog?.blogRef?.coverImage,
-                                            fit: "fit",
-                                            w: "400",
-                                            h: "180",
-                                            q: "95",
-                                          })}
+                                          src={generateImageURL({ wix_url: blog?.blogRef?.coverImage, fit: "fit", w: "400", h: "180", q: "95" })}
                                           data-preload
                                           className="media"
                                           alt=""
-                                        />
-                                      )}
+                                        />}
+
                                     </div>
                                   </div>
                                   <div className="container-text">
@@ -579,19 +448,11 @@ const Search = ({ studios, markets, searchContent }) => {
                                         </span>
                                       </div>
                                       <div className="date">
-                                        <span>
-                                          {formatDate(
-                                            blog.blogRef.lastPublishedDate.$date
-                                          )}
-                                        </span>
+                                        <span>{formatDate(blog.blogRef.lastPublishedDate.$date)}</span>
                                       </div>
                                     </div>
-                                    <h2 className="title-blog">
-                                      {blog.blogRef.title}
-                                    </h2>
-                                    <p className="text-blog">
-                                      {blog.blogRef.excerpt}
-                                    </p>
+                                    <h2 className="title-blog">{blog.blogRef.title}</h2>
+                                    <p className="text-blog">{blog.blogRef.excerpt}</p>
                                   </div>
                                 </DelayedLink>
                               </div>
@@ -602,14 +463,10 @@ const Search = ({ studios, markets, searchContent }) => {
                     </div>
                   </div>
 
-                  <div
-                    className={`result-order-pages ${otherPagesResults.length === 0 ? "hidden" : ""
-                      }`}
-                  >
+                  <div className={`result-order-pages ${otherPagesResults.length === 0 ? "hidden" : ""}`}>
                     <div className="container-title-results">
                       <h2 className="title-results split-chars" data-aos>
-                        {searchContent?.otherPagesTitle}{" "}
-                        <span>{`"${searchTerm}"`}</span>
+                        {searchContent?.otherPagesTitle} <span>{`"${searchTerm}"`}</span>
                       </h2>
                     </div>
                     <ul
@@ -619,19 +476,14 @@ const Search = ({ studios, markets, searchContent }) => {
                       {otherPagesResults?.map((page, index) => {
                         return (
                           <li key={index} className="grid-item">
-                            <DelayedLink
-                              to={page.path}
-                              className="link-order-pages"
-                            >
-                              <h3 className="title-order-pages">
-                                {page.title}
-                              </h3>
+                            <DelayedLink to={page.path} className="link-order-pages">
+                              <h3 className="title-order-pages">{page.title}</h3>
                               <p className="text-order-pages">
                                 {page.description}
                               </p>
                             </DelayedLink>
                           </li>
-                        );
+                        )
                       })}
                     </ul>
                   </div>

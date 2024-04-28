@@ -4,11 +4,11 @@ import { getPortfolioSectionDetails } from "@/api/portfolio";
 import PortfolioListing from "@/components/ProtfolioPageSections/PortfolioListing";
 import MarketSection from "@/components/commonComponents/MarketSection";
 import SocialSection from "@/components/commonComponents/SocialSection";
-import { markPageLoaded, updatedWatched } from "@/utils/utilityFunctions";
+import { markPageLoaded, pageLoadEnd, pageLoadStart, updatedWatched } from "@/utils/utilityFunctions";
 import { useEffect, useState } from "react";
 
 export default function Portfolio({ homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
-  
+
   const [portfolioResponse, setPortfolioResponse] = useState(null);
   const [portfolioCollection, setPortfolioCollection] = useState([]);
 
@@ -29,20 +29,22 @@ export default function Portfolio({ homeSectionDetails, portfolioSectionDetails,
     updatedWatched();
   }
 
-  const applyFilters = async ({ selectedStudios = [], selectedMarkets = [], disableLoader = false }) => {
+  const applyFilters = async ({ selectedStudios = [], selectedMarkets = [], firstLoad = false }) => {
     try {
-      const response = await listPortfolios({ pageSize, studios: selectedStudios, markets: selectedMarkets, disableLoader });
+      if (!firstLoad) pageLoadStart();
+      const response = await listPortfolios({ pageSize, studios: selectedStudios, markets: selectedMarkets });
       setPortfolioCollection(response._items.filter(item => item.data.portfolioRef._id !== undefined).map(item => item.data));
       setPortfolioResponse(response);
       updatedWatched();
+      if (!firstLoad) pageLoadEnd();
     } catch (error) {
       console.error(error);
     }
   }
 
   useEffect(() => {
-    applyFilters({ disableLoader: true });
-    markPageLoaded();
+    applyFilters({ firstLoad: true });
+    markPageLoaded(false);
   }, []);
 
   return (
