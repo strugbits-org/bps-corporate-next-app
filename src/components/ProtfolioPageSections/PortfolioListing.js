@@ -42,6 +42,19 @@ const PortfolioListing = ({ data, seeMore, applyFilters }) => {
       applyFilters({ selectedStudios, selectedMarkets: [] });
     }
   }
+
+  const sortTags = (a, b) => {
+    const idAFound = selectedStudios.includes(a._id);
+    const idBFound = selectedStudios.includes(b._id);
+    if (idAFound && !idBFound) {
+      return -1;
+    } else if (!idAFound && idBFound) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+
   const studiosDropdownref = useDetectClickOutside({ onTriggered: () => { if (studiosDropdownActive) setSudiosDropdownActive(false) } });
   const marketsDropdownref = useDetectClickOutside({ onTriggered: () => { if (marketsDropdownActive) setMarketsDropdownActive(false) } });
 
@@ -194,7 +207,7 @@ const PortfolioListing = ({ data, seeMore, applyFilters }) => {
                               <span>{market.cardname}</span>
                             </li>
                           ))}
-                          {item.studios.map((studio, index) => (
+                          {item.studios.sort(sortTags).map((studio, index) => (
                             <React.Fragment key={index}>
                               {index < 2 && (
                                 <li
