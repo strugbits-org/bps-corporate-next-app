@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// const base_url = process.env.REACT_APP_API_ENDPOINT;
-const base_url = "https://bps-staging-8b69f2dccce9.herokuapp.com";
+const base_url = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 export const fetchCollection = async (payload) => {
   try {

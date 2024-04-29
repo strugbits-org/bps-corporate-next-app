@@ -35,8 +35,12 @@ export default function Portfolio({ homeSectionDetails, portfolioSectionDetails,
       const response = await listPortfolios({ pageSize, studios: selectedStudios, markets: selectedMarkets });
       setPortfolioCollection(response._items.filter(item => item.data.portfolioRef._id !== undefined).map(item => item.data));
       setPortfolioResponse(response);
+      if (firstLoad) {
+        markPageLoaded(false);
+      }else{
+        pageLoadEnd()
+      };
       updatedWatched();
-      if (!firstLoad) pageLoadEnd();
     } catch (error) {
       console.error(error);
     }
@@ -44,7 +48,6 @@ export default function Portfolio({ homeSectionDetails, portfolioSectionDetails,
 
   useEffect(() => {
     applyFilters({ firstLoad: true });
-    markPageLoaded(false);
   }, []);
 
   return (

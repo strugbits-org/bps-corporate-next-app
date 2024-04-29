@@ -161,34 +161,36 @@ export const loadPinterest = () => {
 };
 
 export const markPageLoaded = (watched = true) => {
-  closeModals();
   if (typeof window !== 'undefined') {
+    closeModals();
     setTimeout(() => window.scrollTo({ top: 0 }), 200);
     setTimeout(initAnimations, 750);
     if (watched) setTimeout(updatedWatched, 1000);
     setTimeout(loadPinterest, 1200);
     const isFirstLoadDone = document.body.classList.contains("first-load-done");
     if (isFirstLoadDone) {
-      const body = document.body;
-      if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
-      body.classList.add("page-enter-active");
-      body.classList.remove("page-leave-active");
-      setTimeout(() => {
-        body.classList.remove("page-enter-active");
-      }, 900);
+      pageLoadEnd();
     } else {
-      changeProgress(100);
-      document.body.dataset.load = "first-leaving";
-      setTimeout(() => {
-        document.body.dataset.load = "first-done";
-      }, 1200);
-      document.body.classList.add("first-load-done");
+      firstLoadAnimation();
     }
   }
 }
 
+export const firstLoadAnimation = async () => {
+  for (let i = 0; i <= 100; i++) {
+    await new Promise(resolve => setTimeout(resolve, 2));
+    changeProgress(i);
+  }
+  document.body.dataset.load = "first-leaving";
+  setTimeout(() => {
+    document.body.dataset.load = "first-done";
+  }, 1200);
+  document.body.classList.add("first-load-done");
+}
+
 export const pageLoadStart = () => {
   if (typeof window !== 'undefined') {
+    closeModals();
     document.body.classList.add("page-leave-active");
   }
 }

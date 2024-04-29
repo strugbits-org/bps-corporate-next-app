@@ -36,6 +36,11 @@ export default function Blog({ blogSectionDetails, marketsSectionData, studios, 
       const response = await listBlogs({ pageSize, studios: selectedStudios, markets: selectedMarkets });
       setBlogCollection(response._items.filter(item => item.data.blogRef && item.data.blogRef._id !== undefined).map(item => item.data));
       setBlogResponse(response);
+      if (firstLoad) {
+        markPageLoaded(false);
+      }else{
+        pageLoadEnd()
+      };
       updatedWatched();
       if (!firstLoad) pageLoadEnd();
     } catch (error) {
@@ -45,7 +50,6 @@ export default function Blog({ blogSectionDetails, marketsSectionData, studios, 
 
   useEffect(() => {
     applyFilters({ firstLoad: true });
-    markPageLoaded(false);
   }, []);
 
   return (
