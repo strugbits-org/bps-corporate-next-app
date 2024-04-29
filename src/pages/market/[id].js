@@ -26,6 +26,7 @@ import SocialSection from "@/components/commonComponents/SocialSection";
 import StudioSection from "@/components/commonComponents/StudioSection";
 import { markPageLoaded } from "@/utils/utilityFunctions";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Market = ({
     marketSection,
@@ -39,11 +40,18 @@ const Market = ({
     socialSectionDetails,
     socialSectionBlogs,
     instaFeed,
+    meta_data
 }) => {
     const router = useRouter();
     markPageLoaded();
     return (
         <>
+            <Head>
+                <title>{meta_data.title + marketSection.cardname}</title>
+                <meta name="description" content={marketSection.description} />
+                <meta property="og:title" content={meta_data.title + marketSection.cardname} />
+                <meta property="og:description" content={marketSection.description} />
+            </Head>
             <MarketTopSection data={marketSection} />
             <HowWeDoSection
                 data={marketSection}

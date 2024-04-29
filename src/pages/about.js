@@ -23,21 +23,13 @@ const About = ({ aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSecti
             <SliderBanner data={aboutSlider} type={false} sectionDetails={aboutUsSectionDetails} />
             <AboutBottomSection sectionDetails={aboutUsSectionDetails} />
             <DreamBigSection data={dreamBigData} />
-            <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed}/>
+            <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed} />
         </>
     );
 };
 
 export const getServerSideProps = async () => {
-    const [
-        aboutUsCardsSection,
-        aboutUsIntroSection,
-        aboutUsDreamTeamSection,
-        aboutUsRestOfFamily,
-        aboutSlider,
-        aboutUsSectionDetails,
-        dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed
-    ] = await Promise.all([
+    const [aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
         getAboutUsCardsSection(),
         getAboutUsIntroSection(),
         getAboutUsDreamTeamSection(),
@@ -48,23 +40,10 @@ export const getServerSideProps = async () => {
         getSocialSectionDetails(),
         getSocialSectionBlogs(),
         fetchInstaFeed(),
-
-
     ]);
 
     return {
-        props: {
-            aboutUsCardsSection: aboutUsCardsSection,
-            aboutUsIntroSection: aboutUsIntroSection,
-            aboutUsDreamTeamSection: aboutUsDreamTeamSection,
-            aboutUsRestOfFamily: aboutUsRestOfFamily,
-            aboutSlider: aboutSlider,
-            aboutUsSectionDetails: aboutUsSectionDetails,
-            dreamBigData: dreamBigData,
-            socialSectionDetails: socialSectionDetails,
-            socialSectionBlogs: socialSectionBlogs,
-            instaFeed: instaFeed
-        },
+        props: { aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed },
     };
 };
 
