@@ -89,16 +89,26 @@ export const closeModals = () => {
   if (typeof window !== 'undefined') {
     const submenu = document.querySelector('.submenu');
     if (submenu) submenu.classList.remove('active');
-    const btn_modal_close = document.querySelectorAll('btn-modal-close');
-    if (btn_modal_close) btn_modal_close.forEach(x => x.click());
+
+    const modal_group = document.querySelectorAll('modal-group');
+    if (modal_group) modal_group.forEach(x => x.classList.remove('active'));
+
+    const modal_item = document.querySelectorAll('modal-item');
+    if (modal_item) modal_item.forEach(x => x.classList.remove('active'));
+    
     const wrapperCursor = document.querySelector('#wrapper-cursor');
     if (wrapperCursor) wrapperCursor.click();
+    
+    const body = document.body;
+    if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
+
     document.querySelectorAll(".player-video").forEach((x) => {
       x.pause();
       setTimeout(() => {
         x.currentTime = 0;
       }, 500);
     });
+
   }
 }
 
@@ -164,9 +174,9 @@ export const markPageLoaded = (watched = true) => {
   if (typeof window !== 'undefined') {
     closeModals();
     setTimeout(() => window.scrollTo({ top: 0 }), 200);
-    setTimeout(initAnimations, 750);
-    if (watched) setTimeout(updatedWatched, 1000);
-    setTimeout(loadPinterest, 1200);
+    initAnimations();
+    if (watched) updatedWatched();
+    setTimeout(loadPinterest, 1000);
     const isFirstLoadDone = document.body.classList.contains("first-load-done");
     if (isFirstLoadDone) {
       pageLoadEnd();
@@ -198,7 +208,6 @@ export const pageLoadEnd = () => {
   if (window && typeof window !== 'undefined') {
     window.scrollTo({ top: 0 });
     const body = document.body;
-    if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
     body.classList.add("page-enter-active");
     body.classList.remove("page-leave-active");
     setTimeout(() => {
