@@ -281,7 +281,6 @@ var require_app2 = __commonJS({
       updateWatched();
     });
     const updateWatched = function () {
-      console.log("watched called");
       watched = [];
       obs.disconnect();
       obsAttrbutes.disconnect();
@@ -16052,7 +16051,6 @@ var require_app2 = __commonJS({
     var firstLoad = true;
 
     function whenContainerReady() {
-      console.log("init called");
       if (!screen.isMobile) {
         let smooth = 2;
         if (screen.isSafariDesktop)
