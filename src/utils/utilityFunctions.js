@@ -95,6 +95,12 @@ export const closeModals = () => {
 
     const modal_item = document.querySelectorAll('modal-item');
     if (modal_item) modal_item.forEach(x => x.classList.remove('active'));
+    
+    const wrapperCursor = document.querySelector('#wrapper-cursor');
+    if (wrapperCursor) wrapperCursor.click();
+    
+    const body = document.body;
+    if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
 
     document.querySelectorAll(".player-video").forEach((x) => {
       x.pause();
@@ -202,7 +208,6 @@ export const pageLoadEnd = () => {
   if (window && typeof window !== 'undefined') {
     window.scrollTo({ top: 0 });
     const body = document.body;
-    if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
     body.classList.add("page-enter-active");
     body.classList.remove("page-leave-active");
     setTimeout(() => {
