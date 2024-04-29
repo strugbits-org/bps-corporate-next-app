@@ -62,7 +62,7 @@ export const getServerSideProps = async (context) => {
     const blogProductData = await getBlogProductData({
       slug: context.query.id,
     });
-    if (!blogProductData) {
+    if (!blogProductData || blogProductData.isHidden) {
       return {
         notFound: true,
       };
