@@ -85,9 +85,27 @@ const Market = ({
 };
 
 export const getServerSideProps = async (context) => {
-    const marketSection = await getMarketSection(context.query.id);
 
-    const [marketsPostPageSectionDetails, marketCollection, portfolioData, homeSectionDetails, peopleReviewSliderData, marketsSectionData, studiosSectionData, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
+    try {
+      const marketSection = await getMarketSection(context.query.id);
+      if (!marketSection) {
+        return {
+          notFound: true,
+        };
+      }
+      const [
+        marketsPostPageSectionDetails,
+        marketCollection,
+        portfolioData,
+        homeSectionDetails,
+        peopleReviewSliderData,
+        marketsSectionData,
+        studiosSectionData,
+        dreamBigData,
+        socialSectionDetails,
+        socialSectionBlogs,
+        instaFeed,
+      ] = await Promise.all([
         getMarketsPostPageSectionDetails(),
         getMarketCollection(),
         fetchPortfolio({ id: marketSection._id }),
@@ -99,23 +117,27 @@ export const getServerSideProps = async (context) => {
         getSocialSectionDetails(),
         getSocialSectionBlogs(),
         fetchInstaFeed(),
-    ]);
-    return {
+      ]);
+      return {
         props: {
-            marketSection,
-            marketsPostPageSectionDetails,
-            marketCollection,
-            portfolioData,
-            homeSectionDetails,
-            peopleReviewSliderData,
-            marketsSectionData,
-            studiosSectionData,
-            dreamBigData,
-            socialSectionDetails,
-            socialSectionBlogs,
-            instaFeed,
+          marketSection,
+          marketsPostPageSectionDetails,
+          marketCollection,
+          portfolioData,
+          homeSectionDetails,
+          peopleReviewSliderData,
+          marketsSectionData,
+          studiosSectionData,
+          dreamBigData,
+          socialSectionDetails,
+          socialSectionBlogs,
+          instaFeed,
         },
-    };
+      };
+    } catch (error) {
+      console.log("Error:", error);
+      console.error("Error:", error);
+    }
 };
 
 export default Market;
