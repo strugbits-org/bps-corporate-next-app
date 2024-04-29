@@ -34,6 +34,12 @@ const Services = ({ homeSectionDetails, serviceData, servicesSectionDetails, ser
 export const getServerSideProps = async (context) => {
   try {
     const serviceData = await getServiceData(context.query.id);
+
+    if (!serviceData) {
+      return {
+        notFound: true,
+      };
+    }
     const [homeSectionDetails, servicesSectionDetails, servicesSlider, peopleReviewSliderData, studiosSectionData, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
       getHomeSectionDetails(),
       getServicesSectionDetails(),
@@ -50,7 +56,8 @@ export const getServerSideProps = async (context) => {
     };
 
   } catch (error) {
-    console.log("error", error);
+    console.log("Error:", error);
+      console.error("Error:", error);
   }
 }
 
