@@ -2445,6 +2445,27 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   font-family: "";
 }
 
+.fs--900 {
+  line-height: 1em;
+  letter-spacing: .01em;
+  font-weight: 600;
+}
+@media only screen and (min-width: 1025.1px) {
+  .fs--900 {
+    font-size: clamp(10rem, 85vh, 90rem);
+  }
+}
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .fs--900 {
+    font-size: 35rem;
+  }
+}
+@media only screen and (max-width: 767.98px) {
+  .fs--900 {
+    font-size: 25rem;
+  }
+}
+
 /* ------------------------------- responsive font-sizes ------------------------------- */
 .fs--header,
 .menu--wrapper .menu--list li .header-link {
