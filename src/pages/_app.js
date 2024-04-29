@@ -15,19 +15,22 @@ import Head from "next/head";
 export default function App({ Component, pageProps, studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, meta_data }) {
   const router = useRouter();
   const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
-  const cleanPath = pathname.split("/")[0].trim();
+  const page_name = pathname.split("/")[0].trim();
 
+  const environment = process.env.NEXT_PUBLIC_ENVIRONMENT
   return (
     <>
       <Head>
-        {!pathname.includes("/") && (
+        {!pathname.includes("/") && meta_data && (
           <>
             <title>{meta_data.title}</title>
             <meta name="description" content={meta_data.description} />
             <meta property="og:title" content={meta_data.title} />
             <meta property="og:description" content={meta_data.description} />
           </>)}
-        {meta_data.noFollowTag && <meta name="robots" content="noindex,nofollow" />}
+        {environment === "PRODUCTION" ?
+          (meta_data.noFollowTag && <meta name="robots" content="noindex,nofollow" />)
+          : <meta name="robots" content="noindex,nofollow" />}
       </Head>
       <Loading />
       <Cookies />
@@ -35,7 +38,7 @@ export default function App({ Component, pageProps, studios, markets, searchCont
       <AboutUsVideoModal data={aboutUsIntroSection} />
       <Navbar studios={studios} markets={markets} searchContent={searchContent} />
       <div id="main-transition">
-        <div id={`pg-${cleanPath}`} className="wrapper" data-scroll-container>
+        <div id={`pg-${page_name}`} className="wrapper" data-scroll-container>
           <main>
             <Component {...pageProps} meta_data={meta_data} />
             <Footer footerData={footerData} contactData={contactData} socialLinks={socialLinks} />
