@@ -45,7 +45,6 @@ export const getSinglePortfolio = async (slug) => {
 
 export const getPortfolio = async ({ pageSize, id }) => {
   try {
-    console.log("id", id);
     const options = {
       pageSize: pageSize,
       disableLoader: true,

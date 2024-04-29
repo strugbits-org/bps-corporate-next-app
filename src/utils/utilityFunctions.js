@@ -161,6 +161,7 @@ export const loadPinterest = () => {
 };
 
 export const markPageLoaded = (watched = true) => {
+  closeModals();
   if (typeof window !== 'undefined') {
     setTimeout(() => window.scrollTo({ top: 0 }), 200);
     setTimeout(initAnimations, 750);

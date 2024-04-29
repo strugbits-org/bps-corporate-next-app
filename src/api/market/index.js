@@ -58,7 +58,6 @@ export const getMarketCollection = async () => {
 
 export const fetchPortfolio = async ({ pageSize = 4, id }) => {
     try {
-        console.log("id",id);
         const options = {
             pageSize: pageSize,
             disableLoader: true,
