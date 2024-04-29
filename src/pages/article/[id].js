@@ -58,33 +58,45 @@ const Portfolio = ({
 };
 
 export const getServerSideProps = async (context) => {
-  const [
-    blogSectionDetails,
-    blogProductData,
-    blogPostData,
-    socialSectionDetails,
-    socialSectionBlogs,
-    instaFeed,
-  ] = await Promise.all([
-    getBlogSectionDetails(),
-    getBlogProductData({ slug: context.query.id }),
-    getBlogPostData({ pageSize: 4, disableLoader: false, excludeItem: null }),
-    getSocialSectionDetails(),
-    getSocialSectionBlogs(),
-    fetchInstaFeed(),
-  ]);
-  const blogTags = await getBlogTags({ ids: blogProductData.blogRef.tags });
-  return {
-    props: {
+  try {
+    const blogProductData = await getBlogProductData({
+      slug: context.query.id,
+    });
+    if (!blogProductData) {
+      return {
+        notFound: true,
+      };
+    }
+    const [
       blogSectionDetails,
-      blogProductData,
       blogPostData,
       blogTags,
       socialSectionDetails,
       socialSectionBlogs,
       instaFeed,
-    },
-  };
+    ] = await Promise.all([
+      getBlogSectionDetails(),
+      getBlogPostData({ pageSize: 4, disableLoader: false, excludeItem: null }),
+      getBlogTags({ ids: blogProductData.blogRef.tags }),
+      getSocialSectionDetails(),
+      getSocialSectionBlogs(),
+      fetchInstaFeed(),
+    ]);
+    return {
+      props: {
+        blogSectionDetails,
+        blogProductData,
+        blogPostData,
+        blogTags,
+        socialSectionDetails,
+        socialSectionBlogs,
+        instaFeed,
+      },
+    };
+  } catch (error) {
+    console.log("Error:", error);
+    console.error("Error:", error);
+  }
 };
 
 export default Portfolio;

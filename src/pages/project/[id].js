@@ -55,31 +55,43 @@ const Portfolio = ({
 };
 
 export const getServerSideProps = async (context) => {
-  const [
-    singlePortfolio,
-    portfolioSectionDetails,
-    portfolio,
-    socialSectionDetails,
-    socialSectionBlogs,
-    instaFeed,
-  ] = await Promise.all([
-    getSinglePortfolio(context.query.id),
-    getPortfolioSectionDetails(),
-    getPortfolio({ pageSize: 4, id: context.query.id }),
-    getSocialSectionDetails(),
-    getSocialSectionBlogs(),
-    fetchInstaFeed(),
-  ]);
-  return {
-    props: {
-      singlePortfolio,
+
+  try {
+    const singlePortfolio = await getSinglePortfolio(context.query.id);
+
+    if (!singlePortfolio) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const [
       portfolioSectionDetails,
       portfolio,
       socialSectionDetails,
       socialSectionBlogs,
       instaFeed,
-    },
-  };
+    ] = await Promise.all([
+      getPortfolioSectionDetails(),
+      getPortfolio({ pageSize: 4, id: context.query.id }),
+      getSocialSectionDetails(),
+      getSocialSectionBlogs(),
+      fetchInstaFeed(),
+    ]);
+    return {
+      props: {
+        singlePortfolio,
+        portfolioSectionDetails,
+        portfolio,
+        socialSectionDetails,
+        socialSectionBlogs,
+        instaFeed,
+      },
+    };
+  } catch (error) {
+    console.log("Error:", error);
+    console.error("Error:", error);
+  }
 };
 
 export default Portfolio;
