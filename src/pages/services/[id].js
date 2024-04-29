@@ -8,11 +8,18 @@ import StudioSection from '@/components/commonComponents/StudioSection';
 import ServiceIntro from '@/components/serviceDetailPageSections/ServiceIntro';
 import { SubSectionServices } from '@/components/serviceDetailPageSections/SubSectionServices';
 import { markPageLoaded } from '@/utils/utilityFunctions'
+import Head from 'next/head';
 
-const Services = ({ homeSectionDetails, serviceData, servicesSectionDetails, servicesSlider, peopleReviewSliderData, studiosSectionData, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed }) => {
+const Services = ({ homeSectionDetails, serviceData, servicesSectionDetails, servicesSlider, peopleReviewSliderData, studiosSectionData, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed, meta_data }) => {
   markPageLoaded();
   return (
     <>
+      <Head>
+        <title>{meta_data.title + serviceData.cardName}</title>
+        <meta name="description" content={serviceData.cardDescription} />
+        <meta property="og:title" content={meta_data.title + serviceData.cardName} />
+        <meta property="og:description" content={serviceData.cardDescription} />
+      </Head>
       <ServiceIntro data={serviceData} />
       <SubSectionServices data={serviceData} />
       <SliderBanner data={servicesSlider} type={true} sectionDetails={servicesSectionDetails} />

@@ -13,6 +13,7 @@ import PostDetails from "@/components/blogDetailPageSections/PostDetails";
 import RecentPosts from "@/components/blogDetailPageSections/RecentPosts";
 import SocialSection from "@/components/commonComponents/SocialSection";
 import { markPageLoaded } from "@/utils/utilityFunctions";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 const Portfolio = ({
@@ -23,12 +24,19 @@ const Portfolio = ({
   socialSectionDetails,
   socialSectionBlogs,
   instaFeed,
+  meta_data
 }) => {
   const router = useRouter();
   markPageLoaded();
 
   return (
     <>
+      <Head>
+        <title>{meta_data.title + (blogProductData.seoDesc.title || blogProductData.blogRef.title)}</title>
+        <meta name="description" content={blogProductData.seoDesc.description} />
+        <meta property="og:title" content={meta_data.title + (blogProductData.seoDesc.title || blogProductData.blogRef.title)} />
+        <meta property="og:description" content={blogProductData.seoDesc.description} />
+      </Head>
       <PostDetails
         data={blogProductData}
         blogSectionDetails={blogSectionDetails}

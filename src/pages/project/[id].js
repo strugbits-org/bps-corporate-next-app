@@ -14,6 +14,7 @@ import {
 } from "@/api/portfolio";
 import GallerySection from "@/components/portfolioDetailPageSections/GallerySection";
 import ExploreProjectsSection from "@/components/portfolioDetailPageSections/ExploreProjectsSection";
+import Head from "next/head";
 
 const Portfolio = ({
   singlePortfolio,
@@ -22,11 +23,18 @@ const Portfolio = ({
   socialSectionDetails,
   socialSectionBlogs,
   instaFeed,
+  meta_data
 }) => {
   const router = useRouter();
   markPageLoaded();
   return (
     <>
+      <Head>
+        <title>{meta_data.title + (singlePortfolio.seoDesc.title || singlePortfolio.portfolioRef.title)}</title>
+        <meta name="description" content={singlePortfolio.seoDesc.description} />
+        <meta property="og:title" content={meta_data.title + (singlePortfolio.seoDesc.title || singlePortfolio.portfolioRef.title)} />
+        <meta property="og:description" content={singlePortfolio.seoDesc.description} />
+      </Head>
       <PortfolioIntoSection data={singlePortfolio} slug={router.query.id} />
       <GallerySection
         data={singlePortfolio}

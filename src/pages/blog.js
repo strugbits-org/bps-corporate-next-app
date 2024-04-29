@@ -68,7 +68,6 @@ export const getServerSideProps = async () => {
     fetchInstaFeed(),
   ]);
 
-  console.log("blogSectionDetails", blogSectionDetails);
   return {
     props: { blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed },
   };

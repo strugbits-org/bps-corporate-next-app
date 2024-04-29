@@ -9,23 +9,35 @@ import ContactUsModal from "@/components/Lightbox/modalComponents/ContactUsModal
 import { getContactUsContent } from "@/api/contact";
 import { getAboutUsIntroSection } from "@/api/about";
 import AboutUsVideoModal from "@/components/Lightbox/modalComponents/AboutUsVideoModal";
+import { getPageMetaData } from "@/api";
+import Head from "next/head";
 
-export default function App({ Component, pageProps, studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection }) {
+export default function App({ Component, pageProps, studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, meta_data }) {
   const router = useRouter();
   const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
   const cleanPath = pathname.split("/")[0].trim();
 
   return (
     <>
+      <Head>
+        {!pathname.includes("/") && (
+          <>
+            <title>{meta_data.title}</title>
+            <meta name="description" content={meta_data.description} />
+            <meta property="og:title" content={meta_data.title} />
+            <meta property="og:description" content={meta_data.description} />
+          </>)}
+        {meta_data.noFollowTag && <meta name="robots" content="noindex,nofollow" />}
+      </Head>
       <Loading />
       <Cookies />
       <ContactUsModal contactUsContent={contactUsContent} contactData={contactData} socialLinks={socialLinks} />
-      <AboutUsVideoModal data={aboutUsIntroSection}/>
+      <AboutUsVideoModal data={aboutUsIntroSection} />
       <Navbar studios={studios} markets={markets} searchContent={searchContent} />
       <div id="main-transition">
         <div id={`pg-${cleanPath}`} className="wrapper" data-scroll-container>
           <main>
-            <Component {...pageProps} />
+            <Component {...pageProps} meta_data={meta_data} />
             <Footer footerData={footerData} contactData={contactData} socialLinks={socialLinks} />
           </main>
         </div>
@@ -34,8 +46,12 @@ export default function App({ Component, pageProps, studios, markets, searchCont
   );
 }
 
-App.getInitialProps = async () => {
-  const [studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection] = await Promise.all([
+App.getInitialProps = async (context) => {
+  const router = context.router;
+  const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
+  const page_name = pathname.split("/")[0].trim();
+
+  const [studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, meta_data] = await Promise.all([
     getStudiosSectionData(),
     getMarketsSectionData(),
     getSearchSectionDetails(),
@@ -44,7 +60,9 @@ App.getInitialProps = async () => {
     getSocialLinks(),
     getContactUsContent(),
     getAboutUsIntroSection(),
+    getPageMetaData(page_name),
   ]);
 
-  return { studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection };
+
+  return { studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, meta_data };
 };
