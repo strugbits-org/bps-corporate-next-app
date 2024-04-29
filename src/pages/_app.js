@@ -1,6 +1,7 @@
 import Cookies from "@/components/common/Cookies";
 import Loading from "@/components/common/Loading";
 import { useRouter } from 'next/router'
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from "@/layout/footer/Footer";
 import Navbar from "@/layout/header/Navbar";
 import { getMarketsSectionData, getSearchSectionDetails, getStudiosSectionData } from "@/api/home.js";
@@ -41,6 +42,7 @@ export default function App({ Component, pageProps, studios, markets, searchCont
         <div id={`pg-${page_name}`} className="wrapper" data-scroll-container>
           <main>
             <Component {...pageProps} meta_data={meta_data} />
+            <SpeedInsights />
             <Footer footerData={footerData} contactData={contactData} socialLinks={socialLinks} />
           </main>
         </div>

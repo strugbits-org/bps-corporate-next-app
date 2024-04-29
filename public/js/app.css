@@ -24123,3 +24123,71 @@ body.page-leave-active[data-load="first-done"] .overlay {
 .list-blog-lets-get-social::-webkit-scrollbar-thumb {
   cursor: pointer;
 }
+
+.section-error-404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding-left: var(--padding-fluid);
+  padding-right: var(--padding-fluid);
+  position: relative;
+  min-height: 100vh;
+  z-index: 10;
+  background: var(--white-2);
+}
+@media only screen and (min-width: 1025.1px) {
+  .section-error-404 {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+  }
+}
+@media only screen and (max-width: 1025px) {
+  .section-error-404 {
+    padding-top: var(--header-height);
+    padding-bottom: var(--header-height);
+  }
+}
+.section-error-404 .container-title {
+  position: relative;
+}
+@media only screen and (max-width: 1025px) {
+  .section-error-404 .container-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}
+.section-error-404 .container-title h1 {
+  display: inline-block;
+}
+@media only screen and (min-width: 768px) and (max-width: 1025px) and (max-height: 550px) and (orientation: landscape) {
+  .section-error-404 .container-title h1 {
+    font-size: 25rem;
+  }
+}
+.section-error-404 .container-title > span {
+  display: block;
+  text-align: center;
+}
+@media only screen and (min-width: 1025.1px) {
+  .section-error-404 .container-title > span {
+    position: absolute;
+    top: 60%;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 10.2rem;
+  }
+}
+@media only screen and (max-width: 1025px) {
+  .section-error-404 .container-title > span {
+    margin-top: 2rem;
+  }
+}
