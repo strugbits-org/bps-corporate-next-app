@@ -16077,8 +16077,6 @@ var require_app2 = __commonJS({
         ScrollTrigger$1.refresh();
       }, 1e3);
 
-
-
       // About functions
       const page = window.location.pathname.trim() === "/" ? "home" : location.pathname.substring(1);
       const cleanPage = page.split("/")[0].trim();

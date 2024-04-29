@@ -65,7 +65,7 @@ export const getServerSideProps = async (context) => {
   ] = await Promise.all([
     getSinglePortfolio(context.query.id),
     getPortfolioSectionDetails(),
-    getPortfolio(4, context.query.id),
+    getPortfolio({ pageSize: 4, id: context.query.id }),
     getSocialSectionDetails(),
     getSocialSectionBlogs(),
     fetchInstaFeed(),
