@@ -1,6 +1,6 @@
 import { markPageLoaded } from "@/utils/utilityFunctions";
 
-export default function Custom404({abc}) {
+export default function Custom404() {
   markPageLoaded();
   return (
     <>
@@ -13,3 +13,4 @@ export default function Custom404({abc}) {
     </>
   );
 }
+ 
