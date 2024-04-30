@@ -1,9 +1,12 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-const SocialVerticalBar = ({ title, slug }) => {
+const SocialVerticalBar = ({ title }) => {
   const [copied, setCopied] = useState(false);
-  const url = slug;
+  const router = useRouter();
+
+  const url = typeof window !== 'undefined' ? window.location.origin + router.asPath : router.asPath;
   const copyURLToClipboard = (e) => {
     navigator.clipboard
       .writeText(url)
@@ -23,7 +26,7 @@ const SocialVerticalBar = ({ title, slug }) => {
     <ul className="list-share">
       <li>
         <Link
-          href={""}
+          href={url}
           data-cursor-style="off"
           onClick={(e) => {
             window.open(
@@ -40,7 +43,7 @@ const SocialVerticalBar = ({ title, slug }) => {
       </li>
       <li>
         <Link
-          href={""}
+          href={url}
           data-cursor-style="off"
           onClick={(e) => {
             window.open(
@@ -57,7 +60,7 @@ const SocialVerticalBar = ({ title, slug }) => {
       </li>
       <li>
         <Link
-          href={""}
+          href={url}
           to={`mailto:?subject=${title}&body=Hey check out this post at ${url}`}
           data-cursor-style="off"
         >
@@ -66,7 +69,7 @@ const SocialVerticalBar = ({ title, slug }) => {
         </Link>
       </li>
       <li>
-        <Link href={""} onClick={copyURLToClipboard} className="copy-link">
+        <Link href={url} onClick={copyURLToClipboard} className="copy-link">
           <span>{copied}</span>
           <i className="icon-link"></i>
         </Link>

@@ -2,7 +2,7 @@ import { generateImageUrl2 } from "@/common/functions/imageURL";
 import SocialVerticalBar from "../blogDetailPageSections/SocialVerticalBar";
 import ContentComponent from "../common/ContentComponent ";
 
-const PortfolioIntoSection = ({ data, slug }) => {
+const PortfolioIntoSection = ({ data }) => {
   const maxWords = 60;
   const coverImage = generateImageUrl2({
     wix_url: data?.portfolioRef?.coverImage?.imageInfo,
@@ -100,7 +100,7 @@ const PortfolioIntoSection = ({ data, slug }) => {
                 </div>
                 <div className="column-3 column-portfolio no-mobile">
                   <h4 className="fs--16">Share</h4>
-                  <SocialVerticalBar title={title} slug={slug} />
+                  <SocialVerticalBar title={title} />
                 </div>
               </div>
             </div>
