@@ -59,7 +59,7 @@ export const getServerSideProps = async (context) => {
   try {
     const singlePortfolio = await getSinglePortfolio(context.query.id);
 
-    if (!singlePortfolio) {
+    if (!singlePortfolio || singlePortfolio.isHidden) {
       return {
         notFound: true,
       };

@@ -30,7 +30,7 @@ export default function App({ Component, pageProps, studios, markets, searchCont
             <meta property="og:description" content={meta_data.description} />
           </>)}
         {environment === "PRODUCTION" ?
-          (meta_data.noFollowTag && <meta name="robots" content="noindex,nofollow" />)
+          (meta_data?.noFollowTag && <meta name="robots" content="noindex,nofollow" />)
           : <meta name="robots" content="noindex,nofollow" />}
       </Head>
       <Loading />
