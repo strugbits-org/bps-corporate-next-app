@@ -60,8 +60,7 @@ const SocialVerticalBar = ({ title }) => {
       </li>
       <li>
         <Link
-          href={url}
-          to={`mailto:?subject=${title}&body=Hey check out this post at ${url}`}
+          href={`mailto:?subject=${title}&body=Hey check out this post at ${url}`}
           data-cursor-style="off"
         >
           <span>email</span>
@@ -69,8 +68,8 @@ const SocialVerticalBar = ({ title }) => {
         </Link>
       </li>
       <li>
-        <Link href={url} onClick={copyURLToClipboard} className="copy-link">
-          <span>{copied}</span>
+        <Link href={url} onClick={copyURLToClipboard} className={`copy-link ${copied ? "copied" : ""}`}>
+          <span>Copied!</span>
           <i className="icon-link"></i>
         </Link>
       </li>

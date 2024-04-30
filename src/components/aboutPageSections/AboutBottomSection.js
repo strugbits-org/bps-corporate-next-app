@@ -1,7 +1,7 @@
 import { generateImageURL } from "@/common/functions/imageURL";
+import { refreshMagazineIframe } from "@/utils/utilityFunctions";
 
-const AboutBottomSection = ({sectionDetails}) => {
-
+const AboutBottomSection = ({ sectionDetails }) => {
   return (
     <>
       <section className="about-check-out">
@@ -14,12 +14,18 @@ const AboutBottomSection = ({sectionDetails}) => {
                   <span className="line-2 d-block">{sectionDetails.magazineTitle2}</span>
                 </h2>
                 <div className="container-img">
-                  <img
-                    src={generateImageURL({ wix_url: sectionDetails.magazineCoverImage, w: "310", h: "410", fit:"fit", q: "95" })}
-                    data-preload
-                    className="media"
-                    alt=""
-                  />
+                  <btn-modal-open
+                    group="modal-about-magazine"
+                    data-cursor-style="off"
+                  >
+                    <img
+                      src={generateImageURL({ wix_url: sectionDetails.magazineCoverImage, w: "310", h: "410", fit: "fit", q: "95" })}
+                      data-preload
+                      className="media"
+                      alt=""
+                      onClick={() => refreshMagazineIframe()}
+                    />
+                  </btn-modal-open>
                 </div>
 
                 <div className="bg-box"></div>

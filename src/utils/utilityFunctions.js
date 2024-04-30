@@ -95,10 +95,10 @@ export const closeModals = () => {
 
     const modal_item = document.querySelectorAll('modal-item');
     if (modal_item) modal_item.forEach(x => x.classList.remove('active'));
-    
+
     const wrapperCursor = document.querySelector('#wrapper-cursor');
     if (wrapperCursor) wrapperCursor.click();
-    
+
     const body = document.body;
     if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
 
@@ -140,6 +140,13 @@ export const changeProgress = (percent) => {
   }
 }
 
+export const closeModal2 = () => {
+  if (typeof window !== 'undefined') {
+    const btn_modal_close = document.querySelectorAll('btn-modal-close');
+    if (btn_modal_close) btn_modal_close.forEach(x => x.click());
+  }
+}
+
 export const initAnimations = () => {
   if (typeof window !== 'undefined') {
     setTimeout(() => {
@@ -169,6 +176,16 @@ export const loadPinterest = () => {
     }, 1000);
   }
 };
+export const refreshMagazineIframe = () => {
+  if (typeof window !== 'undefined') {
+    const container = document.querySelector('#trendMagazine:not(.iframe-loaded)');
+    const iframe = document.querySelector('#trendMagazine:not(.iframe-loaded) iframe');
+    if (iframe) {
+      iframe.src = iframe.src;
+      container.classList.add("iframe-loaded");
+    }
+  }
+}
 
 export const markPageLoaded = (watched = true) => {
   if (typeof window !== 'undefined') {

@@ -8,12 +8,13 @@ import { getMarketsSectionData, getSearchSectionDetails, getStudiosSectionData }
 import { getContactData, getFooterData, getSocialLinks } from "@/api/footer";
 import ContactUsModal from "@/components/Lightbox/modalComponents/ContactUsModal";
 import { getContactUsContent } from "@/api/contact";
-import { getAboutUsIntroSection } from "@/api/about";
+import { getAboutUsIntroSection, getAboutUsSectionDetails } from "@/api/about";
 import AboutUsVideoModal from "@/components/Lightbox/modalComponents/AboutUsVideoModal";
 import { getPageMetaData } from "@/api";
 import Head from "next/head";
+import AboutUsMagazineModal from "@/components/Lightbox/modalComponents/AboutUsMagazineModal";
 
-export default function App({ Component, pageProps, studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, meta_data }) {
+export default function App({ Component, pageProps, studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data }) {
   const router = useRouter();
   const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
   const page_name = pathname.split("/")[0].trim();
@@ -37,6 +38,7 @@ export default function App({ Component, pageProps, studios, markets, searchCont
       <Cookies />
       <ContactUsModal contactUsContent={contactUsContent} contactData={contactData} socialLinks={socialLinks} />
       <AboutUsVideoModal data={aboutUsIntroSection} />
+      <AboutUsMagazineModal data={aboutUsSectionDetails} />
       <Navbar studios={studios} markets={markets} searchContent={searchContent} />
       <div id="main-transition">
         <div id={`pg-${page_name}`} className="wrapper" data-scroll-container>
@@ -56,7 +58,7 @@ App.getInitialProps = async (context) => {
   const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
   const page_name = pathname.split("/")[0].trim();
 
-  const [studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, meta_data] = await Promise.all([
+  const [studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data] = await Promise.all([
     getStudiosSectionData(),
     getMarketsSectionData(),
     getSearchSectionDetails(),
@@ -65,9 +67,10 @@ App.getInitialProps = async (context) => {
     getSocialLinks(),
     getContactUsContent(),
     getAboutUsIntroSection(),
+    getAboutUsSectionDetails(),
     getPageMetaData(page_name),
   ]);
 
 
-  return { studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, meta_data };
+  return { studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data };
 };
