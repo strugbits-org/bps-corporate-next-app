@@ -47,6 +47,18 @@ const BlogListing = ({ data, seeMore, applyFilters }) => {
             applyFilters({ selectedStudios, selectedMarkets: [] });
         }
     }
+    const sortTags = (a, b) => {
+        const idAFound = selectedStudios.includes(a._id);
+        const idBFound = selectedStudios.includes(b._id);
+        if (idAFound && !idBFound) {
+            return -1;
+        } else if (!idAFound && idBFound) {
+            return 1;
+        } else {
+            return 0;
+        }
+    };
+
     const studiosDropdownref = useDetectClickOutside({ onTriggered: () => { if (studiosDropdownActive) setSudiosDropdownActive(false) } });
     const marketsDropdownref = useDetectClickOutside({ onTriggered: () => { if (marketsDropdownActive) setMarketsDropdownActive(false) } });
     return (
@@ -162,7 +174,7 @@ const BlogListing = ({ data, seeMore, applyFilters }) => {
                                             <div className="container-img bg-blue" data-cursor-style="view" >
                                                 <div className="wrapper-img">
                                                     {item.blogRef.coverImage && <img
-                                                        src={generateImageURL({ wix_url: item?.blogRef?.coverImage, w: "440",h:"302", fit: "fit", q: "90" })}
+                                                        src={generateImageURL({ wix_url: item?.blogRef?.coverImage, w: "440", h: "302", fit: "fit", q: "90" })}
                                                         data-preload
                                                         className="media"
                                                         alt=""
@@ -193,7 +205,7 @@ const BlogListing = ({ data, seeMore, applyFilters }) => {
                                                     <span>{market.cardname}</span>
                                                 </li>
                                             ))}
-                                            {item.studios.map((studio, index) => (
+                                            {item.studios.sort(sortTags).map((studio, index) => (
                                                 <React.Fragment key={index}>
                                                     {index < 2 && (
                                                         <li onClick={() => { handleStudioFilter(studio._id) }} className={`tag-small ${selectedStudios.includes(studio._id)

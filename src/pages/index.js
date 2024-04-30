@@ -25,8 +25,7 @@ export default function Home({ heroSectionData, getInTouchData, studiosSectionDa
       <MarketSection data={marketsSectionData} homeSectionDetails={homeSectionDetails} />
       <RentalStoreSection data={rentalStoreData} homeSectionDetails={homeSectionDetails} rentalStoreSubtitle={rentalStoreFancyTitle} />
       <DreamBigSection data={dreamBigData} />
-      <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed}
-      />
+      <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed}/>
     </>
   );
 }

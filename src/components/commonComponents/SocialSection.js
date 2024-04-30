@@ -156,7 +156,7 @@ const SocialSection = ({ data, posts, insta_feed }) => {
                       data-pin-scale-width="1200"
                       data-pin-min-weight="100%"
                       data-pin-max-weight="100%"
-                      href={data?.pinterestUrl}
+                      href={data?.pinterestUrl || ""}
                     ></Link>
                   </ul>
                 </div>
