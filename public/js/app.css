@@ -2450,16 +2450,19 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   letter-spacing: .01em;
   font-weight: 600;
 }
+
 @media only screen and (min-width: 1025.1px) {
   .fs--900 {
     font-size: clamp(10rem, 85vh, 90rem);
   }
 }
+
 @media only screen and (min-width: 767.98px) and (max-width: 1025px) {
   .fs--900 {
     font-size: 35rem;
   }
 }
+
 @media only screen and (max-width: 767.98px) {
   .fs--900 {
     font-size: 25rem;
@@ -24159,21 +24162,25 @@ body.page-leave-active[data-load="first-done"] .overlay {
   z-index: 10;
   background: var(--white-2);
 }
+
 @media only screen and (min-width: 1025.1px) {
   .section-error-404 {
     padding-top: 10rem;
     padding-bottom: 10rem;
   }
 }
+
 @media only screen and (max-width: 1025px) {
   .section-error-404 {
     padding-top: var(--header-height);
     padding-bottom: var(--header-height);
   }
 }
+
 .section-error-404 .container-title {
   position: relative;
 }
+
 @media only screen and (max-width: 1025px) {
   .section-error-404 .container-title {
     display: flex;
@@ -24184,20 +24191,24 @@ body.page-leave-active[data-load="first-done"] .overlay {
     flex-direction: column;
   }
 }
+
 .section-error-404 .container-title h1 {
   display: inline-block;
 }
+
 @media only screen and (min-width: 768px) and (max-width: 1025px) and (max-height: 550px) and (orientation: landscape) {
   .section-error-404 .container-title h1 {
     font-size: 25rem;
   }
 }
-.section-error-404 .container-title > span {
+
+.section-error-404 .container-title>span {
   display: block;
   text-align: center;
 }
+
 @media only screen and (min-width: 1025.1px) {
-  .section-error-404 .container-title > span {
+  .section-error-404 .container-title>span {
     position: absolute;
     top: 60%;
     right: auto;
@@ -24207,8 +24218,24 @@ body.page-leave-active[data-load="first-done"] .overlay {
     max-width: 10.2rem;
   }
 }
+
 @media only screen and (max-width: 1025px) {
-  .section-error-404 .container-title > span {
+  .section-error-404 .container-title>span {
     margin-top: 2rem;
   }
+}
+
+modal-group[name="modal-about-magazine"] modal-item,
+modal-group[name="modal-about-magazine"] .wrapper-modal {
+  width: 100%;
+  max-width: 1200px;
+}
+
+modal-group[name="modal-about-magazine"] iframe {
+  width: 100% !important;
+  height: 60dvh !important;
+}
+
+modal-group[name="modal-about-magazine"] iframe body {
+  display: none;
 }

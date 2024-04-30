@@ -16164,6 +16164,14 @@ var require_app2 = __commonJS({
         })
       })
 
+      const magazine_modal = document.querySelector("modal-group[name='modal-about-magazine']");
+      if (magazine_modal) {
+        magazine_modal.addEventListener("click", (e) => {
+          const btn_modal_close = document.querySelectorAll('btn-modal-close');
+          if (btn_modal_close) btn_modal_close.forEach(x => x.click())
+        });
+      }
+
       const modal_group = document.querySelector("modal-group[name='modal-about-video']");
       if (modal_group) {
         modal_group.addEventListener("click", (e) => {

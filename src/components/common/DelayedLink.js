@@ -1,4 +1,4 @@
-import { closeModals, pageLoadEnd, pageLoadStart } from '@/utils/utilityFunctions';
+import { closeModal2, closeModals, pageLoadEnd, pageLoadStart } from '@/utils/utilityFunctions';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -12,6 +12,7 @@ const DelayedLink = ({ to, children, className, target, attributes }) => {
 
     if (router.pathname === to) {
       pageLoadStart();
+      closeModal2();
       setTimeout(() => {
         pageLoadEnd();
       }, 900);
@@ -29,7 +30,7 @@ const DelayedLink = ({ to, children, className, target, attributes }) => {
   };
 
   return (
-    <Link href={to||""} target={target} className={className} onClick={delayedRedirect} {...attributes}>
+    <Link href={to || ""} target={target} className={className} onClick={delayedRedirect} {...attributes}>
       {children}
     </Link>
   );
