@@ -35,7 +35,7 @@ const Portfolio = ({
         <meta property="og:title" content={meta_data.title + (singlePortfolio.seoDesc.title || singlePortfolio.portfolioRef.title)} />
         <meta property="og:description" content={singlePortfolio.seoDesc.description} />
       </Head>
-      <PortfolioIntoSection data={singlePortfolio} slug={router.query.id} />
+      <PortfolioIntoSection data={singlePortfolio} />
       <GallerySection
         data={singlePortfolio}
         portfolioSectionDetails={portfolioSectionDetails}
