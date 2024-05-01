@@ -90,11 +90,12 @@ export const closeModals = () => {
     const submenu = document.querySelector('.submenu');
     if (submenu) submenu.classList.remove('active');
 
-    const modal_group = document.querySelectorAll('modal-group');
-    if (modal_group) modal_group.forEach(x => x.classList.remove('active'));
-
-    const modal_item = document.querySelectorAll('modal-item');
-    if (modal_item) modal_item.forEach(x => x.classList.remove('active'));
+    const modal_group = document.querySelectorAll("modal-group");
+    if (modal_group) modal_group.forEach(modal => {
+      if (modal.classList.contains("active")) {
+        modal.close();
+      }
+    });
 
     const wrapperCursor = document.querySelector('#wrapper-cursor');
     if (wrapperCursor) wrapperCursor.click();
@@ -137,13 +138,6 @@ export const changeProgress = (percent) => {
     document.body.style.setProperty("--percentage2", `${percent}%`);
     const elProg = document.querySelector('[data-load-progress]');
     if (elProg) elProg.dataset.loadProgress = percent;
-  }
-}
-
-export const closeModal2 = () => {
-  if (typeof window !== 'undefined') {
-    const btn_modal_close = document.querySelectorAll('btn-modal-close');
-    if (btn_modal_close) btn_modal_close.forEach(x => x.click());
   }
 }
 

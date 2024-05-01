@@ -1,4 +1,4 @@
-import { closeModal2, closeModals, pageLoadEnd, pageLoadStart } from '@/utils/utilityFunctions';
+import { closeModals, pageLoadEnd, pageLoadStart } from '@/utils/utilityFunctions';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -12,7 +12,6 @@ const DelayedLink = ({ to, children, className, target, attributes }) => {
 
     if (router.pathname === to) {
       pageLoadStart();
-      closeModal2();
       setTimeout(() => {
         pageLoadEnd();
       }, 900);

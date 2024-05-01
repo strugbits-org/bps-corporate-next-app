@@ -16050,6 +16050,16 @@ var require_app2 = __commonJS({
 
     var firstLoad = true;
 
+    function loadVideoPlayer(elem) {
+      new Plyr(elem, {
+        controls: ["play-large", "play", "progress", "fullscreen", "mute", "volume"],
+        settings: ["quality", "speed"],
+        autoplay: false,
+        seekTime: 15,
+        fullscreen: { iosNative: true }
+      });
+    }
+
     function whenContainerReady() {
       if (!screen.isMobile) {
         let smooth = 2;
@@ -16077,8 +16087,8 @@ var require_app2 = __commonJS({
 
       // About functions
       const page = window.location.pathname.trim() === "/" ? "home" : location.pathname.substring(1);
-      const cleanPage = page.split("/")[0].trim();
-      switch (cleanPage) {
+      const page_name = page.split("/")[0].trim();
+      switch (page_name) {
         case 'home':
           main$8();
           break;
@@ -16158,32 +16168,68 @@ var require_app2 = __commonJS({
         }
       }
 
-      document.querySelectorAll("btn-modal-open[group='modal-about-video']").forEach((x) => {
-        x.addEventListener("click", () => {
-          document.querySelectorAll(".player-video").forEach((x) => x.play());
-        })
-      })
 
-      const magazine_modal = document.querySelector("modal-group[name='modal-about-magazine']");
-      if (magazine_modal) {
-        magazine_modal.addEventListener("click", (e) => {
-          const btn_modal_close = document.querySelectorAll('btn-modal-close');
-          if (btn_modal_close) btn_modal_close.forEach(x => x.click())
+      // Market Video Events
+      const markets_video_modal = document.querySelector("modal-group[name='modal-markets-video']");
+      if (markets_video_modal) {
+        markets_video_modal.addEventListener("click", (e) => {
+          const introVideo = document.querySelector(".market-intro-video .player-video");
+          const introModalVideo = document.querySelector(".market-intro-video-modal .player-video");
+          
+          introVideo.currentTime = introModalVideo.currentTime;
+          introVideo.play();
+
+          if (e.target !== e.currentTarget) return;
+          markets_video_modal.close();
         });
       }
+      const introVideo = document.querySelector(".market-intro-video .player-video");
+      if (introVideo) {
+        introVideo.addEventListener("play", (e) => {
+          const introVideo = e.target;
+          const introModalVideo = document.querySelector(".market-intro-video-modal .player-video");
+          loadVideoPlayer(introModalVideo);
+          // introVideo.pause();
+          markets_video_modal.open();
+          introModalVideo.currentTime = introVideo.currentTime;
+          // introVideo.currentTime = 0;
+          introModalVideo.play();
+          e.preventDefault();
+        })
 
-      const modal_group = document.querySelector("modal-group[name='modal-about-video']");
-      if (modal_group) {
-        modal_group.addEventListener("click", (e) => {
+      }
+      // console.log("introVideo", introVideo);
+      // Market Video Events End
+
+      // about video
+      const modal_about_video_button = document.querySelectorAll("btn-modal-open[group='modal-about-video");
+      if (modal_about_video_button) {
+        modal_about_video_button.forEach((button) => {
+          button.addEventListener("click", () => {
+            document.querySelectorAll(".player-video").forEach((x) => x.play());
+          })
+        })
+      }
+      const modal_about_video = document.querySelector("modal-group[name='modal-about-video']");
+      if (modal_about_video) {
+        modal_about_video.addEventListener("click", (e) => {
           if (e.target !== e.currentTarget) return;
+          modal_about_video.close();
           document.querySelectorAll(".player-video").forEach((x) => {
             x.pause();
             setTimeout(() => {
               x.currentTime = 0;
             }, 500);
           });
-          const btn_modal_close = document.querySelectorAll('btn-modal-close');
-          if (btn_modal_close) btn_modal_close.forEach(x => x.click());
+        });
+      }
+
+      // about magazine modal
+      const magazine_modal = document.querySelector("modal-group[name='modal-about-magazine']");
+      if (magazine_modal) {
+        magazine_modal.addEventListener("click", (e) => {
+          if (e.target !== e.currentTarget) return;
+          magazine_modal.close();
         });
       }
     }
