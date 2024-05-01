@@ -1,4 +1,7 @@
+import { getStudiosSectionData } from "@/api/home.js";
+
 function generateSiteMap(origin, urlset) {
+
   let currentDate = new Date().toISOString().split('T')[0];
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -26,14 +29,10 @@ export async function getServerSideProps({ req, res }) {
   const protocol = req.headers['x-forwarded-proto'] ? req.headers['x-forwarded-proto'] : req.connection.encrypted ? 'https' : 'http';
   const origin = `${protocol}://${host}`;
 
-  const urlset = [
-    "pages-sitemap.xml",
-    "services-sitemap.xml",
-    "markets-sitemap.xml",
-    "projects-sitemap.xml",
-    "articles-sitemap.xml",
-  ];
-  const sitemap = generateSiteMap(origin, urlset);
+  const studios = await getStudiosSectionData();
+  const studios_routes = studios.map((x) => "services/" + x.slug);
+
+  const sitemap = generateSiteMap(origin, studios_routes);
   res.setHeader('Content-Type', 'text/xml');
   res.write(sitemap);
   res.end();

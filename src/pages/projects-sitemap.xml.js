@@ -1,3 +1,9 @@
+import { getAllPagesMetaData } from "@/api";
+import { getStudiosSectionData } from "@/api/home.js";
+import { listBlogs, listPortfolios } from "@/api/listing";
+import { getMarketCollection } from "@/api/market";
+
+
 function generateSiteMap(origin, urlset) {
   let currentDate = new Date().toISOString().split('T')[0];
 
@@ -26,14 +32,10 @@ export async function getServerSideProps({ req, res }) {
   const protocol = req.headers['x-forwarded-proto'] ? req.headers['x-forwarded-proto'] : req.connection.encrypted ? 'https' : 'http';
   const origin = `${protocol}://${host}`;
 
-  const urlset = [
-    "pages-sitemap.xml",
-    "services-sitemap.xml",
-    "markets-sitemap.xml",
-    "projects-sitemap.xml",
-    "articles-sitemap.xml",
-  ];
-  const sitemap = generateSiteMap(origin, urlset);
+  const portfolios = await listPortfolios({ pageSize: "50" });
+  const portfolios_routes = portfolios._items.map((x) => "project/" + x.data.slug);
+
+  const sitemap = generateSiteMap(origin, portfolios_routes);
   res.setHeader('Content-Type', 'text/xml');
   res.write(sitemap);
   res.end();
