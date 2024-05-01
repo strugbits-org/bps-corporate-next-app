@@ -16168,6 +16168,7 @@ var require_app2 = __commonJS({
       if (magazine_modal) {
         magazine_modal.addEventListener("click", (e) => {
           const btn_modal_close = document.querySelectorAll('btn-modal-close');
+          if (e.target !== e.currentTarget) return;
           if (btn_modal_close) btn_modal_close.forEach(x => x.click())
         });
       }
