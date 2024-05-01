@@ -1,8 +1,4 @@
-import { getAllPagesMetaData } from "@/api";
-import { getStudiosSectionData } from "@/api/home.js";
-import { listBlogs, listPortfolios } from "@/api/listing";
-import { getMarketCollection } from "@/api/market";
-
+import { listPortfolios } from "@/api/listing";
 
 function generateSiteMap(origin, urlset) {
   let currentDate = new Date().toISOString().split('T')[0];

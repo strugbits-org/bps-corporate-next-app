@@ -1,8 +1,4 @@
 import { getAllPagesMetaData } from "@/api";
-import { getStudiosSectionData } from "@/api/home.js";
-import { listBlogs, listPortfolios } from "@/api/listing";
-import { getMarketCollection } from "@/api/market";
-
 
 function generateSiteMap(origin, urlset) {
   let currentDate = new Date().toISOString().split('T')[0];
@@ -33,9 +29,12 @@ export async function getServerSideProps({ req, res }) {
   const origin = `${protocol}://${host}`;
 
   const pages = await getAllPagesMetaData();
-  const page_routes = pages.reverse().map((x) => x.slug);
 
-  const sitemap = generateSiteMap(origin, page_routes);
+  const page_routes = pages.reverse().map((x) => x.slug);
+  const subpages = ["market", "services", "project", "article"];
+  const filtered_routes = page_routes.filter(route => !subpages.includes(route));
+
+  const sitemap = generateSiteMap(origin, filtered_routes);
   res.setHeader('Content-Type', 'text/xml');
   res.write(sitemap);
   res.end();

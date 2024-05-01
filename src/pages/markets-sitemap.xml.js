@@ -1,6 +1,5 @@
 import { getMarketCollection } from "@/api/market";
 
-
 function generateSiteMap(origin, urlset) {
 
   let currentDate = new Date().toISOString().split('T')[0];
