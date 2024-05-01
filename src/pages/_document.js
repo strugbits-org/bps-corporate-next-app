@@ -4,6 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <script async src="/js/googleTagManager.js"></script>
         <link rel='shortcut icon' href='/favicon.png' />
         <link rel="modulepreload" href="/js/app2.js" />
         <link rel="modulepreload" href="/js/all.js" />
@@ -27,6 +28,8 @@ export default function Document() {
         <span className="stickyAnimationTrigger d-none"></span>
         <Main />
         <NextScript />
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBJ97DL"
+          height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
       </body>
     </Html>
   );
