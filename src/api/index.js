@@ -99,3 +99,20 @@ export const getPageMetaData = async (path) => {
     throw new Error(error.message);
   }
 };
+export const getAllPagesMetaData = async () => {
+  try {
+    const data = {
+      "dataCollectionId": "PageSeoConfiguration",
+      "includeReferencedItems": null,
+      "returnTotalCount": null,
+      "find": {},
+      "contains": null,
+      "eq": null,
+      "limit": null
+    }
+    const response = await fetchCollection(data);
+    return response._items.map((x) => x.data);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
