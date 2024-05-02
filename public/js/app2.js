@@ -16170,35 +16170,39 @@ var require_app2 = __commonJS({
 
 
       // Market Video Events
+      const introVideo = document.querySelector(".market-intro-video .player-video");
       const markets_video_modal = document.querySelector("modal-group[name='modal-markets-video']");
+      const introVideoPoster = document.querySelector(".market-intro-video .plyr__poster");
+      const markets_video_playbutton = document.querySelector(".market-intro-video button.plyr__control.plyr__control--overlaid[data-plyr='play']");
+
+      const openModalAndPlayVideo = () => {
+        const introModalVideo = document.querySelector(".market-intro-video-modal .player-video");
+        loadVideoPlayer(introModalVideo);
+        introModalVideo.currentTime = introVideo?.currentTime;
+        introModalVideo.play();
+
+        introVideo.pause();
+        markets_video_modal.open();
+      }
       if (markets_video_modal) {
         markets_video_modal.addEventListener("click", (e) => {
+          if (e.target !== e.currentTarget) return;
           const introVideo = document.querySelector(".market-intro-video .player-video");
           const introModalVideo = document.querySelector(".market-intro-video-modal .player-video");
-          
-          introVideo.currentTime = introModalVideo.currentTime;
-          introVideo.play();
-
-          if (e.target !== e.currentTarget) return;
+          introVideo.currentTime = introModalVideo?.currentTime;
+          if (introModalVideo.plyr.playing) {
+            introVideo.play();
+          }
           markets_video_modal.close();
         });
       }
-      const introVideo = document.querySelector(".market-intro-video .player-video");
-      if (introVideo) {
-        introVideo.addEventListener("play", (e) => {
-          const introVideo = e.target;
-          const introModalVideo = document.querySelector(".market-intro-video-modal .player-video");
-          loadVideoPlayer(introModalVideo);
-          // introVideo.pause();
-          markets_video_modal.open();
-          introModalVideo.currentTime = introVideo.currentTime;
-          // introVideo.currentTime = 0;
-          introModalVideo.play();
-          e.preventDefault();
-        })
 
-      }
-      // console.log("introVideo", introVideo);
+      introVideoPoster?.addEventListener("click", () => {
+        if (!introVideo.plyr.playing) {
+          openModalAndPlayVideo();
+        }
+      });
+      markets_video_playbutton?.addEventListener("click", openModalAndPlayVideo);
       // Market Video Events End
 
       // about video
