@@ -62,15 +62,12 @@ const MarketTopSection = ({data}) => {
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-4 offset-lg-4 column-1">
-              {/* {data.video} */}
-              <div className="container-img" data-aos="d:loop">
+              <div className="container-img market-intro-video" data-aos="d:loop">
                 <video
                   data-src={getFullVideoURL(data?.video)}
                   src={getFullVideoURL(data?.video)}
                   data-preload
                   className="player-video media"
-                  // autoPlay
-                  // muted
                   loop
                   playsInline
                 ></video>

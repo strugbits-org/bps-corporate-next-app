@@ -13,6 +13,7 @@ import AboutUsVideoModal from "@/components/Lightbox/modalComponents/AboutUsVide
 import { getPageMetaData } from "@/api";
 import Head from "next/head";
 import AboutUsMagazineModal from "@/components/Lightbox/modalComponents/AboutUsMagazineModal";
+import MarketsVideoModal from "@/components/Lightbox/modalComponents/MarketsVideoModal";
 
 export default function App({ Component, pageProps, studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data }) {
   const router = useRouter();
@@ -39,6 +40,8 @@ export default function App({ Component, pageProps, studios, markets, searchCont
       <ContactUsModal contactUsContent={contactUsContent} contactData={contactData} socialLinks={socialLinks} />
       <AboutUsVideoModal data={aboutUsIntroSection} />
       <AboutUsMagazineModal data={aboutUsSectionDetails} />
+      <MarketsVideoModal />
+
       <Navbar studios={studios} markets={markets} searchContent={searchContent} />
       <div id="main-transition">
         <div id={`pg-${page_name}`} className="wrapper" data-scroll-container>

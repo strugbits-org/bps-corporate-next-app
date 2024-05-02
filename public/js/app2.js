@@ -12862,13 +12862,6 @@ var require_app2 = __commonJS({
     function main$7() {
       sliderBanner();
       checkOutTl();
-      Array.from(document.querySelectorAll(".player-video")).map((p) => new Plyr(p, {
-        controls: ["play-large", "play", "progress", "fullscreen", "mute", "volume"],
-        settings: ["quality", "speed"],
-        autoplay: false,
-        seekTime: 15,
-        fullscreen: { iosNative: true }
-      }));
     }
     const pgAbout = new Page({
       pageName: pageName$7,
@@ -15423,13 +15416,17 @@ var require_app2 = __commonJS({
     const pageName$5 = "market";
     function main$5() {
       sliderTestimony();
-      Array.from(document.querySelectorAll(".player-video")).map((p) => new Plyr(p, {
-        controls: ["play-large", "play", "progress", "fullscreen", "mute", "volume"],
-        settings: ["quality", "speed"],
-        autoplay: false,
-        seekTime: 15,
-        fullscreen: { iosNative: true }
-      }));
+      const introVideo = document.querySelector(".market-intro-video .player-video");
+      if (introVideo) {
+        new Plyr(introVideo, {
+          controls: ["play-large"],
+          settings: ["quality", "speed"],
+          autoplay: false,
+          seekTime: 15,
+          fullscreen: { iosNative: true }
+        });
+      }
+
     }
     const pgMarketPost = new Page({
       pageName: pageName$5,
@@ -16050,6 +16047,16 @@ var require_app2 = __commonJS({
 
     var firstLoad = true;
 
+    function loadVideoPlayer(elem) {
+      new Plyr(elem, {
+        controls: ["play-large", "play", "progress", "fullscreen", "mute", "volume"],
+        settings: ["quality", "speed"],
+        autoplay: false,
+        seekTime: 15,
+        fullscreen: { iosNative: true }
+      });
+    }
+
     function whenContainerReady() {
       if (!screen.isMobile) {
         let smooth = 2;
@@ -16077,8 +16084,8 @@ var require_app2 = __commonJS({
 
       // About functions
       const page = window.location.pathname.trim() === "/" ? "home" : location.pathname.substring(1);
-      const cleanPage = page.split("/")[0].trim();
-      switch (cleanPage) {
+      const page_name = page.split("/")[0].trim();
+      switch (page_name) {
         case 'home':
           main$8();
           break;
@@ -16158,33 +16165,82 @@ var require_app2 = __commonJS({
         }
       }
 
-      document.querySelectorAll("btn-modal-open[group='modal-about-video']").forEach((x) => {
-        x.addEventListener("click", () => {
-          document.querySelectorAll(".player-video").forEach((x) => x.play());
-        })
-      })
 
-      const magazine_modal = document.querySelector("modal-group[name='modal-about-magazine']");
-      if (magazine_modal) {
-        magazine_modal.addEventListener("click", (e) => {
-          const btn_modal_close = document.querySelectorAll('btn-modal-close');
+      // Market Video Events
+      const introVideo = document.querySelector(".market-intro-video .player-video");
+      const markets_video_modal = document.querySelector("modal-group[name='modal-markets-video']");
+      const introVideoPoster = document.querySelector(".market-intro-video .plyr__poster");
+      const markets_video_playbutton = document.querySelector(".market-intro-video button.plyr__control.plyr__control--overlaid[data-plyr='play']");
+
+      const openModalAndPlayVideo = () => {
+        const introModalVideo = document.querySelector(".market-intro-video-modal .player-video");
+        loadVideoPlayer(introModalVideo);
+        introModalVideo.currentTime = introVideo?.currentTime;
+        introModalVideo.plyr.muted = introVideo.plyr.muted;
+        introModalVideo.play();
+
+        setTimeout(() => {
+          introVideo.currentTime = introModalVideo?.currentTime;
+          introVideo.plyr.muted = introModalVideo.plyr.muted;
+          introVideo.pause();
+        }, 200);
+        markets_video_modal.open();
+      }
+      if (markets_video_modal) {
+        markets_video_modal.addEventListener("click", (e) => {
           if (e.target !== e.currentTarget) return;
-          if (btn_modal_close) btn_modal_close.forEach(x => x.click())
+          const introVideo = document.querySelector(".market-intro-video .player-video");
+          const introModalVideo = document.querySelector(".market-intro-video-modal .player-video");
+          introVideo.currentTime = introModalVideo?.currentTime;
+          introVideo.plyr.muted = introModalVideo.plyr.muted;
+          if (introModalVideo.plyr.playing) {
+            introVideo.play();
+          } else {
+            introVideo.pause();
+          }
+          setTimeout(() => {
+            introModalVideo.pause();
+          }, 200);
+          markets_video_modal.close();
         });
       }
 
-      const modal_group = document.querySelector("modal-group[name='modal-about-video']");
-      if (modal_group) {
-        modal_group.addEventListener("click", (e) => {
+      introVideoPoster?.addEventListener("click", () => {
+        if (!introVideo.plyr.playing) {
+          openModalAndPlayVideo();
+        }
+      });
+      markets_video_playbutton?.addEventListener("click", openModalAndPlayVideo);
+      // Market Video Events End
+
+      // about video
+      const modal_about_video_button = document.querySelector("btn-modal-open[group='modal-about-video");
+      const about_video = document.querySelector(".about-modal-video .player-video");
+      modal_about_video_button?.addEventListener("click", () => {
+        loadVideoPlayer(about_video);
+        about_video.play();
+      })
+
+      const modal_about_video = document.querySelector("modal-group[name='modal-about-video']");
+      if (modal_about_video) {
+        modal_about_video.addEventListener("click", (e) => {
           if (e.target !== e.currentTarget) return;
+          modal_about_video.close();
           document.querySelectorAll(".player-video").forEach((x) => {
             x.pause();
             setTimeout(() => {
               x.currentTime = 0;
             }, 500);
           });
-          const btn_modal_close = document.querySelectorAll('btn-modal-close');
-          if (btn_modal_close) btn_modal_close.forEach(x => x.click());
+        });
+      }
+
+      // about magazine modal
+      const magazine_modal = document.querySelector("modal-group[name='modal-about-magazine']");
+      if (magazine_modal) {
+        magazine_modal.addEventListener("click", (e) => {
+          if (e.target !== e.currentTarget) return;
+          magazine_modal.close();
         });
       }
     }
