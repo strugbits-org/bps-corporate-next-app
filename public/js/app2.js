@@ -16201,7 +16201,9 @@ var require_app2 = __commonJS({
           } else {
             introVideo.pause();
           }
-          introModalVideo.pause();
+          setTimeout(() => {
+            introModalVideo.pause();
+          }, 200);
           markets_video_modal.close();
         });
       }

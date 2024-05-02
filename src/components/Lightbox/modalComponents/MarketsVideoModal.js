@@ -6,16 +6,20 @@ import getFullVideoURL from "@/common/functions/videoURL";
 
 const MarketsVideoModal = () => {
   const router = useRouter();
+  const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
+  const page_name = pathname.split("/")[0].trim();
+  if (page_name !== "market") return;
+
   const [src, setSrc] = useState(null);
 
   useEffect(() => {
-    const getData = async ()=>{
+    const getData = async () => {
       const marketSection = await getMarketSection(router.query.id);
       setSrc(getFullVideoURL(marketSection?.video));
     }
     getData();
   }, [router])
-  
+
   return (
     <ModalWrapper name={"modal-markets-video"} no_wrapper={true}>
       <div className="container-img video-wrapper market-intro-video-modal" data-aos="d:loop">
