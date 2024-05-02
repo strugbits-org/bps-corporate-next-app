@@ -12862,13 +12862,6 @@ var require_app2 = __commonJS({
     function main$7() {
       sliderBanner();
       checkOutTl();
-      Array.from(document.querySelectorAll(".player-video")).map((p) => new Plyr(p, {
-        controls: ["play-large", "play", "progress", "fullscreen", "mute", "volume"],
-        settings: ["quality", "speed"],
-        autoplay: false,
-        seekTime: 15,
-        fullscreen: { iosNative: true }
-      }));
     }
     const pgAbout = new Page({
       pageName: pageName$7,
@@ -15423,13 +15416,17 @@ var require_app2 = __commonJS({
     const pageName$5 = "market";
     function main$5() {
       sliderTestimony();
-      Array.from(document.querySelectorAll(".player-video")).map((p) => new Plyr(p, {
-        controls: ["play-large"],
-        settings: ["quality", "speed"],
-        autoplay: false,
-        seekTime: 15,
-        fullscreen: { iosNative: true }
-      }));
+      const introVideo = document.querySelector(".market-intro-video .player-video");
+      if (introVideo) {
+        new Plyr(introVideo, {
+          controls: ["play-large"],
+          settings: ["quality", "speed"],
+          autoplay: false,
+          seekTime: 15,
+          fullscreen: { iosNative: true }
+        });
+      }
+
     }
     const pgMarketPost = new Page({
       pageName: pageName$5,
@@ -16217,14 +16214,13 @@ var require_app2 = __commonJS({
       // Market Video Events End
 
       // about video
-      const modal_about_video_button = document.querySelectorAll("btn-modal-open[group='modal-about-video");
-      if (modal_about_video_button) {
-        modal_about_video_button.forEach((button) => {
-          button.addEventListener("click", () => {
-            document.querySelectorAll(".player-video").forEach((x) => x.play());
-          })
-        })
-      }
+      const modal_about_video_button = document.querySelector("btn-modal-open[group='modal-about-video");
+      const about_video = document.querySelector(".about-modal-video .player-video");
+      modal_about_video_button?.addEventListener("click", () => {
+        loadVideoPlayer(about_video);
+        about_video.play();
+      })
+
       const modal_about_video = document.querySelector("modal-group[name='modal-about-video']");
       if (modal_about_video) {
         modal_about_video.addEventListener("click", (e) => {
