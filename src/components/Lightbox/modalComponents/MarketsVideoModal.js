@@ -14,7 +14,7 @@ const MarketsVideoModal = () => {
       setSrc(getFullVideoURL(marketSection?.video));
     }
     getData();
-  }, [])
+  }, [router])
   
   return (
     <ModalWrapper name={"modal-markets-video"} no_wrapper={true}>

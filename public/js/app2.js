@@ -15424,7 +15424,7 @@ var require_app2 = __commonJS({
     function main$5() {
       sliderTestimony();
       Array.from(document.querySelectorAll(".player-video")).map((p) => new Plyr(p, {
-        controls: ["play-large", "play", "progress", "fullscreen", "mute", "volume"],
+        controls: ["play-large"],
         settings: ["quality", "speed"],
         autoplay: false,
         seekTime: 15,
@@ -16179,9 +16179,14 @@ var require_app2 = __commonJS({
         const introModalVideo = document.querySelector(".market-intro-video-modal .player-video");
         loadVideoPlayer(introModalVideo);
         introModalVideo.currentTime = introVideo?.currentTime;
+        introModalVideo.plyr.muted = introVideo.plyr.muted;
         introModalVideo.play();
 
-        introVideo.pause();
+        setTimeout(() => {
+          introVideo.currentTime = introModalVideo?.currentTime;
+          introVideo.plyr.muted = introModalVideo.plyr.muted;
+          introVideo.pause();
+        }, 200);
         markets_video_modal.open();
       }
       if (markets_video_modal) {
@@ -16190,9 +16195,13 @@ var require_app2 = __commonJS({
           const introVideo = document.querySelector(".market-intro-video .player-video");
           const introModalVideo = document.querySelector(".market-intro-video-modal .player-video");
           introVideo.currentTime = introModalVideo?.currentTime;
+          introVideo.plyr.muted = introModalVideo.plyr.muted;
           if (introModalVideo.plyr.playing) {
             introVideo.play();
+          } else {
+            introVideo.pause();
           }
+          introModalVideo.pause();
           markets_video_modal.close();
         });
       }
