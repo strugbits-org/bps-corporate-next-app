@@ -8,7 +8,6 @@ const MarketsVideoModal = () => {
   const router = useRouter();
   const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
   const page_name = pathname.split("/")[0].trim();
-  if (page_name !== "market") return;
 
   const [src, setSrc] = useState(null);
 
@@ -17,8 +16,11 @@ const MarketsVideoModal = () => {
       const marketSection = await getMarketSection(router.query.id);
       setSrc(getFullVideoURL(marketSection?.video));
     }
+    if (page_name !== "market") return;
     getData();
   }, [router])
+
+  if (page_name !== "market") return;
 
   return (
     <ModalWrapper name={"modal-markets-video"} no_wrapper={true}>
