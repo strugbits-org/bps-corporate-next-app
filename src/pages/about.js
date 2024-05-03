@@ -9,6 +9,7 @@ import SliderBanner from "@/components/commonComponents/SliderBanner";
 import OurFamily from "@/components/aboutPageSections/OurFamily";
 import OurDream from "@/components/aboutPageSections/OurDream";
 import { markPageLoaded } from "@/utils/utilityFunctions";
+import { fetchDataWithCookies } from "@/api";
 
 const About = ({ aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed }) => {
 
@@ -28,9 +29,11 @@ const About = ({ aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSecti
     );
 };
 
-export const getServerSideProps = async () => {
-    const [aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
-        getAboutUsCardsSection(),
+export const getServerSideProps = async (context) => {
+    const aboutUsCardsSection = await fetchDataWithCookies(context, 'aboutUsCardsSection', getAboutUsCardsSection);
+
+    const [aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
+        // getAboutUsCardsSection(),
         getAboutUsIntroSection(),
         getAboutUsDreamTeamSection(),
         getAboutUsRestOfFamily(),

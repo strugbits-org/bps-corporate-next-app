@@ -1,4 +1,5 @@
 import axios from "axios";
+import nookies from 'nookies';
 
 const base_url = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
@@ -115,4 +116,23 @@ export const getAllPagesMetaData = async () => {
   } catch (error) {
     throw new Error(error.message);
   }
+};
+
+export const fetchDataWithCookies = async (context, cookieName, fetchDataFunction) => {
+  console.log("cookieName", cookieName);
+  const cookies = nookies.get(context);
+  console.log("cookies", cookies);
+  let data = cookies[cookieName] ? JSON.parse(cookies[cookieName]) : null;
+
+  if (!data) {
+    console.log("no cookies");
+    data = await fetchDataFunction();
+    console.log("data", data);
+    nookies.set(context, cookieName, JSON.stringify(data), {
+      maxAge: 2 * 60 * 60,
+      path: '/',
+    });
+  }
+
+  return data;
 };

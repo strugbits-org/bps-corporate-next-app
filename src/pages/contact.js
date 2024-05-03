@@ -1,3 +1,4 @@
+import { fetchDataWithCookies } from "@/api";
 import { getContactUsContent } from "@/api/contact";
 import { getContactData, getSocialLinks } from "@/api/footer";
 import getFullVideoURL from "@/common/functions/videoURL";
@@ -77,14 +78,16 @@ export default function contact({ data, contactData, socialLinks }) {
   )
 }
 
-export const getServerSideProps = async () => {
-  const [data, contactData, socialLinks] = await Promise.all([
-    getContactUsContent(),
-    getContactData(),
-    getSocialLinks(),
-  ]);
+export const getServerSideProps = async (context) => {
+  const contactUsContent = await fetchDataWithCookies(context, 'contactUsContent', getContactUsContent);
+  const contactData = await fetchDataWithCookies(context, 'contactData', getContactData);
+  const socialLinks = await fetchDataWithCookies(context, 'socialLinks', getSocialLinks);
 
   return {
-    props: { data, contactData, socialLinks },
+    props: {
+      data: contactUsContent,
+      contactData,
+      socialLinks,
+    },
   };
-}
+};
