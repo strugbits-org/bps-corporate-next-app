@@ -1,8 +1,9 @@
 import axios from "axios";
+import cache from 'node-cache';
 
 const base_url = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-export const fetchCollection = async (payload) => {
+export const _fetchCollection = async (payload) => {
   try {
     let data = JSON.stringify(payload);
     const headers = {
@@ -18,6 +19,46 @@ export const fetchCollection = async (payload) => {
     throw new Error(error.message);
   }
 };
+
+const apiCache = new cache();
+
+apiCache.on("flush", function () {
+  console.log("All Data Flushed");
+});
+// apiCache.flushAll();
+
+export const fetchCollection = async (payload) => {
+  try {
+    const cacheKey = payload.eq && payload.eq[1] ? payload.dataCollectionId.toString() + "_" + payload.eq[1] : payload.dataCollectionId.toString();
+    const cachedData = apiCache.get(cacheKey);
+    if (cachedData) {
+      console.log("cache found", cachedData._items[0].dataCollectionId);
+      return cachedData;
+    } else {
+      console.error("cache not found", cacheKey);
+    }
+
+    const response = await fetch(`${base_url}/corporate/query-data-items`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+    const data = await response.json();
+    const ttl = 10 * 60;
+    apiCache.set(cacheKey, data.data.data, ttl);
+    return data.data.data;
+  } catch (error) {
+    console.error('Error fetching collection:', error);
+    throw new Error('An error occurred while fetching data');
+  }
+};
+
 
 export const fetchCollectionSp = async (payload) => {
   try {
