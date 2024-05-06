@@ -15973,6 +15973,38 @@ var require_app2 = __commonJS({
     function main$1() {
       dropdownTags();
     }
+    function main$careers() {
+      sliderTestimony();
+      const containerVideo = document.querySelector(".container-video");
+      console.log("containerVideo", containerVideo);
+      const video = document.querySelector(".player-video.careers-video");
+      console.log("video", video);
+
+      const thumb = document.querySelector(".thumb video");
+      const player = new Plyr(video, {
+        controls: ["play-large", "progress", "fullscreen", "mute", "volume"],
+        settings: ["quality", "speed"],
+        autoplay: false,
+        fullscreen: { iosNative: true },
+        clickToPlay: true
+      });
+      containerVideo.video = player;
+      containerVideo.addEventListener("click", function () {
+        if (player.paused) {
+          player.play();
+          containerVideo.classList.add("playing");
+          setTimeout(() => {
+            thumb.pause();
+          }, 600);
+        } else {
+          player.pause();
+          if (containerVideo.classList.contains("playing")) {
+            containerVideo.classList.remove("playing");
+            thumb.play();
+          }
+        }
+      });
+    }
     const pgPortfolio = new Page({
       pageName: pageName$1,
       main: main$1
@@ -16091,6 +16123,9 @@ var require_app2 = __commonJS({
           break;
         case 'about':
           main$7();
+          break;
+        case 'careers':
+          main$careers();
           break;
         case 'project':
           main$6();
@@ -16252,21 +16287,11 @@ var require_app2 = __commonJS({
       }
     });
 
-    document.querySelector(".stickyAnimationTrigger").addEventListener("click", () => {
-      sticky();
-    });
-
     document.querySelector(".updateWatchedTrigger").addEventListener("click", () => {
       initVideo();
       dropdownTags();
       updateWatched();
       ScrollTrigger$1.refresh();
-    });
-
-    document.querySelector(".triggerSplitWordAnimation").addEventListener("click", () => {
-      splitChars();
-      splitWords();
-      sliderContentMobile();
     });
 
     setTimeout(() => {
