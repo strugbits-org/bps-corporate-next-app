@@ -82,7 +82,7 @@ export const getAboutSlider = async () => {
     try {
         const options = {
             pageSize: 3,
-            disableLoader: true,
+            cacheKey: "AboutUsSlider",
         };
 
         const portfolio = await listPortfolios(options);

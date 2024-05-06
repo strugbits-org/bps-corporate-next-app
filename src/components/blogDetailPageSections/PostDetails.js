@@ -8,7 +8,7 @@ import ProductCartSlider from "../commonComponents/ProductCartSlider";
 import SocialVerticalBar from "./SocialVerticalBar";
 import ReactPlayer from "react-player";
 
-const PostDetails = ({ data, blogSectionDetails }) => {
+const PostDetails = ({ data, blogSectionDetails, tags }) => {
   const [singleData, setSingleData] = useState([]);
 
   const title = data?.blogRef?.title;
@@ -178,12 +178,6 @@ const PostDetails = ({ data, blogSectionDetails }) => {
     singlePost();
   }, [data]);
 
-  // useEffect(() => {
-  //   if (data?.blogRef?.tags) {
-  //     dispatch(getblogTags(data?.blogRef?.tags));
-  //   }
-  // }, [dispatch, data?.blogRef?.tags]);
-
   return (
     <section className="article-intro pt-lg-150 pt-mobile-125">
       <div className="container-fluid">
@@ -310,7 +304,7 @@ const PostDetails = ({ data, blogSectionDetails }) => {
                   })}
                 </div>
               </div>
-              {/* {tags.length !== 0 && (
+              {tags.length !== 0 && (
                 <div className="article-tags mt-lg-140 mt-tablet-40 mt-phone-115">
                   <h3
                     className="fs--22 mb-lg-25 mb-tablet-40 mb-phone-25 split-words"
@@ -330,7 +324,7 @@ const PostDetails = ({ data, blogSectionDetails }) => {
                     })}
                   </ul>
                 </div>
-              )} */}
+              )}
             </div>
 
             {/* Product Cart Slider start */}

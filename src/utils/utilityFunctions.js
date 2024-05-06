@@ -199,8 +199,10 @@ export const markPageLoaded = (watched = true) => {
 
 export const firstLoadAnimation = async () => {
   for (let i = 0; i <= 100; i++) {
-    await new Promise(resolve => setTimeout(resolve, 2));
-    changeProgress(i);
+    await new Promise(resolve => setTimeout(resolve, 1));
+    if (i === 25 ||i === 50 || i === 75 || i === 100) {
+      changeProgress(i);
+    }
   }
   document.body.dataset.load = "first-leaving";
   setTimeout(() => {
@@ -219,8 +221,7 @@ export const pageLoadEnd = () => {
   if (window && typeof window !== 'undefined') {
     window.scrollTo({ top: 0 });
     const body = document.body;
-    body.classList.add("page-enter-active");
-    body.classList.remove("page-leave-active");
+    body.classList.replace("page-leave-active", "page-enter-active");
     setTimeout(() => {
       body.classList.remove("page-enter-active");
     }, 900);
