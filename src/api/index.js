@@ -1,36 +1,72 @@
-import axios from "axios";
+import cache from 'node-cache';
 
 const base_url = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-export const fetchCollection = async (payload) => {
+const apiCache = new cache();
+const ttl = 10 * 60;
+
+apiCache.on("flush", function () {
+  console.log("All Data Flushed");
+});
+// apiCache.flushAll();
+
+export const fetchCollection = async (payload, disableCache = false) => {
   try {
-    let data = JSON.stringify(payload);
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await axios.post(
-      base_url + "/corporate/query-data-items",
-      data,
-      { headers }
-    );
-    return response.data.data.data;
+    const cacheKey = payload.eq && payload.eq[1] ? payload.dataCollectionId.toString() + "_" + payload.eq[1] : payload.dataCollectionId.toString();
+    const cachedData = apiCache.get(cacheKey);
+    if (cachedData && !disableCache) {
+      // console.log("cache found", cacheKey);
+      return cachedData;
+    }
+
+    const response = await fetch(`${base_url}/corporate/query-data-items`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+    const data = await response.json();
+    apiCache.set(cacheKey, data.data.data, ttl);
+    return data.data.data;
   } catch (error) {
-    throw new Error(error.message);
+    console.error('Error fetching collection:', error);
+    throw new Error('An error occurred while fetching data');
   }
 };
 
-export const fetchCollectionSp = async (payload) => {
+export const fetchCollectionSp = async (payload, disableCache = false) => {
   try {
-    let data = JSON.stringify(payload);
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await axios.post(
-      base_url + "/corporate/query-data-items-excludeditems",
-      data,
-      { headers }
-    );
-    return response.data.data.data;
+    const collectionId = payload.dataCollectionId.toString();
+    const cacheKey =
+      payload.cacheKey ? collectionId + "_" + payload.cacheKey
+        : payload.limit === 8 ? collectionId + "_listing_"
+          : collectionId;
+
+    const cachedData = apiCache.get(cacheKey);
+    if (cachedData && !disableCache) {
+      // console.log("cache found", cacheKey);
+      return cachedData;
+    }
+
+    const response = await fetch(`${base_url}/corporate/query-data-items-excludeditems`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+    const data = await response.json();
+    apiCache.set(cacheKey, data.data.data, ttl);
+    return data.data.data;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -38,14 +74,25 @@ export const fetchCollectionSp = async (payload) => {
 
 export const fetchBlogTags = async (payload) => {
   try {
-    let data = JSON.stringify(payload);
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await axios.post(base_url + "/corporate/blog-tags", data, {
-      headers,
+    const cacheKey = "blogTags_" + payload.slug;
+    const cachedData = apiCache.get(cacheKey);
+    if (cachedData) {
+      // console.log("cache found", cacheKey);
+      return cachedData;
+    }
+    const response = await fetch(`${base_url}/corporate/blog-tags`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
     });
-    return response.data.data;
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+    const data = await response.json();
+    apiCache.set(cacheKey, data.data, ttl);
+    return data.data;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -53,16 +100,18 @@ export const fetchBlogTags = async (payload) => {
 
 export const postForm = async (name, payload) => {
   try {
-    let data = JSON.stringify(payload);
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await axios.post(
-      base_url + "/corporate/post-data/" + name,
-      data,
-      { headers }
-    );
-    return response.data.data;
+    const response = await fetch(`${base_url}/corporate/post-data/${name}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+    const data = await response.json();
+    return data.data;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -70,13 +119,22 @@ export const postForm = async (name, payload) => {
 
 export const getInstaFeed = async () => {
   try {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await axios.get(base_url + "/corporate/instagram/feeds", {
-      headers,
-    });
-    return response.data.data;
+    const cacheKey = "instaFeed";
+    const cachedData = apiCache.get(cacheKey);
+
+    if (cachedData) {
+      // console.log("cache found", cacheKey);
+      return cachedData;
+    }
+
+    const response = await fetch(`${base_url}/corporate/instagram/feeds`);
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+
+    const data = await response.json();
+    apiCache.set(cacheKey, data.data.data, ttl);
+    return data.data.data;
   } catch (error) {
     throw new Error(error.message);
   }

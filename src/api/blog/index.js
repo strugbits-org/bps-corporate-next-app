@@ -49,11 +49,10 @@ export const getBlogProductData = async ({ slug }) => {
 
 export const getBlogPostData = async ({
   pageSize,
-  disableLoader,
-  excludeItem,
+  slug
 }) => {
   try {
-    const response = await listBlogs({ pageSize, disableLoader, excludeItem });
+    const response = await listBlogs({ pageSize, cacheKey: "recent_posts_" + slug, slug });
     const data = response._items
       .filter((item) => item.data.blogRef._id !== undefined)
       .map((item) => item.data);
@@ -63,9 +62,9 @@ export const getBlogPostData = async ({
   }
 };
 
-export const getBlogTags = async ({ ids }) => {
+export const getBlogTags = async ({ ids, slug }) => {
   try {
-    const data = { ids: ids };
+    const data = { ids: ids, slug };
     const response = await fetchBlogTags(data);
     return response._items;
   } catch (error) {

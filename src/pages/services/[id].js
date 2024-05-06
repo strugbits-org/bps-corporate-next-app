@@ -43,7 +43,7 @@ export const getServerSideProps = async (context) => {
     const [homeSectionDetails, servicesSectionDetails, servicesSlider, peopleReviewSliderData, studiosSectionData, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
       getHomeSectionDetails(),
       getServicesSectionDetails(),
-      getServicesSlider(serviceData._id),
+      getServicesSlider(serviceData._id,context.query.id),
       getPeopleReviewSliderData(),
       getStudiosSectionData(),
       getDreamBigData(),

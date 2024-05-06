@@ -22,7 +22,7 @@ const DelayedLink = ({ to, children, className, target, attributes }) => {
       pageLoadStart();
       setTimeout(() => {
         router.push(to)
-      }, 900);
+      }, 600);
     } else {
       window.open(to, target);
     }

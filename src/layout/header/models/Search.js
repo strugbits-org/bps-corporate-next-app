@@ -76,7 +76,7 @@ const Search = ({ studios, markets, searchContent }) => {
       const options = {
         pageSize: 50,
         searchTerm: term,
-        disableLoader: true
+        disableCache: true
       };
 
       const [portfolio, products, blog, otherPages] = await Promise.all([

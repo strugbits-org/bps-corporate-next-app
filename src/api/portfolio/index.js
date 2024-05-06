@@ -47,8 +47,8 @@ export const getPortfolio = async ({ pageSize, id }) => {
   try {
     const options = {
       pageSize: pageSize,
-      disableLoader: true,
-      excludeItems: [id],
+      cacheKey: "projectPortfoliosSection_" + id,
+      slug: id,
     };
 
     const portfolio = await listPortfolios(options);

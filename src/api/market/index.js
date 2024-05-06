@@ -60,7 +60,7 @@ export const fetchPortfolio = async ({ pageSize = 4, id }) => {
     try {
         const options = {
             pageSize: pageSize,
-            disableLoader: true,
+            cacheKey: "marketPortfoliosSection_" + id,
             markets: [id],
         };
 

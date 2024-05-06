@@ -20,8 +20,8 @@ export default function Blog({ blogSectionDetails, marketsSectionData, studios, 
     totalCount: blogResponse?._totalCount
   }
 
-  const handleSeeMore = async ({ selectedStudios = [], selectedMarkets = [], disableLoader = false }) => {
-    const response = await listBlogs({ pageSize, skip: blogCollection.length, studios: selectedStudios, markets: selectedMarkets, disableLoader });
+  const handleSeeMore = async ({ selectedStudios = [], selectedMarkets = [] }) => {
+    const response = await listBlogs({ pageSize, skip: blogCollection.length, studios: selectedStudios, markets: selectedMarkets, disableCache: true });
     setBlogCollection((prev) => [
       ...prev,
       ...response._items.map((item) => item.data),
@@ -33,12 +33,12 @@ export default function Blog({ blogSectionDetails, marketsSectionData, studios, 
   const applyFilters = async ({ selectedStudios = [], selectedMarkets = [], firstLoad = false }) => {
     try {
       if (!firstLoad) pageLoadStart();
-      const response = await listBlogs({ pageSize, studios: selectedStudios, markets: selectedMarkets });
+      const response = await listBlogs({ pageSize, studios: selectedStudios, markets: selectedMarkets, disableCache: !firstLoad });
       setBlogCollection(response._items.filter(item => item.data.blogRef && item.data.blogRef._id !== undefined).map(item => item.data));
       setBlogResponse(response);
       if (firstLoad) {
         markPageLoaded(false);
-      }else{
+      } else {
         pageLoadEnd()
       };
       updatedWatched();

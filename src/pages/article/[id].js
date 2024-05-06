@@ -76,8 +76,8 @@ export const getServerSideProps = async (context) => {
       instaFeed,
     ] = await Promise.all([
       getBlogSectionDetails(),
-      getBlogPostData({ pageSize: 4, disableLoader: false, excludeItem: null }),
-      getBlogTags({ ids: blogProductData.blogRef.tags }),
+      getBlogPostData({ pageSize: 4, slug: context.query.id }),
+      getBlogTags({ ids: blogProductData.blogRef.tags, slug: context.query.id }),
       getSocialSectionDetails(),
       getSocialSectionBlogs(),
       fetchInstaFeed(),
