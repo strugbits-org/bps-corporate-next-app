@@ -16185,7 +16185,7 @@ var require_app2 = __commonJS({
           document.body.style.backgroundColor = "";
         }, { once: true });
       }
-      if (document.querySelector(".accordion-list-studios")) {
+      if (document.querySelector(".accordion-list-studios:not(.js-running)")) {
         if (screen.isDesktop) {
           accordion(".accordion-list-studios .accordion-item", {
             clickToggle: true,
@@ -16196,6 +16196,7 @@ var require_app2 = __commonJS({
             accordionGsap(element);
           });
         }
+        document.querySelector(".accordion-list-studios").classList.add("js-running");
       }
 
 

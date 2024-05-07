@@ -100,6 +100,9 @@ export const closeModals = () => {
     const wrapperCursor = document.querySelector('#wrapper-cursor');
     if (wrapperCursor) wrapperCursor.click();
 
+    const active_accordion = document.querySelector(".accordion-item.active");
+    if (active_accordion) active_accordion.removeActive({});
+
     const body = document.body;
     if (body.classList.contains('menu-active')) body.classList.remove('menu-active');
 
@@ -200,7 +203,7 @@ export const markPageLoaded = (watched = true) => {
 export const firstLoadAnimation = async () => {
   for (let i = 0; i <= 100; i++) {
     await new Promise(resolve => setTimeout(resolve, 1));
-    if (i === 25 ||i === 50 || i === 75 || i === 100) {
+    if (i === 25 || i === 50 || i === 75 || i === 100) {
       changeProgress(i);
     }
   }
