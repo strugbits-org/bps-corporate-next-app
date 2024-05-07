@@ -5,7 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from "@/layout/footer/Footer";
 import Navbar from "@/layout/header/Navbar";
 import { getMarketsSectionData, getSearchSectionDetails, getStudiosSectionData } from "@/api/home.js";
-import { getContactData, getFooterData, getSocialLinks } from "@/api/footer";
+import { getContactData, getFooterData, getFooterNavigationMenu, getSocialLinks } from "@/api/footer";
 import ContactUsModal from "@/components/Lightbox/modalComponents/ContactUsModal";
 import { getContactUsContent } from "@/api/contact";
 import { getAboutUsIntroSection, getAboutUsSectionDetails } from "@/api/about";
@@ -15,7 +15,7 @@ import Head from "next/head";
 import AboutUsMagazineModal from "@/components/Lightbox/modalComponents/AboutUsMagazineModal";
 import MarketsVideoModal from "@/components/Lightbox/modalComponents/MarketsVideoModal";
 
-export default function App({ Component, pageProps, studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data }) {
+export default function App({ Component, pageProps, studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data, navigationMenu }) {
   const router = useRouter();
   const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
   const page_name = pathname.split("/")[0].trim();
@@ -48,7 +48,7 @@ export default function App({ Component, pageProps, studios, markets, searchCont
           <main>
             <Component {...pageProps} meta_data={meta_data} />
             <SpeedInsights />
-            <Footer footerData={footerData} contactData={contactData} socialLinks={socialLinks} />
+            <Footer menu={navigationMenu} footerData={footerData} contactData={contactData} socialLinks={socialLinks} />
           </main>
         </div>
       </div>
@@ -61,7 +61,7 @@ App.getInitialProps = async (context) => {
   const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
   const page_name = pathname.split("/")[0].trim();
 
-  const [studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data] = await Promise.all([
+  const [studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data, navigationMenu] = await Promise.all([
     getStudiosSectionData(),
     getMarketsSectionData(),
     getSearchSectionDetails(),
@@ -72,8 +72,9 @@ App.getInitialProps = async (context) => {
     getAboutUsIntroSection(),
     getAboutUsSectionDetails(),
     getPageMetaData(page_name),
+    getFooterNavigationMenu(),
   ]);
 
 
-  return { studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data };
+  return { studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data, navigationMenu };
 };
