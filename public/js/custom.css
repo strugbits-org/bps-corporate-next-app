@@ -636,11 +636,13 @@ modal-group .section-modal-contact .column-contact btn-modal-close .text-hide {
     flex-wrap: wrap;
     flex-direction: row;
 }
+
 #pg-market .market-how-we-do-it .list-how-we-do-it ul.bullet_points li {
     display: list-item;
 }
+
 #pg-market .market-how-we-do-it .list-how-we-do-it ul.bullet_points {
-    list-style: disc!important;
+    list-style: disc !important;
     padding-left: 2rem;
 }
 
@@ -923,42 +925,138 @@ modal-group[name="modal-about-magazine"] iframe body {
     display: none;
 }
 
+#pg-blog .blog-intro .container-list-tags {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    position: relative;
+    z-index: 10;
+}
 
+@media only screen and (min-width: 1025.1px) {
+    #pg-blog .blog-intro .container-list-tags {
+        padding-left: 4.6rem;
+        padding-right: 4.6rem;
+    }
+}
 
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+    #pg-blog .blog-intro .container-list-tags {
+        padding-left: 12.6rem;
+        padding-right: 12.6rem;
+    }
+}
 
+@media only screen and (max-width: 767.98px) {
+    #pg-blog .blog-intro .container-list-tags {
+        padding-left: var(--px-fluid);
+        padding-right: var(--px-fluid);
+    }
+}
 
+@media only screen and (min-width: 1025.1px) {
+    #pg-blog .blog-intro .container-list-tags .list-portfolio-tags {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding-right: 6.4rem;
+    }
+}
 
+@media only screen and (min-width: 1025.1px) {
+    #pg-blog .blog-intro .container-list-tags .list-market-tags {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        align-content: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding-left: 6.4rem;
+    }
+}
 
+#pg-blog .blog-intro .container-list-tags .portfolio-tags {
+    position: relative;
+}
 
+@media only screen and (min-width: 1025.1px) {
+    #pg-blog .blog-intro .container-list-tags .portfolio-tags:before {
+        content: "";
+        width: 1px;
+        height: 7rem;
+        display: block;
+        position: absolute;
+        top: -1.3rem;
+        right: 0;
+        bottom: auto;
+        left: auto;
+        background: var(--blue-1);
+    }
+}
 
+#pg-blog .blog-intro .container-list-tags .portfolio-tags,
+#pg-blog .blog-intro .container-list-tags .market-tags {
+    position: relative;
+}
 
+@media only screen and (max-width: 1025px) {
 
+    #pg-blog .blog-intro .container-list-tags .portfolio-tags,
+    #pg-blog .blog-intro .container-list-tags .market-tags {
+        max-width: calc(50% - var(--padding) * 1);
+    }
+}
 
+@media only screen and (max-width: 1025px) {
+    #pg-blog .blog-intro .container-list-tags .portfolio-tags .list-dropdown {
+        position: absolute;
+        top: 100%;
+        right: auto;
+        bottom: auto;
+        left: 0;
+    }
+}
 
+@media only screen and (max-width: 1025px) {
+    #pg-blog .blog-intro .container-list-tags .market-tags .list-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        bottom: auto;
+        left: auto;
+    }
+}
 
+@media only screen and (min-width: 1025.1px) {
 
+    #pg-blog .blog-intro .container-list-tags .list-portfolio-tags,
+    #pg-blog .blog-intro .container-list-tags .list-market-tags {
+        margin: -0.5rem -0.7rem;
+    }
+}
 
+@media only screen and (min-width: 1025.1px) {
 
+    #pg-blog .blog-intro .container-list-tags .list-portfolio-tags li,
+    #pg-blog .blog-intro .container-list-tags .list-market-tags li {
+        margin: 0.5rem 0.7rem;
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@media only screen and (max-width: 767.98px) {
+    #pg-blog .blog-intro .row-2 .column-1 {
+        padding-left: calc(var(--padding) + var(--px-fluid));
+        padding-right: calc(var(--padding) + var(--px-fluid));
+    }
+}
 
 /* About changes */
-
-
 #pg-about .about-intro .wrapper-content.content-1 {
     position: absolute;
     top: 122vh;

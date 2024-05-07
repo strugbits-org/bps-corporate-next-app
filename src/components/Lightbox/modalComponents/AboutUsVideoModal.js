@@ -1,8 +1,13 @@
 import React from "react";
 import { ModalWrapper } from "../ModalWrapper";
 import getFullVideoURL from "@/common/functions/videoURL";
+import { useRouter } from "next/router";
 
-const AboutUsVideoModal = ({data}) => {
+const AboutUsVideoModal = ({ data }) => {
+  const router = useRouter();
+  const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
+  const page_name = pathname.split("/")[0].trim();
+  if (page_name !== "about") return;
 
   return (
     <ModalWrapper name={"modal-about-video"} no_wrapper={true}>
