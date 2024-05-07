@@ -203,7 +203,6 @@ hr {
   overflow: visible;
   /* 2 */
 }
-iframe#webpack-dev-server-client-overlay{display:none!important}
 /**
  * 1. Correct the inheritance and scaling of font size in all browsers.
  * 2. Correct the odd `em` font sizing in all browsers.
@@ -500,6 +499,9 @@ input {
 .col-7 {
   max-width: 58.3333333333%;
 }
+.col-11 {
+  max-width: 91.6666666667%;
+}
 .col-12 {
   max-width: 100%;
 }
@@ -518,20 +520,32 @@ input {
   }
 }
 @media only screen and (min-width: 768px) {
+  .offset-md-1 {
+    margin-left: 8.3333333333%;
+  }
   .col-md-3 {
     max-width: 25%;
   }
   .col-md-4 {
     max-width: 33.3333333333%;
   }
+  .col-md-5 {
+    max-width: 41.6666666667%;
+  }
   .col-md-6 {
     max-width: 50%;
+  }
+  .col-md-7 {
+    max-width: 58.3333333333%;
   }
   .col-md-8 {
     max-width: 66.6666666667%;
   }
   .col-md-9 {
     max-width: 75%;
+  }
+  .col-md-10 {
+    max-width: 83.3333333333%;
   }
   .col-md-12 {
     max-width: 100%;
@@ -1102,6 +1116,9 @@ input {
   .mt-lg-55 {
     margin-top: 5.5rem !important;
   }
+  .mb-lg-55 {
+    margin-bottom: 5.5rem !important;
+  }
   .mt-lg-60 {
     margin-top: 6rem !important;
   }
@@ -1122,6 +1139,9 @@ input {
   }
   .mt-lg-120 {
     margin-top: 12rem !important;
+  }
+  .mt-lg-125 {
+    margin-top: 12.5rem !important;
   }
   .mt-lg-140 {
     margin-top: 14rem !important;
@@ -1146,6 +1166,9 @@ input {
   }
   .mt-phone-10 {
     margin-top: 1rem !important;
+  }
+  .mt-phone-20 {
+    margin-top: 2rem !important;
   }
   .mt-phone-25 {
     margin-top: 2.5rem !important;
@@ -1239,6 +1262,13 @@ input {
   }
 }
 @media only screen and (max-width: 1025px) {
+  .mx-mobile-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .mt-mobile-10 {
+    margin-top: 1rem !important;
+  }
   .mb-mobile-10 {
     margin-bottom: 1rem !important;
   }
@@ -1254,6 +1284,9 @@ input {
   .mt-mobile-30 {
     margin-top: 3rem !important;
   }
+  .mb-mobile-30 {
+    margin-bottom: 3rem !important;
+  }
   .mt-mobile-40 {
     margin-top: 4rem !important;
   }
@@ -1265,6 +1298,9 @@ input {
   }
   .mt-mobile-50 {
     margin-top: 5rem !important;
+  }
+  .mt-mobile-70 {
+    margin-top: 7rem !important;
   }
 }
 .p-0 {
@@ -1316,8 +1352,14 @@ input {
   .pb-lg-120 {
     padding-bottom: 12rem !important;
   }
+  .pb-lg-125 {
+    padding-bottom: 12.5rem !important;
+  }
   .pb-lg-130 {
     padding-bottom: 13rem !important;
+  }
+  .pt-lg-140 {
+    padding-top: 14rem !important;
   }
   .pt-lg-145 {
     padding-top: 14.5rem !important;
@@ -1345,6 +1387,10 @@ input {
   }
   .pb-lg-220 {
     padding-bottom: 22rem !important;
+  }
+  .py-lg-240 {
+    padding-top: 24rem !important;
+    padding-bottom: 24rem !important;
   }
   .pt-lg-245 {
     padding-top: 24.5rem !important;
@@ -1434,6 +1480,9 @@ input {
   .pt-mobile-50 {
     padding-top: 5rem !important;
   }
+  .pb-mobile-50 {
+    padding-bottom: 5rem !important;
+  }
   .pt-mobile-55 {
     padding-top: 5.5rem !important;
   }
@@ -1443,11 +1492,18 @@ input {
   .pt-mobile-105 {
     padding-top: 10.5rem !important;
   }
+  .pt-mobile-120 {
+    padding-top: 12rem !important;
+  }
   .pt-mobile-125 {
     padding-top: 12.5rem !important;
   }
   .pt-mobile-130 {
     padding-top: 13rem !important;
+  }
+  .py-mobile-150 {
+    padding-top: 15rem !important;
+    padding-bottom: 15rem !important;
   }
   .pt-mobile-205 {
     padding-top: 20.5rem !important;
@@ -1483,6 +1539,9 @@ input {
 }
 .text-right {
   text-align: right;
+}
+.text-uppercase {
+  text-transform: uppercase;
 }
 /* --------------------------------- clear -------------------------------- */
 /* --------------------------------- z-index -------------------------------- */

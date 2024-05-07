@@ -1560,11 +1560,11 @@ html {
 }
 
 [data-form-container] [data-form-success],
-[data-form-container] [data-form-error]:not(.disable-css) {
+[data-form-container] [data-form-error] {
   display: none;
 }
 
-[data-form-container].form-success [data-form-success] {
+[data-form-container][data-form-state=success] [data-form-success] {
   display: block;
 }
 
@@ -1664,7 +1664,7 @@ html {
 
 .btn-underline span,
 .btn-underline-blue-1 span,
-modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a span,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 .container-info a span,
 .btn-underline-white span,
 #pg-contact .contact-info .column-2 .container-info a span,
 .contact-info .column-2 .list-address li a span,
@@ -1681,14 +1681,14 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
 
 .btn-underline:hover span,
 .btn-underline-blue-1:hover span,
-modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a:hover span,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 .container-info a:hover span,
 .btn-underline-white:hover span,
 #pg-contact .contact-info .column-2 .container-info a:hover span,
 .contact-info .column-2 .list-address li a:hover span,
 .btn-underline-black:hover span,
 .btn-underline.active span,
 .active.btn-underline-blue-1 span,
-modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a.active span,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 .container-info a.active span,
 .active.btn-underline-white span,
 #pg-contact .contact-info .column-2 .container-info a.active span,
 .contact-info .column-2 .list-address li a.active span,
@@ -1704,12 +1704,12 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
 
 .btn-underline-white,
 #pg-contact .contact-info .column-2 .container-info a,
-body:not([data-modal="modal-contact"]) .contact-info .column-2 .list-address li a {
-  --btn-color: var(--white-1) !important;
+.contact-info .column-2 .list-address li a {
+  --btn-color: var(--white-1);
 }
 
 .btn-underline-blue-1,
-modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
   --btn-color: var(--blue-1);
 }
 
@@ -1753,7 +1753,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
 .form-newsletter .container-submit a,
 .form-newsletter .container-submit button,
 .btn-blue,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
   position: relative;
   display: inline-block;
   min-width: var(--min-w);
@@ -1775,7 +1776,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-newsletter .container-submit a:before,
 .form-newsletter .container-submit button:before,
 .btn-blue:before,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:before {
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now:before,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -1803,7 +1805,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-newsletter .container-submit a i,
 .form-newsletter .container-submit button i,
 .btn-blue i,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit i {
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now i,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit i {
   display: inline-flex;
   justify-content: flex-end;
   align-items: center;
@@ -1840,7 +1843,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-newsletter .container-submit a i,
   .form-newsletter .container-submit button i,
   .btn-blue i,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit i {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now i,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit i {
     --i-pr: 3.2rem;
   }
 }
@@ -1858,7 +1862,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-newsletter .container-submit a i,
   .form-newsletter .container-submit button i,
   .btn-blue i,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit i {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now i,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit i {
     --i-pr: 2.6rem;
   }
 }
@@ -1876,7 +1881,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-newsletter .container-submit a i,
   .form-newsletter .container-submit button i,
   .btn-blue i,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit i {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now i,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit i {
     --i-pr: 2.7rem;
   }
 }
@@ -1892,7 +1898,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-newsletter .container-submit a i:before,
 .form-newsletter .container-submit button i:before,
 .btn-blue i:before,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit i:before {
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now i:before,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit i:before {
   color: var(--btn-text-color);
   -webkit-transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
   -moz-transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -1913,7 +1920,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-newsletter .container-submit a span,
 .form-newsletter .container-submit button span,
 .btn-blue span,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit span {
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now span,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit span {
   display: block;
   transform: scale(1);
   -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -1935,7 +1943,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-newsletter .container-submit a:hover,
 .form-newsletter .container-submit button:hover,
 .btn-blue:hover,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:hover {
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now:hover,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:hover {
   --btn-text-color: var(--blue-1);
   --btn-bg-color: var(--white-1);
 }
@@ -1951,7 +1960,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-newsletter .container-submit a:hover:before,
 .form-newsletter .container-submit button:hover:before,
 .btn-blue:hover:before,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:hover:before,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now:hover:before,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:hover:before,
 .btn-base:hover:after,
 .btn-tag:hover:after,
 .btn-border:hover:after,
@@ -1963,7 +1973,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-newsletter .container-submit a:hover:after,
 .form-newsletter .container-submit button:hover:after,
 .btn-blue:hover:after,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:hover:after {
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now:hover:after,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:hover:after {
   width: calc(100% - 1rem);
   height: calc(100% - 0.5rem);
 }
@@ -1979,13 +1990,14 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-newsletter .container-submit a:hover i,
 .form-newsletter .container-submit button:hover i,
 .btn-blue:hover i,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:hover i {
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now:hover i,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:hover i {
   -webkit-animation: arrow-right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
   -moz-animation: arrow-right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
   -ms-animation: arrow-right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
   -o-animation: arrow-right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
   animation: arrow-right 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
-  width: 3.358rem;
+  width: var(--i-hover, 3.358rem);
   right: calc(var(--i-pr) - 0.9rem);
 }
 
@@ -2000,7 +2012,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-newsletter .container-submit a:hover span,
 .form-newsletter .container-submit button:hover span,
 .btn-blue:hover span,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:hover span {
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now:hover span,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit:hover span {
   transform: scale(0.9);
 }
 
@@ -2010,8 +2023,9 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-newsletter .container-submit a,
 .form-newsletter .container-submit button,
 .btn-blue,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
-  --border-radius: 3.8rem;
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
+  --border-radius: 4.8rem;
 }
 
 @media only screen and (min-width: 1025.1px) {
@@ -2022,7 +2036,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-newsletter .container-submit a,
   .form-newsletter .container-submit button,
   .btn-blue,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
     --min-w: 40rem;
     --btn-p: 2.302rem 5.6rem;
   }
@@ -2036,7 +2051,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-newsletter .container-submit a,
   .form-newsletter .container-submit button,
   .btn-blue,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
     --min-w: 36.6rem;
     --btn-p: 1.8rem 2.4rem 2.057rem;
   }
@@ -2050,7 +2066,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-newsletter .container-submit a,
   .form-newsletter .container-submit button,
   .btn-blue,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
     --min-w: 27.6rem;
     --btn-p: 2.48rem 6rem 2.504rem 5rem;
     text-align: left;
@@ -2065,7 +2082,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-newsletter .container-submit a.btn-medium,
   .form-newsletter .container-submit button.btn-medium,
   .btn-medium.btn-blue,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .btn-medium.bt-submit {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-medium.btn-apply-now,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .btn-medium.bt-submit {
     --min-w: 27.6rem;
   }
 }
@@ -2078,7 +2096,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-newsletter .container-submit a.btn-medium,
   .form-newsletter .container-submit button.btn-medium,
   .btn-medium.btn-blue,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .btn-medium.bt-submit {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-medium.btn-apply-now,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .btn-medium.bt-submit {
     --min-w: 27.1rem;
   }
 }
@@ -2091,13 +2110,55 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-newsletter .container-submit a.btn-medium,
   .form-newsletter .container-submit button.btn-medium,
   .btn-medium.btn-blue,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .btn-medium.bt-submit {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-medium.btn-apply-now,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .btn-medium.bt-submit {
     --min-w: 19.7rem;
   }
 }
 
+@media only screen and (min-width: 1025.1px) {
+
+  .btn-1.btn-large,
+  .btn-large.btn-white,
+  #pg-contact .contact-info .column-1 .btn-large.bt-submit,
+  .form-newsletter .container-submit a.btn-large,
+  .form-newsletter .container-submit button.btn-large,
+  .btn-large.btn-blue,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-large.btn-apply-now,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .btn-large.bt-submit {
+    --btn-p: 2.3rem 5.6rem;
+    --min-w: 62.4rem;
+    font-size: 3.5rem;
+  }
+
+  .btn-1.btn-large i,
+  .btn-large.btn-white i,
+  #pg-contact .contact-info .column-1 .btn-large.bt-submit i,
+  .form-newsletter .container-submit a.btn-large i,
+  .form-newsletter .container-submit button.btn-large i,
+  .btn-large.btn-blue i,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-large.btn-apply-now i,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .btn-large.bt-submit i {
+    --i-pr: 6.2rem;
+    width: 3.36rem;
+    font-size: 2.9rem;
+  }
+
+  .btn-1.btn-large:hover i,
+  .btn-large.btn-white:hover i,
+  #pg-contact .contact-info .column-1 .btn-large.bt-submit:hover i,
+  .form-newsletter .container-submit a.btn-large:hover i,
+  .form-newsletter .container-submit button.btn-large:hover i,
+  .btn-large.btn-blue:hover i,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-large.btn-apply-now:hover i,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .btn-large.bt-submit:hover i {
+    width: 8rem;
+  }
+}
+
 .btn-blue,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
   --btn-bg-color: var(--blue-1);
   --btn-text-color: var(--white-1);
 }
@@ -2357,6 +2418,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 }
 
 .font-1,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item.pay .description-2,
 #pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text .btn-read-more,
 .chat .btn-chat,
 .editor h3,
@@ -2377,7 +2439,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .btn-base,
 .btn-1,
 .btn-blue,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
 .btn-white,
 #pg-contact .contact-info .column-1 .bt-submit,
 .form-newsletter .container-submit a,
@@ -2399,6 +2462,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .section-heres-what-people-are-saying .slider-testimony .swiper-button-next,
 .section-heres-what-people-are-saying .slider-testimony .swiper-pagination,
 .section-heres-what-people-are-saying .slider-testimony .swiper-slide .container-text .container-profile,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-2,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-1,
 #pg-market .market-how-we-do-it .list-how-we-do-it .list-column-text .column-paragraph,
 #pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text,
 #pg-services .services-description .list-services li .content .container-text .service-description,
@@ -2443,30 +2508,6 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 
 .font-7 {
   font-family: "";
-}
-
-.fs--900 {
-  line-height: 1em;
-  letter-spacing: .01em;
-  font-weight: 600;
-}
-
-@media only screen and (min-width: 1025.1px) {
-  .fs--900 {
-    font-size: clamp(10rem, 85vh, 90rem);
-  }
-}
-
-@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  .fs--900 {
-    font-size: 35rem;
-  }
-}
-
-@media only screen and (max-width: 767.98px) {
-  .fs--900 {
-    font-size: 25rem;
-  }
 }
 
 /* ------------------------------- responsive font-sizes ------------------------------- */
@@ -2585,6 +2626,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 
 .fs--14,
 .section-heres-what-people-are-saying .slider-testimony .swiper-slide .container-text .container-profile,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-1,
 .menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios:before,
 .container-newsletter[data-form-state=error] .feedback-newsletter {
   line-height: 1.5em;
@@ -2596,6 +2638,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 
   .fs--14,
   .section-heres-what-people-are-saying .slider-testimony .swiper-slide .container-text .container-profile,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-1,
   .menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios:before,
   .container-newsletter[data-form-state=error] .feedback-newsletter {
     font-size: clamp(12px, 1.4rem, 1.4rem);
@@ -2606,6 +2649,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 
   .fs--14,
   .section-heres-what-people-are-saying .slider-testimony .swiper-slide .container-text .container-profile,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-1,
   .menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios:before,
   .container-newsletter[data-form-state=error] .feedback-newsletter {
     font-size: clamp(13px, 1.4rem, 1.4rem);
@@ -2616,6 +2660,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 
   .fs--14,
   .section-heres-what-people-are-saying .slider-testimony .swiper-slide .container-text .container-profile,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-1,
   .menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios:before,
   .container-newsletter[data-form-state=error] .feedback-newsletter {
     font-size: 1.4rem;
@@ -2676,7 +2721,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .form-search .container-submit a,
 .form-search .container-submit button,
 .container-contact [data-form-error],
-.container-newsletter.letter-success .feedback-newsletter {
+.container-newsletter[data-form-state=success] .feedback-newsletter {
   line-height: 1.2em;
   letter-spacing: 0;
   font-weight: 400;
@@ -2707,7 +2752,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-search .container-submit a,
   .form-search .container-submit button,
   .container-contact [data-form-error],
-  .container-newsletter.letter-success .feedback-newsletter {
+  .container-newsletter[data-form-state=success] .feedback-newsletter {
     font-size: clamp(14px, 1.6rem, 1.6rem);
   }
 }
@@ -2737,7 +2782,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-search .container-submit a,
   .form-search .container-submit button,
   .container-contact [data-form-error],
-  .container-newsletter.letter-success .feedback-newsletter {
+  .container-newsletter[data-form-state=success] .feedback-newsletter {
     font-size: clamp(14px, 1.6rem, 1.6rem);
   }
 }
@@ -2767,13 +2812,13 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .form-search .container-submit a,
   .form-search .container-submit button,
   .container-contact [data-form-error],
-  .container-newsletter.letter-success .feedback-newsletter {
+  .container-newsletter[data-form-state=success] .feedback-newsletter {
     font-size: 1.6rem;
   }
 }
 
 .fs--17,
-#pg-about .about-our-boards .list-boards li .content .text {
+.about-our-boards .list-boards li .content .text {
   line-height: 1.23em;
   letter-spacing: 0;
   font-weight: 600;
@@ -2782,7 +2827,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 @media only screen and (min-width: 1025.1px) {
 
   .fs--17,
-  #pg-about .about-our-boards .list-boards li .content .text {
+  .about-our-boards .list-boards li .content .text {
     font-size: clamp(14px, 1.7rem, 1.7rem);
   }
 }
@@ -2790,7 +2835,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 @media only screen and (min-width: 767.98px) and (max-width: 1025px) {
 
   .fs--17,
-  #pg-about .about-our-boards .list-boards li .content .text {
+  .about-our-boards .list-boards li .content .text {
     font-size: clamp(15px, 1.7rem, 1.7rem);
   }
 }
@@ -2798,7 +2843,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 @media only screen and (max-width: 767.98px) {
 
   .fs--17,
-  #pg-about .about-our-boards .list-boards li .content .text {
+  .about-our-boards .list-boards li .content .text {
     font-size: 1.7rem;
   }
 }
@@ -3001,7 +3046,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 }
 
 .fs--23,
-modal-group .section-modal-contact .column-contact btn-modal-close .text-go-back,
+modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close .text-go-back,
 [data-cursor=default]>div .text-wrapper,
 [data-cursor=hovered]>div .text-wrapper,
 [data-cursor=hovered-white]>div .text-wrapper,
@@ -3010,7 +3055,8 @@ modal-group .section-modal-contact .column-contact btn-modal-close .text-go-back
 [data-cursor=white]>div .text-wrapper,
 .btn-1,
 .btn-blue,
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
 .btn-white,
 #pg-contact .contact-info .column-1 .bt-submit,
 .form-newsletter .container-submit a,
@@ -3023,7 +3069,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 @media only screen and (min-width: 1025.1px) {
 
   .fs--23,
-  modal-group .section-modal-contact .column-contact btn-modal-close .text-go-back,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close .text-go-back,
   [data-cursor=default]>div .text-wrapper,
   [data-cursor=hovered]>div .text-wrapper,
   [data-cursor=hovered-white]>div .text-wrapper,
@@ -3032,7 +3078,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   [data-cursor=white]>div .text-wrapper,
   .btn-1,
   .btn-blue,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
   .btn-white,
   #pg-contact .contact-info .column-1 .bt-submit,
   .form-newsletter .container-submit a,
@@ -3044,7 +3091,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 @media only screen and (min-width: 767.98px) and (max-width: 1025px) {
 
   .fs--23,
-  modal-group .section-modal-contact .column-contact btn-modal-close .text-go-back,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close .text-go-back,
   [data-cursor=default]>div .text-wrapper,
   [data-cursor=hovered]>div .text-wrapper,
   [data-cursor=hovered-white]>div .text-wrapper,
@@ -3053,7 +3100,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   [data-cursor=white]>div .text-wrapper,
   .btn-1,
   .btn-blue,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
   .btn-white,
   #pg-contact .contact-info .column-1 .bt-submit,
   .form-newsletter .container-submit a,
@@ -3065,7 +3113,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 @media only screen and (max-width: 767.98px) {
 
   .fs--23,
-  modal-group .section-modal-contact .column-contact btn-modal-close .text-go-back,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close .text-go-back,
   [data-cursor=default]>div .text-wrapper,
   [data-cursor=hovered]>div .text-wrapper,
   [data-cursor=hovered-white]>div .text-wrapper,
@@ -3074,7 +3122,8 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   [data-cursor=white]>div .text-wrapper,
   .btn-1,
   .btn-blue,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
   .btn-white,
   #pg-contact .contact-info .column-1 .bt-submit,
   .form-newsletter .container-submit a,
@@ -3118,6 +3167,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .section-heres-what-people-are-saying .slider-testimony .swiper-button-prev,
 .section-heres-what-people-are-saying .slider-testimony .swiper-button-next,
 .section-heres-what-people-are-saying .slider-testimony .swiper-slide .container-text .testimony,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-2,
 #pg-market .market-explore-portfolio .list-explore-portfolio .grid-item .link .title-portfolio,
 #pg-services .services-description .list-services li .content .container-text .service-name,
 .chat .btn-chat,
@@ -3136,6 +3186,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .section-heres-what-people-are-saying .slider-testimony .swiper-button-prev,
   .section-heres-what-people-are-saying .slider-testimony .swiper-button-next,
   .section-heres-what-people-are-saying .slider-testimony .swiper-slide .container-text .testimony,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-2,
   #pg-market .market-explore-portfolio .list-explore-portfolio .grid-item .link .title-portfolio,
   #pg-services .services-description .list-services li .content .container-text .service-name,
   .chat .btn-chat,
@@ -3153,6 +3204,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .section-heres-what-people-are-saying .slider-testimony .swiper-button-prev,
   .section-heres-what-people-are-saying .slider-testimony .swiper-button-next,
   .section-heres-what-people-are-saying .slider-testimony .swiper-slide .container-text .testimony,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-2,
   #pg-market .market-explore-portfolio .list-explore-portfolio .grid-item .link .title-portfolio,
   #pg-services .services-description .list-services li .content .container-text .service-name,
   .chat .btn-chat,
@@ -3170,6 +3222,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .section-heres-what-people-are-saying .slider-testimony .swiper-button-prev,
   .section-heres-what-people-are-saying .slider-testimony .swiper-button-next,
   .section-heres-what-people-are-saying .slider-testimony .swiper-slide .container-text .testimony,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-2,
   #pg-market .market-explore-portfolio .list-explore-portfolio .grid-item .link .title-portfolio,
   #pg-services .services-description .list-services li .content .container-text .service-name,
   .chat .btn-chat,
@@ -3182,6 +3235,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 }
 
 .fs--30,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-function .function,
 #pg-project .project-intro .wrapper-portfolio .market-tag span {
   line-height: 1.14em;
   letter-spacing: 0;
@@ -3191,6 +3245,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 @media only screen and (min-width: 1025.1px) {
 
   .fs--30,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-function .function,
   #pg-project .project-intro .wrapper-portfolio .market-tag span {
     font-size: 3rem;
   }
@@ -3199,6 +3254,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 @media only screen and (min-width: 767.98px) and (max-width: 1025px) {
 
   .fs--30,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-function .function,
   #pg-project .project-intro .wrapper-portfolio .market-tag span {
     font-size: 2rem;
   }
@@ -3207,6 +3263,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 @media only screen and (max-width: 767.98px) {
 
   .fs--30,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-function .function,
   #pg-project .project-intro .wrapper-portfolio .market-tag span {
     font-size: 2rem;
   }
@@ -3263,15 +3320,10 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
 .section-slider-banner .slider-banner .swiper-slide a .container-project .project,
 #pg-market .market-how-we-do-it .list-how-we-do-it .list-column-text .column-title,
 .contact-info .column-2 .list-address li .city,
-.container-contact [data-form-success],
-.container-contact h3.data-form-success {
+.container-contact [data-form-success] {
   line-height: 1.125em;
   letter-spacing: 0;
   font-weight: 600;
-}
-
-.container-contact h3.data-form-error {
-  font-size: clamp(14px, 1.6rem, 1.6rem);
 }
 
 @media only screen and (min-width: 1025.1px) {
@@ -3280,8 +3332,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .section-slider-banner .slider-banner .swiper-slide a .container-project .project,
   #pg-market .market-how-we-do-it .list-how-we-do-it .list-column-text .column-title,
   .contact-info .column-2 .list-address li .city,
-  .container-contact [data-form-success],
-  .container-contact h3.data-form-success {
+  .container-contact [data-form-success] {
     font-size: 4rem;
   }
 }
@@ -3292,8 +3343,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .section-slider-banner .slider-banner .swiper-slide a .container-project .project,
   #pg-market .market-how-we-do-it .list-how-we-do-it .list-column-text .column-title,
   .contact-info .column-2 .list-address li .city,
-  .container-contact [data-form-success],
-  .container-contact h3.data-form-success {
+  .container-contact [data-form-success] {
     font-size: 2.5rem;
   }
 }
@@ -3304,14 +3354,13 @@ modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-s
   .section-slider-banner .slider-banner .swiper-slide a .container-project .project,
   #pg-market .market-how-we-do-it .list-how-we-do-it .list-column-text .column-title,
   .contact-info .column-2 .list-address li .city,
-  .container-contact [data-form-success],
-  .container-contact h3.data-form-success {
+  .container-contact [data-form-success] {
     font-size: 2.5rem;
   }
 }
 
 .fs--50,
-modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
   line-height: 1.1em;
   letter-spacing: 0;
   font-weight: 600;
@@ -3320,7 +3369,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
 @media only screen and (min-width: 1025.1px) {
 
   .fs--50,
-  modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
     font-size: 5rem;
   }
 }
@@ -3328,7 +3377,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
 @media only screen and (min-width: 767.98px) and (max-width: 1025px) {
 
   .fs--50,
-  modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
     font-size: 2rem;
   }
 }
@@ -3336,15 +3385,16 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
 @media only screen and (max-width: 767.98px) {
 
   .fs--50,
-  modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
     font-size: 5rem;
   }
 }
 
 .fs--60,
+.about-our-boards .list-boards li .content .title,
+.section-terms-and-policy .title,
 #pg-contact .contact-info .column-2 .container-info a,
 #pg-about .about-check-out .container-box .title,
-#pg-about .about-our-boards .list-boards li .content .title,
 .list-projects.font-60 .project-link .container-text .title-project {
   line-height: 1.083em;
   letter-spacing: 0;
@@ -3354,9 +3404,10 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
 @media only screen and (min-width: 1025.1px) {
 
   .fs--60,
+  .about-our-boards .list-boards li .content .title,
+  .section-terms-and-policy .title,
   #pg-contact .contact-info .column-2 .container-info a,
   #pg-about .about-check-out .container-box .title,
-  #pg-about .about-our-boards .list-boards li .content .title,
   .list-projects.font-60 .project-link .container-text .title-project {
     font-size: 6rem;
   }
@@ -3365,9 +3416,10 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
 @media only screen and (min-width: 767.98px) and (max-width: 1025px) {
 
   .fs--60,
+  .about-our-boards .list-boards li .content .title,
+  .section-terms-and-policy .title,
   #pg-contact .contact-info .column-2 .container-info a,
   #pg-about .about-check-out .container-box .title,
-  #pg-about .about-our-boards .list-boards li .content .title,
   .list-projects.font-60 .project-link .container-text .title-project {
     font-size: 4rem;
   }
@@ -3376,9 +3428,10 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
 @media only screen and (max-width: 767.98px) {
 
   .fs--60,
+  .about-our-boards .list-boards li .content .title,
+  .section-terms-and-policy .title,
   #pg-contact .contact-info .column-2 .container-info a,
   #pg-about .about-check-out .container-box .title,
-  #pg-about .about-our-boards .list-boards li .content .title,
   .list-projects.font-60 .project-link .container-text .title-project {
     font-size: 4rem;
   }
@@ -3487,6 +3540,30 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
   }
 }
 
+.fs--160 {
+  line-height: .875em;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .fs--160 {
+    font-size: 16rem;
+  }
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .fs--160 {
+    font-size: 7rem;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .fs--160 {
+    font-size: 5rem;
+  }
+}
+
 .fs--165,
 #pg-home .home-from-concept-to-reality .column-1 .title {
   line-height: 1.03em;
@@ -3550,6 +3627,30 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
   #pg-about .about-intro .title-we-are,
   #pg-about .about-intro .title-blue-print {
     font-size: 10.8rem;
+  }
+}
+
+.fs--900 {
+  line-height: 1em;
+  letter-spacing: .01em;
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .fs--900 {
+    font-size: clamp(10rem, 85vh, 90rem);
+  }
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .fs--900 {
+    font-size: 35rem;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .fs--900 {
+    font-size: 25rem;
   }
 }
 
@@ -3655,6 +3756,7 @@ modal-group .section-modal-contact .column-contact .contact-info .column-2 .cont
 .section-heres-what-people-are-saying .slider-testimony .swiper-button-next,
 .section-heres-what-people-are-saying .slider-testimony .swiper-pagination,
 .section-heres-what-people-are-saying .slider-testimony .swiper-slide .container-text .container-profile,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-2,
 #pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text .wrapper-text,
 #pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text .title,
 .menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios:before,
@@ -4937,12 +5039,12 @@ body:after {
   }
 }
 
-.container-newsletter.letter-success .form-newsletter {
+.container-newsletter[data-form-state=success] .form-newsletter {
   opacity: 0.2;
   pointer-events: none;
 }
 
-.container-newsletter.letter-success .feedback-newsletter {
+.container-newsletter[data-form-state=success] .feedback-newsletter {
   position: absolute;
   top: 55%;
   right: auto;
@@ -5224,8 +5326,7 @@ body:after {
   }
 }
 
-.container-contact [data-form-success],
-.container-contact h3.data-form-success {
+.container-contact [data-form-success] {
   position: absolute;
   top: 50%;
   right: auto;
@@ -5234,7 +5335,7 @@ body:after {
   transform: translate(-50%, -50%);
 }
 
-.container-contact[data-form-state=success]:not(.formError) .form-contact {
+.container-contact[data-form-state=success] .form-contact {
   opacity: 0.2;
   pointer-events: none;
   -webkit-transition: all 0.6s cubic-bezier(0.42, 0, 0.58, 1);
@@ -6259,21 +6360,6 @@ body:after {
   height: 100%;
 }
 
-/* ////social card///////// */
-.p-card {
-  font-style: bold;
-  font-size: 16px;
-  color: darkgray;
-  background-color: lightgray;
-  border-radius: 20px;
-  padding: 10px;
-  align-items: center;
-  position: flex;
-  text-align: center;
-}
-
-
-
 .list-portfolio .grid-item .link-portfolio .title-portfolio {
   color: var(--blue-1);
   margin-top: 1.5rem;
@@ -6935,7 +7021,7 @@ body:after {
 /* ------------------------------ list dropdown ----------------------------- */
 @media only screen and (max-width: 1025px) {
   .list-dropdown {
-    /* max-height: calc(100vh - (var(--header-height) + 23rem)); */
+    max-height: calc(100vh - (var(--header-height) + 23rem));
     padding-top: 1.3rem;
     padding-bottom: 1.3rem;
     overflow: hidden;
@@ -7059,7 +7145,6 @@ only screen and (max-width: 1025px) and (min-width: 768px) and (max-width: 1025p
     flex-direction: column;
     width: 100%;
     padding: 6rem 3rem;
-    z-index: 5;
   }
 }
 
@@ -7683,7 +7768,7 @@ only screen and (max-width: 767.98px) {
     justify-content: space-between;
     align-items: flex-start;
     align-content: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
   }
 }
@@ -7861,12 +7946,14 @@ only screen and (max-width: 767.98px) {
   opacity: 1;
 }
 
-.rental-product-link .product-link:hover .container-bottom .view-more .view {
-  max-width: 9.4rem;
-}
+@media only screen and (min-width: 1025.1px) {
+  .rental-product-link .product-link:hover .container-bottom .view-more .view {
+    max-width: 9.4rem;
+  }
 
-.rental-product-link .product-link:hover .container-bottom .view-more .view span {
-  opacity: 1;
+  .rental-product-link .product-link:hover .container-bottom .view-more .view span {
+    opacity: 1;
+  }
 }
 
 .rental-product-link .product-link:hover .container-bottom .list-thumb li:nth-child(1),
@@ -10570,6 +10657,7 @@ body.menu-leave:not(.page-leave-active) .wrapper-search .container-form {
 
 #footer {
   background: var(--blue-1);
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 1025.1px) {
@@ -10733,13 +10821,20 @@ body.menu-leave:not(.page-leave-active) .wrapper-search .container-form {
 
 @media only screen and (max-width: 1025px) {
   #footer .column-2 .container-footer-menu .list-footer-menu {
-    width: 30.6rem;
+    width: 32.6rem;
   }
 }
 
 @media only screen and (min-width: 1025.1px) {
   #footer .column-2 .container-footer-menu .list-footer-menu .list-item {
     margin-bottom: 1.6rem;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  #footer .column-2 .container-footer-menu .list-footer-menu .list-item {
+    display: inline-block;
+    width: 100%;
   }
 }
 
@@ -10751,7 +10846,7 @@ body.menu-leave:not(.page-leave-active) .wrapper-search .container-form {
 
 @media only screen and (max-width: 767.98px) {
   #footer .column-2 .container-footer-menu .list-footer-menu .list-item {
-    margin-bottom: 0.95rem;
+    margin-bottom: 1.2rem;
   }
 }
 
@@ -10763,13 +10858,19 @@ body.menu-leave:not(.page-leave-active) .wrapper-search .container-form {
 
 @media only screen and (min-width: 1025.1px) {
   #footer .column-2 .container-footer-menu .list-footer-menu .list-item.item-social-media {
-    margin-top: 3.6rem;
+    margin-top: 4.8rem;
   }
 }
 
-@media only screen and (max-width: 1025px) {
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
   #footer .column-2 .container-footer-menu .list-footer-menu .list-item.item-social-media {
-    margin-top: 4rem;
+    margin-top: 2.9rem;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  #footer .column-2 .container-footer-menu .list-footer-menu .list-item.item-social-media {
+    margin-top: 2.5rem;
   }
 }
 
@@ -10853,6 +10954,11 @@ body.menu-leave:not(.page-leave-active) .wrapper-search .container-form {
 
 .editor ul {
   list-style: disc;
+}
+
+.editor mark {
+  background: var(--blue-1);
+  color: var(--white-1);
 }
 
 .editor a {
@@ -11036,24 +11142,24 @@ modal-group.leave {
   animation: fadeOut 0.6s cubic-bezier(0.42, 0, 0.58, 1) 0s both 1;
 }
 
-modal-group {
+modal-group[name=modal-contact] {
   padding-top: calc(var(--header-height) - 1.2rem);
 }
 
 @media only screen and (min-width: 1025.1px) {
-  modal-group {
+  modal-group[name=modal-contact] {
     -webkit-backdrop-filter: blur(3rem);
     backdrop-filter: blur(3rem);
   }
 }
 
 @media only screen and (max-width: 1025px) {
-  modal-group {
+  modal-group[name=modal-contact] {
     background: var(--white-2);
   }
 }
 
-modal-group.active .column-contact {
+modal-group[name=modal-contact].active .column-contact {
   -webkit-animation: slide-up 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
   -moz-animation: slide-up 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
   -ms-animation: slide-up 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
@@ -11061,7 +11167,7 @@ modal-group.active .column-contact {
   animation: slide-up 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
 }
 
-modal-group.leave .column-contact {
+modal-group[name=modal-contact].leave .column-contact {
   -webkit-animation: unslide-down 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
   -moz-animation: unslide-down 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
   -ms-animation: unslide-down 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
@@ -11069,21 +11175,21 @@ modal-group.leave .column-contact {
   animation: unslide-down 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) 0s both 1;
 }
 
-modal-group .section-modal-contact {
+modal-group[name=modal-contact] .section-modal-contact {
   width: 100vw;
 }
 
-modal-group .section-modal-contact .column-contact {
+modal-group[name=modal-contact] .section-modal-contact .column-contact {
   position: relative;
 }
 
 @media only screen and (min-width: 1025.1px) {
-  modal-group .section-modal-contact .column-contact {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact {
     padding-top: 9.4rem;
     padding-bottom: 3.7rem;
   }
 
-  modal-group .section-modal-contact .column-contact:before {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact:before {
     content: "";
     width: calc(100% - var(--padding) * 2);
     height: 100%;
@@ -11099,21 +11205,21 @@ modal-group .section-modal-contact .column-contact {
 }
 
 @media only screen and (min-width: 768px) {
-  modal-group .section-modal-contact .column-contact {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact {
     padding-left: calc(var(--padding) + 3.6rem);
     padding-right: calc(var(--padding) + 3rem);
   }
 }
 
 @media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  modal-group .section-modal-contact .column-contact {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact {
     padding-top: 5rem;
     padding-bottom: 10rem;
   }
 }
 
 @media only screen and (max-width: 767.98px) {
-  modal-group .section-modal-contact .column-contact {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact {
     padding-left: var(--padding);
     padding-right: var(--padding);
     padding-top: 4.4rem;
@@ -11121,7 +11227,7 @@ modal-group .section-modal-contact .column-contact {
   }
 }
 
-modal-group .section-modal-contact .column-contact .contact-info {
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info {
   --column-1-max-w: 50%;
   --column-2-max-w: 50%;
   --column-2-offset: 0;
@@ -11135,54 +11241,54 @@ modal-group .section-modal-contact .column-contact .contact-info {
 
 @media only screen and (max-width: 1025px) {
 
-  modal-group .section-modal-contact .column-contact .contact-info .column-1,
-  modal-group .section-modal-contact .column-contact .contact-info .column-2 {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 {
     padding-left: var(--padding);
     padding-right: var(--padding);
   }
 }
 
 @media only screen and (min-width: 1025.1px) {
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 {
     padding-right: calc(var(--padding) + 3rem);
   }
 }
 
 @media only screen and (max-width: 767.98px) {
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .title {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .title {
     font-size: 2.5rem;
   }
 }
 
 @media only screen and (max-width: 1025px) {
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 .title i {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .title i {
     display: none;
   }
 }
 
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .form-contact {
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .form-contact {
   --color: var(--blue-1);
   --label-color: var(--blue-1);
   --border-color: var(--blue-1);
 }
 
-modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
+modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit {
   --btn-p: 1.404rem 5.6rem 1.2rem;
 }
 
 @media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
     font-size: 5rem;
   }
 }
 
 @media only screen and (max-width: 767.98px) {
-  modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-2 .container-info a {
     font-size: 3.7rem;
   }
 }
 
-modal-group .section-modal-contact .column-contact btn-modal-close {
+modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close {
   display: block;
   pointer-events: auto;
   cursor: pointer;
@@ -11190,7 +11296,7 @@ modal-group .section-modal-contact .column-contact btn-modal-close {
 }
 
 @media only screen and (min-width: 1025.1px) {
-  modal-group .section-modal-contact .column-contact btn-modal-close {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close {
     position: absolute;
     top: 1.2rem;
     right: calc(1.2rem + var(--padding));
@@ -11204,7 +11310,7 @@ modal-group .section-modal-contact .column-contact btn-modal-close {
 }
 
 @media only screen and (max-width: 1025px) {
-  modal-group .section-modal-contact .column-contact btn-modal-close {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11218,7 +11324,7 @@ modal-group .section-modal-contact .column-contact btn-modal-close {
 }
 
 @media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  modal-group .section-modal-contact .column-contact btn-modal-close {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close {
     position: absolute;
     top: 3.7rem;
     right: calc(1.2rem + var(--padding));
@@ -11229,7 +11335,7 @@ modal-group .section-modal-contact .column-contact btn-modal-close {
 }
 
 @media only screen and (max-width: 767.98px) {
-  modal-group .section-modal-contact .column-contact btn-modal-close {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close {
     position: absolute;
     top: 3.6rem;
     right: var(--padding);
@@ -11239,13 +11345,13 @@ modal-group .section-modal-contact .column-contact btn-modal-close {
   }
 }
 
-modal-group .section-modal-contact .column-contact btn-modal-close i {
+modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close i {
   display: inline-block;
   color: var(--white-1);
 }
 
 @media only screen and (min-width: 1025.1px) {
-  modal-group .section-modal-contact .column-contact btn-modal-close i {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close i {
     position: absolute;
     top: 50%;
     right: auto;
@@ -11257,29 +11363,29 @@ modal-group .section-modal-contact .column-contact btn-modal-close i {
 }
 
 @media only screen and (max-width: 1025px) {
-  modal-group .section-modal-contact .column-contact btn-modal-close i {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close i {
     margin-top: 0.3rem;
     font-size: 1.2rem;
   }
 }
 
 @media only screen and (max-width: 1025px) {
-  modal-group .section-modal-contact .column-contact btn-modal-close i.icon-close {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close i.icon-close {
     display: none;
   }
 }
 
 @media only screen and (min-width: 1025.1px) {
-  modal-group .section-modal-contact .column-contact btn-modal-close i.icon-arrow-left {
+  modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close i.icon-arrow-left {
     display: none;
   }
 }
 
-modal-group .section-modal-contact .column-contact btn-modal-close .text-go-back {
+modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close .text-go-back {
   color: var(--white-1);
 }
 
-modal-group .section-modal-contact .column-contact btn-modal-close .text-hide {
+modal-group[name=modal-contact] .section-modal-contact .column-contact btn-modal-close .text-hide {
   opacity: 0;
   position: absolute;
   pointer-events: none;
@@ -12524,6 +12630,11 @@ modal-item .shopify-buy-frame iframe {
   }
 }
 
+.menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios.disabled {
+  background: var(--gray-3);
+  pointer-events: none;
+}
+
 .menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios:hover .title-all-studios {
   transform: translateX(1rem);
 }
@@ -12635,6 +12746,26 @@ modal-item .shopify-buy-frame iframe {
   .menu-search .wrapper-search .container-results .result-our-markets .market-link {
     --img-pt: 51.91%;
   }
+}
+
+.menu-search .wrapper-search .container-results .result-our-markets .market-link.disabled {
+  pointer-events: none;
+}
+
+.menu-search .wrapper-search .container-results .result-our-markets .market-link.disabled:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  background: var(--white-2) !important;
+  z-index: 5;
+  opacity: 0.8;
+  border-radius: 2rem;
 }
 
 @media only screen and (max-width: 767.98px) {
@@ -12777,7 +12908,7 @@ modal-item .shopify-buy-frame iframe {
   }
 }
 
-[data-search-container][data-search-state=success] .menu-search .wrapper-search .container-results:not(.searching) .inner-container-results {
+[data-search-container][data-search-state=success] .menu-search .wrapper-search .container-results .inner-container-results {
   display: flex;
   -webkit-animation: fadeIn 0.6s cubic-bezier(0.42, 0, 0.58, 1) 0.6s both 1;
   -moz-animation: fadeIn 0.6s cubic-bezier(0.42, 0, 0.58, 1) 0.6s both 1;
@@ -13653,30 +13784,6 @@ modal-item .shopify-buy-frame iframe {
   width: 100%;
 }
 
-#pg-about .about-intro .wrapper-content.content-1 {
-  position: absolute;
-  top: 122vh;
-  right: auto;
-  bottom: auto;
-  left: 0;
-}
-
-#pg-about .about-intro .wrapper-content.content-2 {
-  position: absolute;
-  top: 150vh;
-  right: auto;
-  bottom: auto;
-  left: 0;
-}
-
-#pg-about .about-intro .wrapper-content.content-3 {
-  position: absolute;
-  top: 180vh;
-  right: auto;
-  bottom: auto;
-  left: 0;
-}
-
 #pg-about .about-intro .title-we-are,
 #pg-about .about-intro .title-blue-print {
   position: relative;
@@ -13690,271 +13797,6 @@ modal-item .shopify-buy-frame iframe {
   #pg-about .about-intro .title-blue-print {
     max-width: 40rem;
     margin: auto;
-  }
-}
-
-#pg-about .about-our-boards {
-  padding-top: 43.2rem;
-  overflow: hidden;
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards {
-    padding-bottom: 28.3rem;
-  }
-}
-
-@media only screen and (max-width: 1025px) {
-  #pg-about .about-our-boards {
-    padding-bottom: 26rem;
-  }
-}
-
-@media only screen and (max-width: 767.98px) {
-  #pg-about .about-our-boards {
-    padding-bottom: 17.5rem;
-  }
-}
-
-#pg-about .about-our-boards .list-boards {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-#pg-about .about-our-boards .list-boards li {
-  position: relative;
-}
-
-@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  #pg-about .about-our-boards .list-boards li {
-    width: 100%;
-  }
-}
-
-#pg-about .about-our-boards .list-boards li .content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  align-content: flex-start;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  position: relative;
-  background: var(--bg-color);
-  color: var(--text-color);
-  border-radius: 2rem;
-  transform: rotate(var(--rotate));
-  -webkit-transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -moz-transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -ms-transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -o-transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition-delay: 0s;
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards .list-boards li .content {
-    width: 46.5rem;
-    height: auto;
-    min-height: 39.3rem;
-    padding: 3.5rem 3.2rem;
-  }
-}
-
-@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  #pg-about .about-our-boards .list-boards li .content {
-    width: 46.8rem;
-    height: 29.1rem;
-    padding: 2.4rem 2.6rem;
-  }
-}
-
-@media only screen and (max-width: 767.98px) {
-  #pg-about .about-our-boards .list-boards li .content {
-    width: 42.1rem;
-    height: 35.6rem;
-    padding: 4.4rem 2.9rem 3.8rem;
-  }
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards .list-boards li .content .text {
-    max-width: 36.9rem;
-  }
-}
-
-@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  #pg-about .about-our-boards .list-boards li .content .text {
-    font-size: 1.8rem;
-    max-width: 40.6rem;
-  }
-}
-
-@media only screen and (max-width: 767.98px) {
-  #pg-about .about-our-boards .list-boards li .content .text {
-    font-size: 1.5rem;
-    line-height: 1.266em;
-    max-width: 32.4rem;
-  }
-}
-
-#pg-about .about-our-boards .list-boards li:first-child {
-  --bg-color: var(--blue-2);
-  --text-color: var(--white-1);
-  margin-left: -0.5rem;
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards .list-boards li:first-child {
-    --rotate: 5deg;
-    z-index: 2;
-  }
-}
-
-@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  #pg-about .about-our-boards .list-boards li:first-child {
-    --rotate: 11deg;
-    order: 1;
-    z-index: 5;
-  }
-
-  #pg-about .about-our-boards .list-boards li:first-child .content {
-    margin-left: auto;
-  }
-}
-
-@media only screen and (max-width: 767.98px) {
-  #pg-about .about-our-boards .list-boards li:first-child {
-    --rotate: 5deg;
-    padding-left: 3rem;
-  }
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards .list-boards li:first-child:hover {
-    --rotate: 15deg;
-  }
-}
-
-#pg-about .about-our-boards .list-boards li:nth-child(2) {
-  --bg-color: var(--white-1);
-  --text-color: var(--blue-1);
-  margin-top: 18.9rem;
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(2) {
-    margin-left: -7.1rem;
-    z-index: 3;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(2) {
-    --rotate: 15deg;
-  }
-}
-
-@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(2) {
-    order: 4;
-    margin-top: -2.8rem;
-    z-index: 2;
-  }
-}
-
-@media only screen and (max-width: 767.98px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(2) {
-    --rotate: -7deg;
-    margin-top: 1.9rem;
-    padding-left: 2rem;
-  }
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(2):hover {
-    --rotate: 4deg;
-  }
-}
-
-#pg-about .about-our-boards .list-boards li:nth-child(3) {
-  --bg-color: var(--blue-3);
-  --text-color: var(--white-1);
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(3) {
-    --rotate: 30deg;
-    margin-top: 10.5rem;
-    margin-left: -10.5rem;
-    z-index: 4;
-  }
-}
-
-@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(3) {
-    --rotate: -20deg;
-    order: 3;
-    margin-top: -4.5rem;
-    padding-right: 3rem;
-    z-index: 3;
-  }
-
-  #pg-about .about-our-boards .list-boards li:nth-child(3) .content {
-    margin-left: auto;
-  }
-}
-
-@media only screen and (max-width: 767.98px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(3) {
-    --rotate: -14deg;
-    margin-top: 2.5rem;
-    z-index: 1;
-  }
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(3):hover {
-    --rotate: 21deg;
-  }
-}
-
-#pg-about .about-our-boards .list-boards li:nth-child(4) {
-  --bg-color: var(--blue-1);
-  --text-color: var(--white-1);
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(4) {
-    --rotate: -30deg;
-    margin-top: -16.2rem;
-    margin-left: 12.7rem;
-    z-index: 1;
-  }
-}
-
-@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(4) {
-    --rotate: -3deg;
-    order: 2;
-    margin-top: -14.5rem;
-    margin-left: 0.8rem;
-    z-index: 4;
-  }
-}
-
-@media only screen and (max-width: 767.98px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(4) {
-    --rotate: -4deg;
-  }
-}
-
-@media only screen and (min-width: 1025.1px) {
-  #pg-about .about-our-boards .list-boards li:nth-child(4):hover {
-    --rotate: -19deg;
   }
 }
 
@@ -14094,8 +13936,10 @@ modal-item .shopify-buy-frame iframe {
 @media only screen and (max-width: 1025px) {
 
   #pg-about .about-dream-team .btn-blue,
-  #pg-about .about-dream-team modal-group .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
-  modal-group .section-modal-contact .column-contact .contact-info .column-1 #pg-about .about-dream-team .bt-submit {
+  #pg-about .about-dream-team #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now #pg-about .about-dream-team .btn-apply-now,
+  #pg-about .about-dream-team modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 .bt-submit,
+  modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-info .column-1 #pg-about .about-dream-team .bt-submit {
     --min-w: auto;
   }
 }
@@ -19098,7 +18942,7 @@ modal-item .shopify-buy-frame iframe {
   }
 }
 
-.container-list-tags {
+#pg-portfolio .portfolio-intro .container-list-tags {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19110,28 +18954,28 @@ modal-item .shopify-buy-frame iframe {
 }
 
 @media only screen and (min-width: 1025.1px) {
-  .container-list-tags {
+  #pg-portfolio .portfolio-intro .container-list-tags {
     padding-left: 4.6rem;
     padding-right: 4.6rem;
   }
 }
 
 @media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  .container-list-tags {
+  #pg-portfolio .portfolio-intro .container-list-tags {
     padding-left: 12.6rem;
     padding-right: 12.6rem;
   }
 }
 
 @media only screen and (max-width: 767.98px) {
-  .container-list-tags {
+  #pg-portfolio .portfolio-intro .container-list-tags {
     padding-left: var(--px-fluid);
     padding-right: var(--px-fluid);
   }
 }
 
 @media only screen and (min-width: 1025.1px) {
-  .container-list-tags .list-portfolio-tags {
+  #pg-portfolio .portfolio-intro .container-list-tags .list-portfolio-tags {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -19140,12 +18984,10 @@ modal-item .shopify-buy-frame iframe {
     flex-direction: row;
     padding-right: 6.4rem;
   }
-
-  /* padding-right: 6.4rem; */
 }
 
 @media only screen and (min-width: 1025.1px) {
-  .container-list-tags .list-market-tags {
+  #pg-portfolio .portfolio-intro .container-list-tags .list-market-tags {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -19156,40 +18998,40 @@ modal-item .shopify-buy-frame iframe {
   }
 }
 
-.container-list-tags .portfolio-tags {
+#pg-portfolio .portfolio-intro .container-list-tags .portfolio-tags {
   position: relative;
 }
 
 @media only screen and (min-width: 1025.1px) {
-  .container-list-tags .portfolio-tags:before {
+  #pg-portfolio .portfolio-intro .container-list-tags .portfolio-tags:before {
     content: "";
     width: 1px;
     height: 7rem;
     display: block;
     position: absolute;
     top: -1.3rem;
-    right: -2px;
+    right: 0;
     bottom: auto;
     left: auto;
     background: var(--blue-1);
   }
 }
 
-.container-list-tags .portfolio-tags,
-.container-list-tags .market-tags {
+#pg-portfolio .portfolio-intro .container-list-tags .portfolio-tags,
+#pg-portfolio .portfolio-intro .container-list-tags .market-tags {
   position: relative;
 }
 
 @media only screen and (max-width: 1025px) {
 
-  .container-list-tags .portfolio-tags,
-  .container-list-tags .market-tags {
+  #pg-portfolio .portfolio-intro .container-list-tags .portfolio-tags,
+  #pg-portfolio .portfolio-intro .container-list-tags .market-tags {
     max-width: calc(50% - var(--padding) * 1);
   }
 }
 
 @media only screen and (max-width: 1025px) {
-  .container-list-tags .portfolio-tags .list-dropdown {
+  #pg-portfolio .portfolio-intro .container-list-tags .portfolio-tags .list-dropdown {
     position: absolute;
     top: 100%;
     right: auto;
@@ -19199,7 +19041,7 @@ modal-item .shopify-buy-frame iframe {
 }
 
 @media only screen and (max-width: 1025px) {
-  .container-list-tags .market-tags .list-dropdown {
+  #pg-portfolio .portfolio-intro .container-list-tags .market-tags .list-dropdown {
     position: absolute;
     top: 100%;
     right: 0;
@@ -19210,16 +19052,16 @@ modal-item .shopify-buy-frame iframe {
 
 @media only screen and (min-width: 1025.1px) {
 
-  .container-list-tags .list-portfolio-tags,
-  .container-list-tags .list-market-tags {
+  #pg-portfolio .portfolio-intro .container-list-tags .list-portfolio-tags,
+  #pg-portfolio .portfolio-intro .container-list-tags .list-market-tags {
     margin: -0.5rem -0.7rem;
   }
 }
 
 @media only screen and (min-width: 1025.1px) {
 
-  .container-list-tags .list-portfolio-tags li,
-  .container-list-tags .list-market-tags li {
+  #pg-portfolio .portfolio-intro .container-list-tags .list-portfolio-tags li,
+  #pg-portfolio .portfolio-intro .container-list-tags .list-market-tags li {
     margin: 0.5rem 0.7rem;
   }
 }
@@ -19490,9 +19332,10 @@ only screen and (max-width: 767.98px) {
   }
 }
 
-/* #pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text .wrapper-text p:not(:first-child) {
+#pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text .wrapper-text p:not(:first-child) {
   margin-top: 2rem;
-} */
+}
+
 #pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text .btn-read-more {
   display: flex;
   justify-content: flex-start;
@@ -19548,7 +19391,7 @@ only screen and (max-width: 767.98px) {
 }
 
 #pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text.container-read-more .wrapper-text {
-  height: auto;
+  height: 20rem;
   overflow: hidden;
   -webkit-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
   -moz-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -19570,18 +19413,19 @@ only screen and (max-width: 767.98px) {
   }
 }
 
-/* #pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text.container-read-more.active .wrapper-text {
+#pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text.container-read-more.active .wrapper-text {
   height: var(--h);
-} */
-#pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text.container-read-more:has(.active) .btn-read-more i {
+}
+
+#pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text.container-read-more.active .btn-read-more i {
   transform: rotate(-180deg);
 }
 
-#pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text.container-read-more:has(.active) .btn-read-more .btn-text .read-more {
+#pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text.container-read-more.active .btn-read-more .btn-text .read-more {
   transform: translateY(-100%);
 }
 
-#pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text.container-read-more:has(.active) .btn-read-more .btn-text .to-go-back {
+#pg-project .project-intro .wrapper-portfolio .column-portfolio .container-text.container-read-more.active .btn-read-more .btn-text .to-go-back {
   transform: translateY(0);
 }
 
@@ -19944,18 +19788,13 @@ only screen and (max-width: 767.98px) {
   overflow: hidden;
 }
 
-#pg-market .market-how-we-do-it .list-how-we-do-it li:not(ul.bullet_points li) {
+#pg-market .market-how-we-do-it .list-how-we-do-it li {
   display: flex;
   justify-content: initial;
   align-items: initial;
   align-content: initial;
   flex-wrap: wrap;
   flex-direction: row;
-}
-
-#pg-market .market-how-we-do-it .list-how-we-do-it ul.bullet_points {
-  list-style: disc;
-  padding-left: 2rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -22447,6 +22286,343 @@ only screen and (max-width: 767.98px) {
   }
 }
 
+@media only screen and (min-width: 1025.1px) {
+  #pg-careers {
+    padding-top: 20.8rem;
+  }
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  position: relative;
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item:before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  display: block;
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  background: var(--blue-1);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item:first-child:after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  background: var(--blue-1);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job {
+  display: flex;
+  justify-content: initial;
+  align-items: initial;
+  align-content: initial;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job>* {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px),
+only screen and (max-width: 768px) and (max-height: 550px) and (orientation: landscape) and (min-width:420px) {
+
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-function,
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now {
+    max-width: 30%;
+  }
+}
+
+@media only screen and (max-width: 767.98px) and (orientation: portrait) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-function {
+    max-width: 30%;
+  }
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-function .function {
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 1025.1px) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-function .function {
+    padding-right: 5rem;
+  }
+}
+
+@media only screen and (min-width: 768px),
+only screen and (max-width: 768px) and (max-height: 550px) and (orientation: landscape) and (min-width:420px) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info {
+    max-width: 40%;
+  }
+}
+
+@media only screen and (max-width: 767.98px) and (orientation: portrait) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info {
+    max-width: 70%;
+    padding-left: 2rem;
+  }
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  text-transform: uppercase;
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item:not(:last-child) {
+  margin-bottom: 0.4rem;
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-1 {
+  display: block;
+}
+
+@media only screen and (min-width: 1025.1px) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-1 {
+    width: 14rem;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-1 {
+    width: 8rem;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-1 {
+    font-size: 1.2rem;
+  }
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-2 {
+  flex: 1;
+  margin-top: -0.1rem;
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-job-info .job-info .job-info-item .description-2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 768px),
+only screen and (max-width: 768px) and (max-height: 550px) and (orientation: landscape) and (min-width:420px) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 767.98px) and (orientation: portrait) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 2rem;
+  }
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now {
+  --btn-p: 2.12rem 5.6rem;
+  font-size: clamp(12px, 1.4rem, 1.4rem);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@media only screen and (min-width: 1025.1px) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now {
+    --min-w: 28rem;
+  }
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px),
+only screen and (max-width: 768px) and (max-height: 550px) and (orientation: landscape) and (min-width:420px) {
+  #pg-careers .careers-jobs-board .column-1 .list-jobs .list-item .wrapper-job .container-btn-apply-now .btn-apply-now {
+    --min-w: 17.6rem;
+    --btn-p: 1.8rem 5.6rem;
+  }
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item.aos-animate:before,
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item.aos-animate:after {
+  transform: scaleX(1);
+  -webkit-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -moz-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -ms-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-delay: 0.2s;
+}
+
+#pg-careers .careers-jobs-board .column-1 .list-jobs .list-item.aos-animate .wrapper-job {
+  -webkit-animation: fadeIn 0.8s cubic-bezier(0.42, 0, 0.58, 1) 0.2s both 1;
+  -moz-animation: fadeIn 0.8s cubic-bezier(0.42, 0, 0.58, 1) 0.2s both 1;
+  -ms-animation: fadeIn 0.8s cubic-bezier(0.42, 0, 0.58, 1) 0.2s both 1;
+  -o-animation: fadeIn 0.8s cubic-bezier(0.42, 0, 0.58, 1) 0.2s both 1;
+  animation: fadeIn 0.8s cubic-bezier(0.42, 0, 0.58, 1) 0.2s both 1;
+}
+
+#pg-careers .careers-jobs-board .column-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+#pg-careers .careers-intro .row-1 .column-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1025px) and (max-height: 550px) and (orientation: landscape) {
+  #pg-careers .careers-intro .row-1 .column-1 h1 {
+    max-width: 50rem;
+  }
+}
+
+#pg-careers .careers-intro .row-2 .column-1 .container-video {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1025px) {
+  #pg-careers .careers-intro .row-2 .column-1 .container-video {
+    border-radius: 2rem;
+  }
+}
+
+#pg-careers .careers-intro .row-2 .column-1 .container-video:before {
+  content: "";
+  width: 100%;
+  display: block;
+  padding-top: 56.274%;
+}
+
+#pg-careers .careers-intro .row-2 .column-1 .container-video .play-img {
+  position: absolute;
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 12;
+  pointer-events: none;
+  -webkit-transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  -moz-transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  -ms-transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  -o-transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition-delay: 0s;
+}
+
+@media only screen and (min-width: 1025.1px) {
+  #pg-careers .careers-intro .row-2 .column-1 .container-video .play-img {
+    width: 17.2rem;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  #pg-careers .careers-intro .row-2 .column-1 .container-video .play-img {
+    width: 6.2rem;
+  }
+}
+
+#pg-careers .careers-intro .row-2 .column-1 .container-video .main-video {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#pg-careers .careers-intro .row-2 .column-1 .container-video .main-video .plyr .plyr__control.plyr__control--overlaid {
+  display: none;
+}
+
+#pg-careers .careers-intro .row-2 .column-1 .container-video .thumb {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  -webkit-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  -ms-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  transition-delay: 0s;
+}
+
+#pg-careers .careers-intro .row-2 .column-1 .container-video .thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#pg-careers .careers-intro .row-2 .column-1 .container-video.playing .play-img {
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+}
+
+#pg-careers .careers-intro .row-2 .column-1 .container-video.playing .thumb {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 1025px) {
+  #pg-careers .about-our-boards {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+  }
+}
+
 .section-intro-we-are {
   min-height: 100vh;
 }
@@ -23153,7 +23329,7 @@ only screen and (max-width: 767.98px) {
 
 @media only screen and (max-width: 767.98px) {
   .section-studios .accordion-list-studios .accordion-item:not(:first-child) {
-    margin-top: -5.2rem;
+    margin-top: -4.5rem;
   }
 }
 
@@ -23390,7 +23566,7 @@ only screen and (max-width: 767.98px) {
 @media only screen and (max-width: 1025px) {
   .section-studios .accordion-list-studios .accordion-item .accordion-content .accordion-text {
     position: relative;
-    padding-bottom: 11.3rem;
+    padding-bottom: 3rem;
     color: var(--blue-1);
     -webkit-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
     -moz-transition: all 0.2s cubic-bezier(0.42, 0, 0.58, 1);
@@ -23412,6 +23588,24 @@ only screen and (max-width: 767.98px) {
   .section-studios .accordion-list-studios .accordion-item .accordion-content .accordion-text {
     padding-left: 3.9rem;
     padding-right: 3.9rem;
+  }
+}
+
+.section-studios .accordion-list-studios .accordion-item .accordion-content a {
+  opacity: 0;
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a {
+    margin-left: 12.6rem;
+    margin-bottom: 8rem;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a {
+    margin-left: 3.9rem;
+    margin-bottom: 8rem;
   }
 }
 
@@ -23509,6 +23703,16 @@ only screen and (max-width: 767.98px) {
   .section-studios .accordion-list-studios .accordion-item.active .accordion-content .accordion-text {
     transition-delay: 0.4s;
   }
+}
+
+.section-studios .accordion-list-studios .accordion-item.active .accordion-content a {
+  opacity: 1;
+  -webkit-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  -ms-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  transition-delay: 0.5s;
 }
 
 @media only screen and (min-width: 1025.1px) {
@@ -23940,214 +24144,6 @@ only screen and (max-width: 767.98px) {
   flex-direction: column;
 }
 
-/* 
-.overlay {
-  content: "";
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--white-1);
-  z-index: 0;
-  opacity: 0;
-}
-body.page-leave-active[data-load="first-done"] .overlay {
-  -webkit-opacity: 1;
-  -moz-opacity: 1;
-  opacity: 1;
-  z-index: 97;
-} */
-
-.hidden {
-  display: none !important;
-}
-
-.menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios:not(.active) {
-  background-color: white;
-  color: #0f41fa;
-}
-
-.menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios:not(.active):before {
-  color: #0f41fa;
-}
-
-.menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios.disabled {
-  background: var(--gray-3);
-  color: white;
-  user-select: none;
-  pointer-events: none;
-}
-
-.menu-search .wrapper-search .container-results .result-all-studios .list-result-all-studios .grid-item .link-studios.disabled:before {
-  color: white;
-}
-
-.menu-search .wrapper-search .container-results .result-our-markets .market-link.disabled {
-  user-select: none;
-  pointer-events: none;
-}
-
-.menu-search .wrapper-search .container-results .result-our-markets .market-link.disabled:after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: absolute;
-  top: 0;
-  right: auto;
-  bottom: auto;
-  left: 0;
-  background: var(--white-2) !important;
-  z-index: 5;
-  opacity: 0.8;
-  border-radius: 2rem;
-}
-
-.result-our-markets .grid-item.active .market-link.project-link .container-text {
-  color: #0f41fa;
-}
-
-.mt-3-cs {
-  margin-top: 3rem;
-}
-
-.column-results.custom-css {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-evenly;
-}
-
-.container-contact.form-success:not(.formError) .form-contact {
-  opacity: 0.2;
-  pointer-events: none;
-  -webkit-transition: all 0.6s cubic-bezier(0.42, 0, 0.58, 1);
-  -moz-transition: all 0.6s cubic-bezier(0.42, 0, 0.58, 1);
-  -ms-transition: all 0.6s cubic-bezier(0.42, 0, 0.58, 1);
-  -o-transition: all 0.6s cubic-bezier(0.42, 0, 0.58, 1);
-  transition: all 0.6s cubic-bezier(0.42, 0, 0.58, 1);
-  transition-delay: 0s;
-}
-
-.container-newsletter.form-success .form-newsletter {
-  opacity: 0.2;
-  pointer-events: none;
-}
-
-.container-newsletter.form-success .feedback-newsletter {
-  position: absolute;
-  top: 55%;
-  right: auto;
-  bottom: auto;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--white-1);
-}
-
-.container-newsletter.form-success .feedback-newsletter {
-  position: absolute;
-  top: auto;
-  right: auto;
-  bottom: -3rem;
-  left: 0;
-  color: var(--white-1);
-}
-
-.container-newsletter.formError .feedback-newsletter {
-  position: absolute;
-  top: auto;
-  right: auto;
-  bottom: -3rem;
-  left: 0;
-  color: var(--white-1);
-}
-
-.productSlider-label {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.list-pinterest>span {
-  min-width: 100% !important;
-  max-width: 100% !important;
-  display: flex;
-}
-
-.list-pinterest>span>span:nth-child(1) {
-  display: none;
-}
-
-.list-pinterest>span>span:nth-child(3) {
-  display: none;
-}
-
-.insta-feed,
-.list-blog-lets-get-social {
-  height: 100% !important;
-  max-height: 55vh !important;
-  overflow-x: hidden;
-}
-
-.list-pinterest>span>span:nth-child(2) {
-  height: 100% !important;
-  max-height: 55vh !important;
-  width: 100%;
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1600px) {
-  .list-pinterest>span>span:nth-child(2) {
-    max-height: 40vh !important;
-  }
-
-  .insta-feed,
-  .list-blog-lets-get-social {
-    max-height: 40vh !important;
-  }
-}
-
-.wrapper-text .readmore-paragraphs {
-  max-height: 0;
-  margin-top: 0 !important;
-  -webkit-transition: max-height 2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -moz-transition: max-height 2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -ms-transition: max-height 2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -o-transition: max-height 2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: max-height 2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition-delay: 0s !important;
-}
-
-.wrapper-text.active .readmore-paragraphs {
-  max-height: 50vh;
-  transition-delay: 0s !important;
-}
-
-
-.wrapper-text:not(.active) .readmore-paragraphs {
-  transition: max-height 1s !important;
-}
-
-.not_found_text {
-  min-height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.video-wrapper {
-  max-height: 60dvh;
-  max-width: 1200px;
-  display: flex;
-  justify-content: center;
-}
-
-.insta-feed::-webkit-scrollbar-thumb,
-.list-blog-lets-get-social::-webkit-scrollbar-thumb {
-  cursor: pointer;
-}
-
 .section-error-404 {
   display: flex;
   justify-content: center;
@@ -24225,17 +24221,310 @@ body.page-leave-active[data-load="first-done"] .overlay {
   }
 }
 
-modal-group[name="modal-about-magazine"] modal-item,
-modal-group[name="modal-about-magazine"] .wrapper-modal {
-  width: 100%;
-  max-width: 1200px;
+.section-terms-and-policy {
+  padding-bottom: 10rem;
 }
 
-modal-group[name="modal-about-magazine"] iframe {
-  width: 100% !important;
-  height: 60dvh !important;
+@media only screen and (min-width: 1025.1px) {
+  .section-terms-and-policy {
+    padding-top: 14.7rem;
+  }
 }
 
-modal-group[name="modal-about-magazine"] iframe body {
-  display: none;
+@media only screen and (max-width: 1025px) {
+  .section-terms-and-policy {
+    padding-top: 12rem;
+  }
+}
+
+.section-terms-and-policy .title {
+  color: var(--blue-1);
+  text-align: center;
+}
+
+.section-terms-and-policy .editor {
+  color: var(--black-3);
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .section-terms-and-policy .editor {
+    margin-top: 5.5rem;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .section-terms-and-policy .editor {
+    margin-top: 4rem;
+  }
+}
+
+.about-our-boards {
+  padding-top: 43.2rem;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards {
+    padding-bottom: 28.3rem;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .about-our-boards {
+    padding-bottom: 26rem;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .about-our-boards {
+    padding-bottom: 17.5rem;
+  }
+}
+
+.about-our-boards .list-boards {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.about-our-boards .list-boards li {
+  position: relative;
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .about-our-boards .list-boards li {
+    width: 100%;
+  }
+}
+
+.about-our-boards .list-boards li .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  position: relative;
+  background: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 2rem;
+  transform: rotate(var(--rotate));
+  -webkit-transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -moz-transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -ms-transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-delay: 0s;
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards .list-boards li .content {
+    width: 46.5rem;
+    height: auto;
+    min-height: 39.3rem;
+    padding: 3.5rem 3.2rem;
+  }
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .about-our-boards .list-boards li .content {
+    width: 46.8rem;
+    height: 29.1rem;
+    padding: 2.4rem 2.6rem;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .about-our-boards .list-boards li .content {
+    width: 42.1rem;
+    height: 35.6rem;
+    padding: 4.4rem 2.9rem 3.8rem;
+  }
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards .list-boards li .content .text {
+    max-width: 36.9rem;
+  }
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .about-our-boards .list-boards li .content .text {
+    font-size: 1.8rem;
+    max-width: 40.6rem;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .about-our-boards .list-boards li .content .text {
+    font-size: 1.5rem;
+    line-height: 1.266em;
+    max-width: 32.4rem;
+  }
+}
+
+.about-our-boards .list-boards li:first-child {
+  --bg-color: var(--blue-2);
+  --text-color: var(--white-1);
+  margin-left: -0.5rem;
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards .list-boards li:first-child {
+    --rotate: 5deg;
+    z-index: 2;
+  }
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .about-our-boards .list-boards li:first-child {
+    --rotate: 11deg;
+    order: 1;
+    z-index: 5;
+  }
+
+  .about-our-boards .list-boards li:first-child .content {
+    margin-left: auto;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .about-our-boards .list-boards li:first-child {
+    --rotate: 5deg;
+    padding-left: 3rem;
+  }
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards .list-boards li:first-child:hover {
+    --rotate: 15deg;
+  }
+}
+
+.about-our-boards .list-boards li:nth-child(2) {
+  --bg-color: var(--white-1);
+  --text-color: var(--blue-1);
+  margin-top: 18.9rem;
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards .list-boards li:nth-child(2) {
+    margin-left: -7.1rem;
+    z-index: 3;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .about-our-boards .list-boards li:nth-child(2) {
+    --rotate: 15deg;
+  }
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .about-our-boards .list-boards li:nth-child(2) {
+    order: 4;
+    margin-top: -2.8rem;
+    z-index: 2;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .about-our-boards .list-boards li:nth-child(2) {
+    --rotate: -7deg;
+    margin-top: 1.9rem;
+    padding-left: 2rem;
+  }
+}
+
+@media only screen and (max-width: 768px) and (max-height: 550px) and (orientation: landscape) and (min-width:420px) {
+  .about-our-boards .list-boards li:nth-child(2) {
+    margin-left: -5rem;
+  }
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards .list-boards li:nth-child(2):hover {
+    --rotate: 4deg;
+  }
+}
+
+.about-our-boards .list-boards li:nth-child(3) {
+  --bg-color: var(--blue-3);
+  --text-color: var(--white-1);
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards .list-boards li:nth-child(3) {
+    --rotate: 30deg;
+    margin-top: 10.5rem;
+    margin-left: -10.5rem;
+    z-index: 4;
+  }
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .about-our-boards .list-boards li:nth-child(3) {
+    --rotate: -20deg;
+    order: 3;
+    margin-top: -4.5rem;
+    padding-right: 3rem;
+    z-index: 3;
+  }
+
+  .about-our-boards .list-boards li:nth-child(3) .content {
+    margin-left: auto;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .about-our-boards .list-boards li:nth-child(3) {
+    --rotate: -14deg;
+    margin-top: 2.5rem;
+    z-index: 1;
+  }
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards .list-boards li:nth-child(3):hover {
+    --rotate: 21deg;
+  }
+}
+
+.about-our-boards .list-boards li:nth-child(4) {
+  --bg-color: var(--blue-1);
+  --text-color: var(--white-1);
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards .list-boards li:nth-child(4) {
+    --rotate: -30deg;
+    margin-top: -16.2rem;
+    margin-left: 12.7rem;
+    z-index: 1;
+  }
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .about-our-boards .list-boards li:nth-child(4) {
+    --rotate: -3deg;
+    order: 2;
+    margin-top: -14.5rem;
+    margin-left: 0.8rem;
+    z-index: 4;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .about-our-boards .list-boards li:nth-child(4) {
+    --rotate: -4deg;
+  }
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .about-our-boards .list-boards li:nth-child(4):hover {
+    --rotate: -19deg;
+  }
 }

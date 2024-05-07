@@ -13,6 +13,7 @@ export default function Document() {
         <link rel="modulepreload" href="/js/chat.js" />
         <link rel="preload" as="style" href="/js/utils.css" />
         <link rel="preload" as="style" href="/js/app.css" />
+        <link rel="preload" as="style" href="/js/custom.css" />
 
         <script async type="module" src="/js/app2.js"></script>
         <script async type="module" src="/js/search.js"></script>
@@ -20,12 +21,11 @@ export default function Document() {
         <script async type="module" src="/js/chat.js"></script>
         <link rel="stylesheet" href="/js/utils.css" />
         <link rel="stylesheet" href="/js/app.css" />
+        <link rel="stylesheet" href="/js/custom.css" />
       </Head>
       <body data-scroll-direction="initial" data-search-container>
         <span className="updateWatchedTrigger d-none"></span>
-        <span className="triggerSplitWordAnimation d-none"></span>
         <span className="initScript d-none"></span>
-        <span className="stickyAnimationTrigger d-none"></span>
         <Main />
         <NextScript />
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBJ97DL"
