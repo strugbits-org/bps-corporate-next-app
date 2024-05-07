@@ -112,6 +112,11 @@ const Footer = ({ footerData, contactData, socialLinks }) => {
                       <span>Contact</span>
                     </DelayedLink>
                   </li>
+                  <li className="list-item">
+                    <DelayedLink to="/careers" className="link-footer-menu">
+                      <span>Careers</span>
+                    </DelayedLink>
+                  </li>
                   {/* <li className="list-item">
                     <DelayedLink to="/" className="link-footer-menu">
                       <span>FAQ</span>

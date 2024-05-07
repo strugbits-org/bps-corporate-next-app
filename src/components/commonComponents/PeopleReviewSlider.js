@@ -1,7 +1,7 @@
 import { generateImageURL } from "@/common/functions/imageURL";
 import { DefaultButton } from "./DefaultButton";
 
-const PeopleReviewSLider = ({ data, homeSectionDetails }) => {
+const PeopleReviewSLider = ({ data, homeSectionDetails, actionButton = true }) => {
 
   return (
 
@@ -58,7 +58,7 @@ const PeopleReviewSLider = ({ data, homeSectionDetails }) => {
               <div className="swiper-pagination no-mobile"></div>
             </div>
           </div>
-          <div className="col-lg-4 offset-lg-4 mt-lg-45 mt-tablet-90 mt-phone-25 flex-center column-btn">
+          {actionButton && <div className="col-lg-4 offset-lg-4 mt-lg-45 mt-tablet-90 mt-phone-25 flex-center column-btn">
             <DefaultButton
               data={{
                 label: homeSectionDetails.reviewsButtonLabel,
@@ -66,6 +66,7 @@ const PeopleReviewSLider = ({ data, homeSectionDetails }) => {
               }}
             ></DefaultButton>
           </div>
+          }
         </div>
       </div>
     </section>

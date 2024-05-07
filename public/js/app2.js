@@ -15976,9 +15976,7 @@ var require_app2 = __commonJS({
     function main$careers() {
       sliderTestimony();
       const containerVideo = document.querySelector(".container-video");
-      console.log("containerVideo", containerVideo);
       const video = document.querySelector(".player-video.careers-video");
-      console.log("video", video);
 
       const thumb = document.querySelector(".thumb video");
       const player = new Plyr(video, {
