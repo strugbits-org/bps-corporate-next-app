@@ -53,3 +53,21 @@ export const getSocialLinks = async () => {
         throw new Error(error.message);
     }
 }
+
+export const getFooterNavigationMenu = async () => {
+    try {
+        const data = {
+            "dataCollectionId": "FooterNavigationMenu",
+            "includeReferencedItems": null,
+            "returnTotalCount": null,
+            "find": {},
+            "contains": null,
+            "eq": null,
+            "limit": null
+          }
+          const response = await fetchCollection(data);
+          return response._items.map((x) => x.data).sort((a, b) => a.orderNumber - b.orderNumber);
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}

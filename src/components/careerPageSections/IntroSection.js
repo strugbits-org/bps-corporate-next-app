@@ -31,11 +31,11 @@ export const IntroSection = ({ data }) => {
                             </div>
                             <div className="main-video" data-aos="d:loop">
                                 <video data-src={getFullVideoURL(data.mainVideo)} src={getFullVideoURL(data.mainVideo)}
-                                    data-preload className="player-video careers-video media" muted loop playsinline></video>
+                                    data-preload className="player-video careers-video media" muted loop playsInline></video>
                             </div>
                             <div className="thumb"><video data-src={getFullVideoURL(data.videoThumbPosterVideo)}
                                 src={getFullVideoURL(data.videoThumbPosterVideo)} data-preload data-autoplay loop
-                                className=" media" muted playsinline></video>
+                                className=" media" muted playsInline></video>
                             </div>
                         </div>
                     </div>

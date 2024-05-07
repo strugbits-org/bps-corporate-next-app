@@ -1,19 +1,9 @@
-// import { generateImageURL } from "@/common/functions/imageURL";
-// import React from "react";
-// import { useSelector } from "react-redux";
-// import DelayedLink from "@/components/common/DelayedLink";
-// import Newsletter from "@/components/common/Newsletter";
-
 import { generateImageURL } from "@/common/functions/imageURL";
 import DelayedLink from "@/components/common/DelayedLink";
 import Newsletter from "@/components/common/Newsletter";
+import { DynamicLink } from "@/components/commonComponents/DynamicLink";
 
-const Footer = ({ footerData, contactData, socialLinks }) => {
-  const EXTERNAL_SITE_URL = "https://www.rentals.blueprintstudios.com";
-
-  // const footerData = useSelector((state) => state.footer.data.footerData);
-  // const contactData = useSelector((state) => state.footer.data.contactData);
-  // const socialLinks = useSelector((state) => state.footer.socialLinks);
+const Footer = ({ menu, footerData, contactData, socialLinks }) => {
 
   return (
     <footer id="footer" data-cursor-style="off">
@@ -71,67 +61,20 @@ const Footer = ({ footerData, contactData, socialLinks }) => {
 
               <div className="container-footer-menu mt-lg-165 mt-tablet-55 mt-phone-125">
                 <ul className="list-footer-menu">
-                  <li className="list-item">
-                    <button
-                      data-set-submenu="services"
-                      className="link-footer-menu"
-                    >
-                      <span>Services</span>
-                    </button>
-                  </li>
-                  <li className="list-item">
-                    <DelayedLink to={EXTERNAL_SITE_URL} target={"blank"} className="link-footer-menu">
-                      <span>Rental Store</span>
-                    </DelayedLink>
-                  </li>
-                  <li className="list-item">
-                    <button
-                      data-set-submenu="market"
-                      className="link-footer-menu"
-                    >
-                      <span>Market</span>
-                    </button>
-                  </li>
-                  <li className="list-item">
-                    <DelayedLink to="/portfolio" className="link-footer-menu">
-                      <span>Portfolio</span>
-                    </DelayedLink>
-                  </li>
-                  <li className="list-item">
-                    <DelayedLink to="/about" className="link-footer-menu">
-                      <span>About</span>
-                    </DelayedLink>
-                  </li>
-                  <li className="list-item">
-                    <DelayedLink to="/blog" className="link-footer-menu">
-                      <span>Blog</span>
-                    </DelayedLink>
-                  </li>
-                  <li className="list-item">
-                    <DelayedLink to="/contact" className="link-footer-menu">
-                      <span>Contact</span>
-                    </DelayedLink>
-                  </li>
-                  <li className="list-item">
-                    <DelayedLink to="/careers" className="link-footer-menu">
-                      <span>Careers</span>
-                    </DelayedLink>
-                  </li>
-                  {/* <li className="list-item">
-                    <DelayedLink to="/" className="link-footer-menu">
-                      <span>FAQ</span>
-                    </DelayedLink>
-                  </li>
-                  <li className="list-item">
-                    <DelayedLink to="/" className="link-footer-menu">
-                      <span>Terms of use</span>
-                    </DelayedLink>
-                  </li>
-                  <li className="list-item">
-                    <DelayedLink to="/" className="link-footer-menu">
-                      <span>Privacy policy</span>
-                    </DelayedLink>
-                  </li> */}
+                  {menu.map((item) => {
+                    return (
+                      <li key={item._id} className="list-item">
+                        <DynamicLink
+                          customClasses={"link-footer-menu"}
+                          data={{
+                            label: item.title,
+                            action: item.action
+                          }}
+                        >
+                        </DynamicLink>
+                      </li>
+                    )
+                  })}
                   <li className="list-item item-social-media">
                     <ul className="list-social-media">
                       {socialLinks.map((item, index) => (

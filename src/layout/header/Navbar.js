@@ -2,7 +2,6 @@ import DelayedLink from "@/components/common/DelayedLink";
 import Services from "./models/Services";
 import Market from "./models/Market";
 import Search from "./models/Search";
-// import Search from "./models/Search";
 
 const Navbar = ({ studios, markets, searchContent }) => {
   const EXTERNAL_SITE_URL = "https://www.rentals.blueprintstudios.com";
@@ -192,30 +191,17 @@ const Navbar = ({ studios, markets, searchContent }) => {
               </nav>
               {/* navbar end */}
 
-              {/* services model component start */}
-              <div
-                className="submenu-services submenu"
-                data-get-submenu="services"
-              >
+              <div className="submenu-services submenu" data-get-submenu="services">
                 <Services data={studios} />
               </div>
-              {/* services model component end */}
-
-              {/* market model component start */}
               <div className="submenu-market submenu" data-get-submenu="market">
                 <Market data={markets} />
               </div>
-              {/* market model component end */}
-
-              {/* search model component start */}
               <Search studios={studios} markets={markets} searchContent={searchContent} />
-
-              {/* search model component end */}
             </div>
           </div>
         </div>
       </header>
-      {/* <ModalsContainer/> */}
     </>
   );
 };
