@@ -62,7 +62,7 @@ const Footer = ({ menu, footerData, contactData, socialLinks }) => {
               <div className="container-footer-menu mt-lg-165 mt-tablet-55 mt-phone-125">
                 <ul className="list-footer-menu">
                   {menu.map((item) => {
-                    return item.title !== "Careers" ? (
+                    return (
                       <li key={item._id} className="list-item">
                         <DynamicLink
                           customClasses={"link-footer-menu"}
@@ -73,7 +73,7 @@ const Footer = ({ menu, footerData, contactData, socialLinks }) => {
                         >
                         </DynamicLink>
                       </li>
-                    ) : null;
+                    )
                   })}
                   <li className="list-item item-social-media">
                     <ul className="list-social-media">
