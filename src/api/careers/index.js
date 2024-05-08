@@ -53,3 +53,21 @@ export const getCareersJobsBoard = async () => {
         throw new Error(error.message);
     }
 }
+
+export const getWhoWorksSection = async () => {
+    try {
+        const data = {
+            "dataCollectionId": "WhoWorksSection",
+            "includeReferencedItems": null,
+            "returnTotalCount": null,
+            "find": {},
+            "contains": null,
+            "eq": null,
+            "limit": null
+        }
+        const response = await fetchCollection(data);
+        return response._items.map((x) => x.data).sort((a, b) => a.orderNumber - b.orderNumber);
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}

@@ -28,9 +28,9 @@ export const getContactData = async () => {
             "contains": null,
             "eq": null,
             "limit": null
-          }
-          const response = await fetchCollection(data);
-          return response._items.map((x) => x.data);
+        }
+        const response = await fetchCollection(data);
+        return response._items.map((x) => x.data);
     } catch (error) {
         throw new Error(error.message);
     }
@@ -46,9 +46,9 @@ export const getSocialLinks = async () => {
             "contains": null,
             "eq": null,
             "limit": null
-          }
-          const response = await fetchCollection(data);
-          return response._items.map((x) => x.data).sort((a, b) => a.orderNumber - b.orderNumber);
+        }
+        const response = await fetchCollection(data);
+        return response._items.map((x) => x.data).sort((a, b) => a.orderNumber - b.orderNumber);
     } catch (error) {
         throw new Error(error.message);
     }
@@ -64,9 +64,9 @@ export const getFooterNavigationMenu = async () => {
             "contains": null,
             "eq": null,
             "limit": null
-          }
-          const response = await fetchCollection(data);
-          return response._items.map((x) => x.data).sort((a, b) => a.orderNumber - b.orderNumber);
+        }
+        const response = await fetchCollection(data);
+        return response._items.filter(x => !x.data.isHidden).map((x) => x.data).sort((a, b) => a.orderNumber - b.orderNumber);
     } catch (error) {
         throw new Error(error.message);
     }
