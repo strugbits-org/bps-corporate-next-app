@@ -31,7 +31,7 @@ export async function getServerSideProps({ req, res }) {
   const pages = await getAllPagesMetaData();
 
   const page_routes = pages.reverse().map((x) => x.slug);
-  const subpages = ["market", "services", "project", "article", "careers"];
+  const subpages = ["market", "services", "project", "article"];
   const filtered_routes = page_routes.filter(route => !subpages.includes(route));
 
   const sitemap = generateSiteMap(origin, filtered_routes);

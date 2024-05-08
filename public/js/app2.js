@@ -16122,9 +16122,9 @@ var require_app2 = __commonJS({
         case 'about':
           main$7();
           break;
-        // case 'careers':
-        //   main$careers();
-        //   break;
+        case 'careers':
+          main$careers();
+          break;
         case 'project':
           main$6();
           break;
