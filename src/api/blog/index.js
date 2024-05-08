@@ -39,6 +39,7 @@ export const getBlogProductData = async ({ slug }) => {
       contains: null,
       eq: ["slug", slug],
       limit: null,
+      filterProducts: true,
     };
     const response = await fetchCollection(data);
     return response._items.map((x) => x.data)[0];

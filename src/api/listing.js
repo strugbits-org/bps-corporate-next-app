@@ -14,7 +14,8 @@ export const listPortfolios = async ({ pageSize = 10, skip = 0, searchTerm = "",
             "markets": markets,
             "skip": skip,
             "ne": ["slug", slug],
-            "cacheKey": cacheKey
+            "cacheKey": cacheKey,
+            "filterProducts": true,
         }
         const response = await fetchCollectionSp(data, disableCache);
         return response;
@@ -38,7 +39,8 @@ export const listBlogs = async ({ pageSize = 10, skip = 0, searchTerm = "", stud
             "markets": markets,
             "skip": skip,
             "ne": ["slug", slug],
-            "cacheKey": cacheKey
+            "cacheKey": cacheKey,
+            "filterProducts": true,
         }
         const response = await fetchCollectionSp(data, disableCache);
         return response;
