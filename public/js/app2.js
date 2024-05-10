@@ -15987,21 +15987,21 @@ var require_app2 = __commonJS({
         clickToPlay: true
       });
       containerVideo.video = player;
-      containerVideo.addEventListener("click", function () {
-        if (player.paused) {
-          player.play();
-          containerVideo.classList.add("playing");
-          setTimeout(() => {
-            thumb.pause();
-          }, 600);
-        } else {
-          player.pause();
-          if (containerVideo.classList.contains("playing")) {
-            containerVideo.classList.remove("playing");
-            thumb.play();
-          }
-        }
-      });
+      // containerVideo.addEventListener("click", function () {
+      //   if (player.paused) {
+      //     player.play();
+      //     containerVideo.classList.add("playing");
+      //     setTimeout(() => {
+      //       thumb.pause();
+      //     }, 600);
+      //   } else {
+      //     player.pause();
+      //     if (containerVideo.classList.contains("playing")) {
+      //       containerVideo.classList.remove("playing");
+      //       thumb.play();
+      //     }
+      //   }
+      // });
     }
     const pgPortfolio = new Page({
       pageName: pageName$1,

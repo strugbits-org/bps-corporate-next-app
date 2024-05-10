@@ -115,7 +115,7 @@ const Search = ({ studios, markets, searchContent }) => {
 
   const handleSubmit = async (e) => {
     if (searchActive) {
-      searchCollections();
+      searchCollections(searchTerm);
     } else {
       setSearchActive(true);
     }

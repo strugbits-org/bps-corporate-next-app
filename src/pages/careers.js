@@ -8,32 +8,33 @@ import PeopleReviewSLider from '@/components/commonComponents/PeopleReviewSlider
 import SocialSection from '@/components/commonComponents/SocialSection';
 import { markPageLoaded } from '@/utils/utilityFunctions'
 
-export default function Careers({ careersPageContent, careersIntroSection, whoWorksSection, aboutUsCardsSection, careersJobsBoard, socialSectionBlogs, socialSectionDetails, instaFeed }) {
+export default function Careers({ careersPageContent, careersIntroSection, whoWorksSection, aboutUsCardsSection, socialSectionBlogs, socialSectionDetails, instaFeed }) {
     markPageLoaded();
     return (
         <>
             <IntroSection data={careersIntroSection} />
             <PeopleReviewSLider data={whoWorksSection} homeSectionDetails={careersPageContent} actionButton={false} />
             <AboutCardsSection data={aboutUsCardsSection} />
-            <JobsSection jobslist={careersJobsBoard} content={careersPageContent} />
+            {/* <JobsSection jobslist={careersJobsBoard} content={careersPageContent} /> */}
+            <JobsSection jobslist={[]} content={careersPageContent} />
             <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed} />
         </>
     )
 }
 
 export const getServerSideProps = async () => {
-    const [careersPageContent, careersIntroSection, whoWorksSection, aboutUsCardsSection, careersJobsBoard, socialSectionBlogs, socialSectionDetails, instaFeed] = await Promise.all([
+    const [careersPageContent, careersIntroSection, whoWorksSection, aboutUsCardsSection, socialSectionBlogs, socialSectionDetails, instaFeed] = await Promise.all([
         getCareersPageContent(),
         getCareersIntroSection(),
         getWhoWorksSection(),
         getAboutUsCardsSection(),
-        getCareersJobsBoard(),
         getSocialSectionBlogs(),
         getSocialSectionDetails(),
         fetchInstaFeed(),
+        // getCareersJobsBoard(),
     ]);
 
     return {
-        props: { careersPageContent, careersIntroSection, whoWorksSection, aboutUsCardsSection, careersJobsBoard, socialSectionBlogs, socialSectionDetails, instaFeed },
+        props: { careersPageContent, careersIntroSection, whoWorksSection, aboutUsCardsSection, socialSectionBlogs, socialSectionDetails, instaFeed },
     };
 };

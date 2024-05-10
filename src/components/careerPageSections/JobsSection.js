@@ -5,7 +5,7 @@ export const JobsSection = ({ jobslist, content }) => {
         <section className="careers-jobs-board pt-lg-140 pt-mobile-50">
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-lg-10 offset-lg-1 column-1">
+                    {/* <div className="col-lg-10 offset-lg-1 column-1">
                         <h2 className="fs--80 text-center split-words" data-aos="d:loop">{content.jobsListingTitle}</h2>
                         <ul className="list-jobs mt-50">
                             {jobslist.map((job) => {
@@ -46,7 +46,7 @@ export const JobsSection = ({ jobslist, content }) => {
                                 )
                             })}
                         </ul>
-                    </div>
+                    </div> */}
                     <div className="col-lg-6 offset-lg-3 column-2 py-lg-240 py-mobile-150">
                         <h2 className="fs--80 text-center split-words" data-aos="d:loop">{content.callToActionTitle}
                         </h2>
