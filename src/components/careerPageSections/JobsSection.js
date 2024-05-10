@@ -47,7 +47,7 @@ export const JobsSection = ({ jobslist, content }) => {
                             })}
                         </ul>
                     </div> */}
-                    <div className="col-lg-6 offset-lg-3 column-2 py-lg-240 py-mobile-150">
+                    <div className="col-lg-6 offset-lg-3 column-2 pb-lg-240 py-mobile-150">
                         <h2 className="fs--80 text-center split-words" data-aos="d:loop">{content.callToActionTitle}
                         </h2>
                         <DefaultButton
