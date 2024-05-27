@@ -28,7 +28,7 @@ const About = ({ aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSecti
     );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const [aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
         getAboutUsCardsSection(),
         getAboutUsIntroSection(),
@@ -44,6 +44,7 @@ export const getServerSideProps = async () => {
 
     return {
         props: { aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed },
+        revalidate: 60 * 5,
     };
 };
 

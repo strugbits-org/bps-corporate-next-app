@@ -1,6 +1,6 @@
 import { fetchCollection, fetchCollectionSp } from ".";
 
-export const listPortfolios = async ({ pageSize = 10, skip = 0, searchTerm = "", studios = [], markets = [], slug = null, cacheKey = null, disableCache = false }) => {
+export const listPortfolios = async ({ pageSize = 10, skip = 0, searchTerm = "", studios = [], markets = [], slug = null }) => {
     try {
         const data = {
             "dataCollectionId": "PortfolioCollection",
@@ -14,17 +14,16 @@ export const listPortfolios = async ({ pageSize = 10, skip = 0, searchTerm = "",
             "markets": markets,
             "skip": skip,
             "ne": ["slug", slug],
-            "cacheKey": cacheKey,
             "filterProducts": true,
         }
-        const response = await fetchCollectionSp(data, disableCache);
+        const response = await fetchCollectionSp(data);
         return response;
     } catch (error) {
         throw new Error(error.message);
     }
 }
 
-export const listBlogs = async ({ pageSize = 10, skip = 0, searchTerm = "", studios = [], markets = [], slug = null, cacheKey = null, disableCache = false }) => {
+export const listBlogs = async ({ pageSize = 10, skip = 0, searchTerm = "", studios = [], markets = [], slug = null }) => {
 
     try {
         const data = {
@@ -39,17 +38,16 @@ export const listBlogs = async ({ pageSize = 10, skip = 0, searchTerm = "", stud
             "markets": markets,
             "skip": skip,
             "ne": ["slug", slug],
-            "cacheKey": cacheKey,
             "filterProducts": true,
         }
-        const response = await fetchCollectionSp(data, disableCache);
+        const response = await fetchCollectionSp(data);
         return response;
     } catch (error) {
         throw new Error(error.message);
     }
 }
 
-export const listProducts = async ({ pageSize = 10, searchTerm = "", disableCache = false }) => {
+export const listProducts = async ({ pageSize = 10, searchTerm = "" }) => {
     try {
         const data = {
             "dataCollectionId": "locationFilteredVariant",
@@ -60,14 +58,14 @@ export const listProducts = async ({ pageSize = 10, searchTerm = "", disableCach
             "eq": null,
             "limit": pageSize
         }
-        const response = await fetchCollection(data, disableCache);
+        const response = await fetchCollection(data);
         return response;
     } catch (error) {
         throw new Error(error.message);
     }
 }
 
-export const searchAllPages = async ({ pageSize = 10, searchTerm = "", disableCache = false }) => {
+export const searchAllPages = async ({ pageSize = 10, searchTerm = "" }) => {
     try {
         const data = {
             "dataCollectionId": "TextCollectionPages",
@@ -78,7 +76,7 @@ export const searchAllPages = async ({ pageSize = 10, searchTerm = "", disableCa
             "eq": ["showInSearch", true],
             "limit": pageSize
         }
-        const response = await fetchCollection(data, disableCache);
+        const response = await fetchCollection(data);
         return response._items.map((x) => x.data);
     } catch (error) {
         throw new Error(error.message);

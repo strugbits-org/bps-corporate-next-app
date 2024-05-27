@@ -48,7 +48,6 @@ export const getPortfolio = async ({ pageSize, id }) => {
   try {
     const options = {
       pageSize: pageSize,
-      cacheKey: "projectPortfoliosSection_" + id,
       slug: id,
     };
 

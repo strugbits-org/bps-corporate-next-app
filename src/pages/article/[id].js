@@ -9,6 +9,7 @@ import {
   getSocialSectionBlogs,
   getSocialSectionDetails,
 } from "@/api/home.js";
+import { listBlogs } from "@/api/listing";
 import PostDetails from "@/components/blogDetailPageSections/PostDetails";
 import RecentPosts from "@/components/blogDetailPageSections/RecentPosts";
 import SocialSection from "@/components/commonComponents/SocialSection";
@@ -57,10 +58,20 @@ const Portfolio = ({
   );
 };
 
-export const getServerSideProps = async (context) => {
+export async function getStaticPaths() {
+  const articles = await listBlogs({ pageSize: "50" });
+
+  const paths = articles._items.map((article) => ({
+    params: { id: article.data.slug },
+  }));
+
+  return { paths, fallback: 'blocking' }
+}
+
+export const getStaticProps = async ({ params }) => {
   try {
     const blogProductData = await getBlogProductData({
-      slug: context.query.id,
+      slug: params.id,
     });
     if (!blogProductData || blogProductData.isHidden) {
       return {
@@ -76,8 +87,8 @@ export const getServerSideProps = async (context) => {
       instaFeed,
     ] = await Promise.all([
       getBlogSectionDetails(),
-      getBlogPostData({ pageSize: 4, slug: context.query.id }),
-      getBlogTags({ ids: blogProductData.blogRef.tags, slug: context.query.id }),
+      getBlogPostData({ pageSize: 4 }),
+      getBlogTags({ ids: blogProductData.blogRef.tags }),
       getSocialSectionDetails(),
       getSocialSectionBlogs(),
       fetchInstaFeed(),
@@ -92,9 +103,9 @@ export const getServerSideProps = async (context) => {
         socialSectionBlogs,
         instaFeed,
       },
+      revalidate: 60 * 5,
     };
   } catch (error) {
-    console.log("Error:", error);
     console.error("Error:", error);
   }
 };

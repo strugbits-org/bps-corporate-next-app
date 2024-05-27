@@ -28,7 +28,7 @@ export async function getServerSideProps({ req, res }) {
   const protocol = req.headers['x-forwarded-proto'] ? req.headers['x-forwarded-proto'] : req.connection.encrypted ? 'https' : 'http';
   const origin = `${protocol}://${host}`;
 
-  const blogs = await listBlogs({ pageSize: "50", cacheKey: "sitemap_articles_" });
+  const blogs = await listBlogs({ pageSize: "50" });
   const blogs_routes = blogs._items.map((x) => "article/" + x.data.slug);
 
   const sitemap = generateSiteMap(origin, blogs_routes);

@@ -6,9 +6,9 @@ import SocialSection from "@/components/commonComponents/SocialSection";
 import { markPageLoaded, pageLoadEnd, pageLoadStart, updatedWatched } from "@/utils/utilityFunctions";
 import { useEffect, useState } from "react";
 
-export default function Blog({ blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
+export default function Blog({ blogs, blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
 
-  const [blogResponse, setBlogResponse] = useState(null);
+  const [blogResponse, setBlogResponse] = useState(blogs);
   const [blogCollection, setBlogCollection] = useState([]);
   const pageSize = 8;
   const data = {
@@ -21,7 +21,7 @@ export default function Blog({ blogSectionDetails, marketsSectionData, studios, 
   }
 
   const handleSeeMore = async ({ selectedStudios = [], selectedMarkets = [] }) => {
-    const response = await listBlogs({ pageSize, skip: blogCollection.length, studios: selectedStudios, markets: selectedMarkets, disableCache: true });
+    const response = await listBlogs({ pageSize, skip: blogCollection.length, studios: selectedStudios, markets: selectedMarkets });
     setBlogCollection((prev) => [
       ...prev,
       ...response._items.map((item) => item.data),
@@ -30,27 +30,23 @@ export default function Blog({ blogSectionDetails, marketsSectionData, studios, 
     updatedWatched();
   };
 
-  const applyFilters = async ({ selectedStudios = [], selectedMarkets = [], firstLoad = false }) => {
+  const applyFilters = async ({ selectedStudios = [], selectedMarkets = [] }) => {
     try {
-      if (!firstLoad) pageLoadStart();
-      const response = await listBlogs({ pageSize, studios: selectedStudios, markets: selectedMarkets, disableCache: !firstLoad });
+      pageLoadStart();
+      const response = await listBlogs({ pageSize, studios: selectedStudios, markets: selectedMarkets });
       setBlogCollection(response._items.filter(item => item.data.blogRef && item.data.blogRef._id !== undefined).map(item => item.data));
       setBlogResponse(response);
-      if (firstLoad) {
-        markPageLoaded(false);
-      } else {
-        pageLoadEnd()
-      };
+      pageLoadEnd()
       updatedWatched();
-      if (!firstLoad) pageLoadEnd();
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    applyFilters({ firstLoad: true });
-  }, []);
+    setBlogCollection(blogs._items.filter(item => item.data.blogRef && item.data.blogRef._id !== undefined).map(item => item.data));
+    markPageLoaded();
+  }, [blogs]);
 
   return (
     <>
@@ -60,10 +56,11 @@ export default function Blog({ blogSectionDetails, marketsSectionData, studios, 
   )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 
 
-  const [blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
+  const [blogs, blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
+    listBlogs({ pageSize: 8 }),
     getBlogSectionDetails(),
     getMarketsSectionData(),
     getStudiosSectionData(),
@@ -73,6 +70,7 @@ export const getServerSideProps = async () => {
   ]);
 
   return {
-    props: { blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed },
+    props: { blogs, blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed },
+    revalidate: 60 * 5,
   };
 }

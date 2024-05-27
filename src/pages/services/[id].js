@@ -31,9 +31,19 @@ const Services = ({ homeSectionDetails, serviceData, servicesSectionDetails, ser
   )
 }
 
-export const getServerSideProps = async (context) => {
+export async function getStaticPaths() {
+  const studios = await getStudiosSectionData();
+
+  const paths = studios.map((market) => ({
+    params: { id: market.slug },
+  }));
+
+  return { paths, fallback: 'blocking' }
+}
+
+export const getStaticProps = async ({ params }) => {
   try {
-    const serviceData = await getServiceData(context.query.id);
+    const serviceData = await getServiceData(params.id);
 
     if (!serviceData) {
       return {
@@ -43,7 +53,7 @@ export const getServerSideProps = async (context) => {
     const [homeSectionDetails, servicesSectionDetails, servicesSlider, peopleReviewSliderData, studiosSectionData, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
       getHomeSectionDetails(),
       getServicesSectionDetails(),
-      getServicesSlider(serviceData._id,context.query.id),
+      getServicesSlider(serviceData._id),
       getPeopleReviewSliderData(),
       getStudiosSectionData(),
       getDreamBigData(),
@@ -53,11 +63,11 @@ export const getServerSideProps = async (context) => {
     ]);
     return {
       props: { homeSectionDetails, serviceData, servicesSectionDetails, servicesSlider, peopleReviewSliderData, studiosSectionData, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed },
+      revalidate: 60 * 5,
     };
 
   } catch (error) {
-    console.log("Error:", error);
-      console.error("Error:", error);
+    console.error("Error:", error);
   }
 }
 
