@@ -15,6 +15,7 @@ import {
 import GallerySection from "@/components/portfolioDetailPageSections/GallerySection";
 import ExploreProjectsSection from "@/components/portfolioDetailPageSections/ExploreProjectsSection";
 import Head from "next/head";
+import { listPortfolios } from "@/api/listing";
 
 const Portfolio = ({
   singlePortfolio,
@@ -54,10 +55,20 @@ const Portfolio = ({
   );
 };
 
-export const getServerSideProps = async (context) => {
+export async function getStaticPaths() {
+  const projects = await listPortfolios({ pageSize: "50", cacheKey: "static_projects_paths_" });
+
+  const paths = projects._items.map((project) => ({
+    params: { id: project.data.slug },
+  }));
+
+  return { paths, fallback: 'blocking' }
+}
+
+export const getStaticProps = async ({ params }) => {
 
   try {
-    const singlePortfolio = await getSinglePortfolio(context.query.id);
+    const singlePortfolio = await getSinglePortfolio(params.id);
 
     if (!singlePortfolio || singlePortfolio.isHidden) {
       return {
@@ -73,7 +84,7 @@ export const getServerSideProps = async (context) => {
       instaFeed,
     ] = await Promise.all([
       getPortfolioSectionDetails(),
-      getPortfolio({ pageSize: 4, id: context.query.id }),
+      getPortfolio({ pageSize: 4, id: params.id }),
       getSocialSectionDetails(),
       getSocialSectionBlogs(),
       fetchInstaFeed(),
@@ -87,9 +98,9 @@ export const getServerSideProps = async (context) => {
         socialSectionBlogs,
         instaFeed,
       },
+      revalidate: 60 * 5,
     };
   } catch (error) {
-    console.log("Error:", error);
     console.error("Error:", error);
   }
 };

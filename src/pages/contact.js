@@ -77,7 +77,7 @@ export default function contact({ data, contactData, socialLinks }) {
   )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const [data, contactData, socialLinks] = await Promise.all([
     getContactUsContent(),
     getContactData(),
@@ -86,5 +86,6 @@ export const getServerSideProps = async () => {
 
   return {
     props: { data, contactData, socialLinks },
+    revalidate: 60 * 5,
   };
 }

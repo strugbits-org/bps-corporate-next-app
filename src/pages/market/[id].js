@@ -84,10 +84,19 @@ const Market = ({
   );
 };
 
-export const getServerSideProps = async (context) => {
+export async function getStaticPaths() {
+  const markets = await getMarketCollection();
 
+  const paths = markets.map((market) => ({
+    params: { id: market.slug },
+  }));
+
+  return { paths, fallback: 'blocking' }
+}
+
+export const getStaticProps = async ({ params }) => {
   try {
-    const marketSection = await getMarketSection(context.query.id);
+    const marketSection = await getMarketSection(params.id);
     if (!marketSection) {
       return {
         notFound: true,
@@ -133,9 +142,9 @@ export const getServerSideProps = async (context) => {
         socialSectionBlogs,
         instaFeed,
       },
+      revalidate: 60 * 5,
     };
   } catch (error) {
-    console.log("Error:", error);
     console.error("Error:", error);
   }
 };

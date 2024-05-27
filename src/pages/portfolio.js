@@ -59,7 +59,7 @@ export default function Portfolio({ homeSectionDetails, portfolioSectionDetails,
   )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const [homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
     getHomeSectionDetails(),
     getPortfolioSectionDetails(),
@@ -72,5 +72,6 @@ export const getServerSideProps = async () => {
 
   return {
     props: { homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed },
+    revalidate: 60 * 5,
   };
 }

@@ -25,12 +25,12 @@ export default function Home({ heroSectionData, getInTouchData, studiosSectionDa
       <MarketSection data={marketsSectionData} homeSectionDetails={homeSectionDetails} />
       <RentalStoreSection data={rentalStoreData} homeSectionDetails={homeSectionDetails} rentalStoreSubtitle={rentalStoreFancyTitle} />
       <DreamBigSection data={dreamBigData} />
-      <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed}/>
+      <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed} />
     </>
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const [homeSectionDetails, heroSectionData, getInTouchData, studiosSectionData, portfolioCollection, peopleReviewSliderData, marketsSectionData, rentalStoreData, rentalStoreFancyTitle, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
     getHomeSectionDetails(),
     getHeroSectionData(),
@@ -49,5 +49,6 @@ export const getServerSideProps = async () => {
 
   return {
     props: { homeSectionDetails, heroSectionData, getInTouchData, studiosSectionData, portfolioCollection, peopleReviewSliderData, marketsSectionData, rentalStoreData, rentalStoreFancyTitle, dreamBigData, socialSectionBlogs, socialSectionDetails, instaFeed },
+    revalidate: 60 * 5,
   };
 };

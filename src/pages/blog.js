@@ -60,7 +60,7 @@ export default function Blog({ blogSectionDetails, marketsSectionData, studios, 
   )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 
 
   const [blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
@@ -74,5 +74,6 @@ export const getServerSideProps = async () => {
 
   return {
     props: { blogSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed },
+    revalidate: 60 * 5,
   };
 }

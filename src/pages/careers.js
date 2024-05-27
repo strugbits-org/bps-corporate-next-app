@@ -22,7 +22,7 @@ export default function Careers({ careersPageContent, careersIntroSection, whoWo
     )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const [careersPageContent, careersIntroSection, whoWorksSection, aboutUsCardsSection, socialSectionBlogs, socialSectionDetails, instaFeed] = await Promise.all([
         getCareersPageContent(),
         getCareersIntroSection(),
@@ -36,5 +36,6 @@ export const getServerSideProps = async () => {
 
     return {
         props: { careersPageContent, careersIntroSection, whoWorksSection, aboutUsCardsSection, socialSectionBlogs, socialSectionDetails, instaFeed },
+        revalidate: 60 * 5,
     };
 };
