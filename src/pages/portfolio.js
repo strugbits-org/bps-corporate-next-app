@@ -44,7 +44,7 @@ export default function Portfolio({ portfolios, homeSectionDetails, portfolioSec
   useEffect(() => {
     setPortfolioCollection(portfolios._items.filter(item => item.data.portfolioRef._id !== undefined).map(item => item.data));
     markPageLoaded();
-  }, []);
+  }, [portfolios]);
 
   return (
     <>

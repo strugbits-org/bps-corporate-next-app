@@ -46,7 +46,7 @@ export default function Blog({ blogs, blogSectionDetails, marketsSectionData, st
   useEffect(() => {
     setBlogCollection(blogs._items.filter(item => item.data.blogRef && item.data.blogRef._id !== undefined).map(item => item.data));
     markPageLoaded();
-  }, []);
+  }, [blogs]);
 
   return (
     <>
