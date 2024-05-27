@@ -21,7 +21,7 @@ export default function Blog({ blogs, blogSectionDetails, marketsSectionData, st
   }
 
   const handleSeeMore = async ({ selectedStudios = [], selectedMarkets = [] }) => {
-    const response = await listBlogs({ pageSize, skip: blogCollection.length, studios: selectedStudios, markets: selectedMarkets, disableCache: true });
+    const response = await listBlogs({ pageSize, skip: blogCollection.length, studios: selectedStudios, markets: selectedMarkets });
     setBlogCollection((prev) => [
       ...prev,
       ...response._items.map((item) => item.data),
@@ -33,7 +33,7 @@ export default function Blog({ blogs, blogSectionDetails, marketsSectionData, st
   const applyFilters = async ({ selectedStudios = [], selectedMarkets = [] }) => {
     try {
       pageLoadStart();
-      const response = await listBlogs({ pageSize, studios: selectedStudios, markets: selectedMarkets, disableCache: true });
+      const response = await listBlogs({ pageSize, studios: selectedStudios, markets: selectedMarkets });
       setBlogCollection(response._items.filter(item => item.data.blogRef && item.data.blogRef._id !== undefined).map(item => item.data));
       setBlogResponse(response);
       pageLoadEnd()
