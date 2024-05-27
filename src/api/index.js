@@ -14,7 +14,6 @@ export const fetchCollection = async (payload, cacheKey = null) => {
   try {
     if (cacheKey) {
       const cachedData = apiCache.get(cacheKey);
-      if (cachedData) console.log("cacheKey", cacheKey);
       if (cachedData) return cachedData;
     }
 
