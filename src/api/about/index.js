@@ -20,7 +20,7 @@ export const getAboutUsCardsSection = async () => {
     }
 }
 
-export const getAboutUsIntroSection = async () => {
+export const getAboutUsIntroSection = async (enableCache) => {
     try {
         const data = {
             "dataCollectionId": "AboutUsIntroSection",
@@ -31,7 +31,7 @@ export const getAboutUsIntroSection = async () => {
             "eq": null,
             "limit": null
         }
-        const response = await fetchCollection(data);
+        const response = await fetchCollection(data, enableCache ? "AboutUsIntroSectionDataCache" : null);
         return response._items.map((x) => x.data)[0];
 
     } catch (error) {
@@ -92,7 +92,7 @@ export const getAboutSlider = async () => {
     }
 }
 
-export const getAboutUsSectionDetails = async () => {
+export const getAboutUsSectionDetails = async (enableCache) => {
     try {
         const data = {
             "dataCollectionId": "AboutUsSectionDetails",
@@ -103,7 +103,7 @@ export const getAboutUsSectionDetails = async () => {
             "eq": null,
             "limit": null
         }
-        const response = await fetchCollection(data);
+        const response = await fetchCollection(data, enableCache ? "AboutUsSectionDetailsDataCache" : null);
         return response._items.map((x) => x.data)[0];
     } catch (error) {
         throw new Error(error.message);

@@ -64,15 +64,15 @@ App.getInitialProps = async (context) => {
   const page_name = pathname.split("/")[0].trim();
 
   const [studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data, navigationMenu] = await Promise.all([
-    getStudiosSectionData(),
-    getMarketsSectionData(),
-    getSearchSectionDetails(),
-    getFooterData(),
-    getContactData(),
-    getSocialLinks(),
-    getContactUsContent(),
-    getAboutUsIntroSection(),
-    getAboutUsSectionDetails(),
+    getStudiosSectionData(true),
+    getMarketsSectionData(true),
+    getSearchSectionDetails(true),
+    getFooterData(true),
+    getContactData(true),
+    getSocialLinks(true),
+    getContactUsContent(true),
+    getAboutUsIntroSection(true),
+    getAboutUsSectionDetails(true),
     getPageMetaData(page_name),
     getFooterNavigationMenu(),
   ]);
