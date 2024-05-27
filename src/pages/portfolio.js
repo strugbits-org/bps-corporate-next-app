@@ -7,9 +7,9 @@ import SocialSection from "@/components/commonComponents/SocialSection";
 import { markPageLoaded, pageLoadEnd, pageLoadStart, updatedWatched } from "@/utils/utilityFunctions";
 import { useEffect, useState } from "react";
 
-export default function Portfolio({ homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
+export default function Portfolio({ portfolios, homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
 
-  const [portfolioResponse, setPortfolioResponse] = useState(null);
+  const [portfolioResponse, setPortfolioResponse] = useState(portfolios);
   const [portfolioCollection, setPortfolioCollection] = useState([]);
 
   const pageSize = 8;
@@ -29,17 +29,12 @@ export default function Portfolio({ homeSectionDetails, portfolioSectionDetails,
     updatedWatched();
   }
 
-  const applyFilters = async ({ selectedStudios = [], selectedMarkets = [], firstLoad = false }) => {
+  const applyFilters = async ({ selectedStudios = [], selectedMarkets = [] }) => {
     try {
-      if (!firstLoad) pageLoadStart();
-      const response = await listPortfolios({ pageSize, studios: selectedStudios, markets: selectedMarkets, disableCache: !firstLoad });
+      pageLoadStart();
+      const response = await listPortfolios({ pageSize, studios: selectedStudios, markets: selectedMarkets, disableCache: true });
       setPortfolioCollection(response._items.filter(item => item.data.portfolioRef._id !== undefined).map(item => item.data));
-      setPortfolioResponse(response);
-      if (firstLoad) {
-        markPageLoaded(false);
-      } else {
-        pageLoadEnd()
-      };
+      pageLoadEnd()
       updatedWatched();
     } catch (error) {
       console.error(error);
@@ -47,7 +42,8 @@ export default function Portfolio({ homeSectionDetails, portfolioSectionDetails,
   }
 
   useEffect(() => {
-    applyFilters({ firstLoad: true });
+    setPortfolioCollection(portfolios._items.filter(item => item.data.portfolioRef._id !== undefined).map(item => item.data));
+    markPageLoaded();
   }, []);
 
   return (
@@ -60,7 +56,8 @@ export default function Portfolio({ homeSectionDetails, portfolioSectionDetails,
 }
 
 export const getStaticProps = async () => {
-  const [homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
+  const [portfolios, homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
+    listPortfolios({ pageSize: 8 }),
     getHomeSectionDetails(),
     getPortfolioSectionDetails(),
     getMarketsSectionData(),
@@ -71,7 +68,7 @@ export const getStaticProps = async () => {
   ]);
 
   return {
-    props: { homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed },
+    props: { portfolios, homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed },
     revalidate: 60 * 5,
   };
 }
