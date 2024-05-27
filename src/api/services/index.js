@@ -35,11 +35,10 @@ export const getServicesSectionDetails = async () => {
         throw new Error(error.message);
     }
 }
-export const getServicesSlider = async (id, slug) => {
+export const getServicesSlider = async (id) => {
     try {
         const options = {
             pageSize: 3,
-            cacheKey: "servicesSliderSection_" + slug,
             studios: [id],
         };
 

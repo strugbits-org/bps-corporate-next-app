@@ -56,7 +56,7 @@ const Portfolio = ({
 };
 
 export async function getStaticPaths() {
-  const projects = await listPortfolios({ pageSize: "50", cacheKey: "static_projects_paths_" });
+  const projects = await listPortfolios({ pageSize: "50" });
 
   const paths = projects._items.map((project) => ({
     params: { id: project.data.slug },

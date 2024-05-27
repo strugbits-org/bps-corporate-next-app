@@ -71,7 +71,7 @@ export const getHomeSectionDetails = async () => {
 }
 export const getPortfolioCollection = async () => {
     try {
-        const response = await listPortfolios({ pageSize: 4, cacheKey: "ourProjectsSection" });
+        const response = await listPortfolios({ pageSize: 4 });
         return response._items.map(x => x.data);
     } catch (error) {
         throw new Error(error.message);
@@ -165,7 +165,7 @@ export const getDreamBigData = async () => {
 
 export const getSocialSectionBlogs = async () => {
     try {
-        const response = await listBlogs({ pageSize: 9, cacheKey: "socialSectionBlogs" });
+        const response = await listBlogs({ pageSize: 9});
         return response._items.filter(item => item.data.blogRef._id !== undefined).map(item => item.data);
     } catch (error) {
         console.error(error, "error occured");

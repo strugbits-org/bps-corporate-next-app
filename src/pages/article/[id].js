@@ -59,7 +59,7 @@ const Portfolio = ({
 };
 
 export async function getStaticPaths() {
-  const articles = await listBlogs({ pageSize: "50", cacheKey: "static_articles_paths_" });
+  const articles = await listBlogs({ pageSize: "50" });
 
   const paths = articles._items.map((article) => ({
     params: { id: article.data.slug },
@@ -87,8 +87,8 @@ export const getStaticProps = async ({ params }) => {
       instaFeed,
     ] = await Promise.all([
       getBlogSectionDetails(),
-      getBlogPostData({ pageSize: 4, slug: params.id }),
-      getBlogTags({ ids: blogProductData.blogRef.tags, slug: params.id }),
+      getBlogPostData({ pageSize: 4 }),
+      getBlogTags({ ids: blogProductData.blogRef.tags }),
       getSocialSectionDetails(),
       getSocialSectionBlogs(),
       fetchInstaFeed(),

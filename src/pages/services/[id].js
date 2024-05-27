@@ -53,7 +53,7 @@ export const getStaticProps = async ({ params }) => {
     const [homeSectionDetails, servicesSectionDetails, servicesSlider, peopleReviewSliderData, studiosSectionData, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
       getHomeSectionDetails(),
       getServicesSectionDetails(),
-      getServicesSlider(serviceData._id, params.id),
+      getServicesSlider(serviceData._id),
       getPeopleReviewSliderData(),
       getStudiosSectionData(),
       getDreamBigData(),

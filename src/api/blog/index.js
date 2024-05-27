@@ -53,7 +53,7 @@ export const getBlogPostData = async ({
   slug
 }) => {
   try {
-    const response = await listBlogs({ pageSize, cacheKey: "recent_posts_" + slug, slug });
+    const response = await listBlogs({ pageSize, slug });
     const data = response._items
       .filter((item) => item.data.blogRef._id !== undefined)
       .map((item) => item.data);

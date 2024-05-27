@@ -23,7 +23,7 @@ export default function Portfolio({ portfolios, homeSectionDetails, portfolioSec
   }
 
   const handleSeeMore = async ({ selectedStudios = [], selectedMarkets = [], disableLoader = false }) => {
-    const response = await listPortfolios({ pageSize, skip: portfolioCollection.length, studios: selectedStudios, markets: selectedMarkets, disableLoader, disableCache: true });
+    const response = await listPortfolios({ pageSize, skip: portfolioCollection.length, studios: selectedStudios, markets: selectedMarkets, disableLoader });
     setPortfolioCollection(prev => [...prev, ...response._items.map(item => item.data)]);
     setPortfolioResponse(response);
     updatedWatched();
@@ -32,7 +32,7 @@ export default function Portfolio({ portfolios, homeSectionDetails, portfolioSec
   const applyFilters = async ({ selectedStudios = [], selectedMarkets = [] }) => {
     try {
       pageLoadStart();
-      const response = await listPortfolios({ pageSize, studios: selectedStudios, markets: selectedMarkets, disableCache: true });
+      const response = await listPortfolios({ pageSize, studios: selectedStudios, markets: selectedMarkets });
       setPortfolioCollection(response._items.filter(item => item.data.portfolioRef._id !== undefined).map(item => item.data));
       pageLoadEnd()
       updatedWatched();
