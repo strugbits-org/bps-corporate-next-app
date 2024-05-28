@@ -1747,6 +1747,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .btn-border,
 .btn-border-white,
 .btn-border-blue,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a,
 .btn-1,
 .btn-white,
 #pg-contact .contact-info .column-1 .bt-submit,
@@ -1770,6 +1771,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .btn-border:before,
 .btn-border-white:before,
 .btn-border-blue:before,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a:before,
 .btn-1:before,
 .btn-white:before,
 #pg-contact .contact-info .column-1 .bt-submit:before,
@@ -1799,6 +1801,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .btn-border i,
 .btn-border-white i,
 .btn-border-blue i,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a i,
 .btn-1 i,
 .btn-white i,
 #pg-contact .contact-info .column-1 .bt-submit i,
@@ -1837,6 +1840,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
   .btn-border i,
   .btn-border-white i,
   .btn-border-blue i,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a i,
   .btn-1 i,
   .btn-white i,
   #pg-contact .contact-info .column-1 .bt-submit i,
@@ -1856,6 +1860,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
   .btn-border i,
   .btn-border-white i,
   .btn-border-blue i,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a i,
   .btn-1 i,
   .btn-white i,
   #pg-contact .contact-info .column-1 .bt-submit i,
@@ -1875,6 +1880,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
   .btn-border i,
   .btn-border-white i,
   .btn-border-blue i,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a i,
   .btn-1 i,
   .btn-white i,
   #pg-contact .contact-info .column-1 .bt-submit i,
@@ -1892,6 +1898,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .btn-border i:before,
 .btn-border-white i:before,
 .btn-border-blue i:before,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a i:before,
 .btn-1 i:before,
 .btn-white i:before,
 #pg-contact .contact-info .column-1 .bt-submit i:before,
@@ -1914,6 +1921,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .btn-border span,
 .btn-border-white span,
 .btn-border-blue span,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a span,
 .btn-1 span,
 .btn-white span,
 #pg-contact .contact-info .column-1 .bt-submit span,
@@ -1937,6 +1945,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .btn-border:hover,
 .btn-border-white:hover,
 .btn-border-blue:hover,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a:hover,
 .btn-1:hover,
 .btn-white:hover,
 #pg-contact .contact-info .column-1 .bt-submit:hover,
@@ -1954,6 +1963,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .btn-border:hover:before,
 .btn-border-white:hover:before,
 .btn-border-blue:hover:before,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a:hover:before,
 .btn-1:hover:before,
 .btn-white:hover:before,
 #pg-contact .contact-info .column-1 .bt-submit:hover:before,
@@ -1967,6 +1977,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .btn-border:hover:after,
 .btn-border-white:hover:after,
 .btn-border-blue:hover:after,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a:hover:after,
 .btn-1:hover:after,
 .btn-white:hover:after,
 #pg-contact .contact-info .column-1 .bt-submit:hover:after,
@@ -1984,6 +1995,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .btn-border:hover i,
 .btn-border-white:hover i,
 .btn-border-blue:hover i,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a:hover i,
 .btn-1:hover i,
 .btn-white:hover i,
 #pg-contact .contact-info .column-1 .bt-submit:hover i,
@@ -2006,6 +2018,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .btn-border:hover span,
 .btn-border-white:hover span,
 .btn-border-blue:hover span,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a:hover span,
 .btn-1:hover span,
 .btn-white:hover span,
 #pg-contact .contact-info .column-1 .bt-submit:hover span,
@@ -2173,7 +2186,8 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 
 .btn-border,
 .btn-border-white,
-.btn-border-blue {
+.btn-border-blue,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a {
   --btn-p: 1.45rem 3rem 1.7rem;
   --border-radius: 3.8rem;
 }
@@ -2182,7 +2196,8 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 
   .btn-border,
   .btn-border-white,
-  .btn-border-blue {
+  .btn-border-blue,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a {
     --min-w: 30.6rem;
   }
 }
@@ -2191,14 +2206,16 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 
   .btn-border,
   .btn-border-white,
-  .btn-border-blue {
+  .btn-border-blue,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a {
     --min-w: 24rem;
   }
 }
 
 .btn-border:after,
 .btn-border-white:after,
-.btn-border-blue:after {
+.btn-border-blue:after,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -2215,7 +2232,8 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.btn-border-blue {
+.btn-border-blue,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a {
   --btn-bg-color: transparent;
   --btn-text-color: var(--blue-1);
   --btn-border-color: var(--blue-1);
@@ -2447,6 +2465,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .form-newsletter .container-submit button,
 .btn-border,
 .btn-border-blue,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a,
 .btn-border-white,
 .btn-tag,
 .btn-tag-mobile,
@@ -2865,6 +2884,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
 .form-newsletter label,
 .btn-border,
 .btn-border-blue,
+.section-studios .accordion-list-studios .accordion-item .accordion-content a,
 .btn-border-white,
 .btn-tag,
 .btn-tag-mobile,
@@ -2894,6 +2914,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
   .form-newsletter label,
   .btn-border,
   .btn-border-blue,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a,
   .btn-border-white,
   .btn-tag,
   .btn-tag-mobile,
@@ -2922,6 +2943,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
   .form-newsletter label,
   .btn-border,
   .btn-border-blue,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a,
   .btn-border-white,
   .btn-tag,
   .btn-tag-mobile,
@@ -2950,6 +2972,7 @@ modal-group[name=modal-contact] .section-modal-contact .column-contact .contact-
   .form-newsletter label,
   .btn-border,
   .btn-border-blue,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a,
   .btn-border-white,
   .btn-tag,
   .btn-tag-mobile,
@@ -12401,7 +12424,9 @@ modal-item .shopify-buy-frame iframe {
   color: var(--blue-1);
 }
 
-.menu-search .wrapper-search .container-results .container-title-results .btn-border-blue {
+.menu-search .wrapper-search .container-results .container-title-results .btn-border-blue,
+.menu-search .wrapper-search .container-results .container-title-results .section-studios .accordion-list-studios .accordion-item .accordion-content a,
+.section-studios .accordion-list-studios .accordion-item .accordion-content .menu-search .wrapper-search .container-results .container-title-results a {
   --min-w: 14.7rem;
   --btn-p: 1.105rem 3rem 1rem;
   --i-pr: 2.3rem;
@@ -12409,13 +12434,19 @@ modal-item .shopify-buy-frame iframe {
 }
 
 @media only screen and (min-width: 768px) {
-  .menu-search .wrapper-search .container-results .container-title-results .btn-border-blue {
+
+  .menu-search .wrapper-search .container-results .container-title-results .btn-border-blue,
+  .menu-search .wrapper-search .container-results .container-title-results .section-studios .accordion-list-studios .accordion-item .accordion-content a,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content .menu-search .wrapper-search .container-results .container-title-results a {
     margin-left: 2.9rem;
   }
 }
 
 @media only screen and (max-width: 1025px) {
-  .menu-search .wrapper-search .container-results .container-title-results .btn-border-blue {
+
+  .menu-search .wrapper-search .container-results .container-title-results .btn-border-blue,
+  .menu-search .wrapper-search .container-results .container-title-results .section-studios .accordion-list-studios .accordion-item .accordion-content a,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content .menu-search .wrapper-search .container-results .container-title-results a {
     margin-left: 2.5rem;
   }
 }
@@ -12643,7 +12674,9 @@ modal-item .shopify-buy-frame iframe {
   transform: translateX(-1rem);
 }
 
-.menu-search .wrapper-search .container-results .btn-border-blue {
+.menu-search .wrapper-search .container-results .btn-border-blue,
+.menu-search .wrapper-search .container-results .section-studios .accordion-list-studios .accordion-item .accordion-content a,
+.section-studios .accordion-list-studios .accordion-item .accordion-content .menu-search .wrapper-search .container-results a {
   opacity: 0;
   -webkit-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
@@ -12653,7 +12686,9 @@ modal-item .shopify-buy-frame iframe {
   transition-delay: 0.2s;
 }
 
-.menu-search .wrapper-search .container-results .btn-border-blue.aos-animate {
+.menu-search .wrapper-search .container-results .btn-border-blue.aos-animate,
+.menu-search .wrapper-search .container-results .section-studios .accordion-list-studios .accordion-item .accordion-content a.aos-animate,
+.section-studios .accordion-list-studios .accordion-item .accordion-content .menu-search .wrapper-search .container-results a.aos-animate {
   opacity: 1;
   -webkit-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
@@ -23528,7 +23563,7 @@ only screen and (max-width: 767.98px) {
   }
 }
 
-.section-studios .accordion-list-studios .accordion-item .accordion-content .container-img .media {
+.section-studios .accordion-list-studios .accordion-item .accordion-content .container-img>* {
   opacity: 0;
   transform: scale(1.1);
   -webkit-transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -23539,19 +23574,19 @@ only screen and (max-width: 767.98px) {
   transition-delay: 0s;
 }
 
-.section-studios .accordion-list-studios .accordion-item .accordion-content .accordion-text {
+.section-studios .accordion-list-studios .accordion-item .accordion-content .container-accordion-text {
   z-index: 5;
   opacity: 0;
-  -webkit-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  -moz-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  -ms-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  -o-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  transition-delay: 0s;
 }
 
 @media only screen and (min-width: 1025.1px) {
-  .section-studios .accordion-list-studios .accordion-item .accordion-content .accordion-text {
+  .section-studios .accordion-list-studios .accordion-item .accordion-content .container-accordion-text {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
     position: absolute;
     top: 3.2rem;
     right: 5.2rem;
@@ -23559,6 +23594,43 @@ only screen and (max-width: 767.98px) {
     left: auto;
     max-width: 57.1rem;
     min-height: 46.8rem;
+    -webkit-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    -ms-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    transition-delay: 0s;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .section-studios .accordion-list-studios .accordion-item .accordion-content .container-accordion-text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: relative;
+  }
+}
+
+@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+  .section-studios .accordion-list-studios .accordion-item .accordion-content .container-accordion-text {
+    padding-left: 12.6rem;
+    padding-right: 12.6rem;
+  }
+}
+
+@media only screen and (max-width: 767.98px) {
+  .section-studios .accordion-list-studios .accordion-item .accordion-content .container-accordion-text {
+    padding-left: 3.9rem;
+    padding-right: 3.9rem;
+  }
+}
+
+@media only screen and (min-width: 1025.1px) {
+  .section-studios .accordion-list-studios .accordion-item .accordion-content .accordion-text {
     color: var(--white-1);
   }
 }
@@ -23577,34 +23649,25 @@ only screen and (max-width: 767.98px) {
   }
 }
 
-@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
-  .section-studios .accordion-list-studios .accordion-item .accordion-content .accordion-text {
-    padding-left: 12.6rem;
-    padding-right: 12.6rem;
-  }
-}
-
-@media only screen and (max-width: 767.98px) {
-  .section-studios .accordion-list-studios .accordion-item .accordion-content .accordion-text {
-    padding-left: 3.9rem;
-    padding-right: 3.9rem;
-  }
-}
-
-.section-studios .accordion-list-studios .accordion-item .accordion-content a {
-  opacity: 0;
-}
-
-@media only screen and (min-width: 767.98px) and (max-width: 1025px) {
+@media only screen and (min-width: 1025.1px) {
   .section-studios .accordion-list-studios .accordion-item .accordion-content a {
-    margin-left: 12.6rem;
-    margin-bottom: 8rem;
+    --btn-text-color: var(--white-1);
+    --btn-bg-color: var(--blue-1);
+    margin-top: 4rem;
+  }
+
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a span {
+    position: relative;
+  }
+
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a span,
+  .section-studios .accordion-list-studios .accordion-item .accordion-content a i {
+    z-index: 5;
   }
 }
 
-@media only screen and (max-width: 767.98px) {
+@media only screen and (max-width: 1025px) {
   .section-studios .accordion-list-studios .accordion-item .accordion-content a {
-    margin-left: 3.9rem;
     margin-bottom: 8rem;
   }
 }
@@ -23683,13 +23746,13 @@ only screen and (max-width: 767.98px) {
     opacity: 0.5;
   }
 
-  .section-studios .accordion-list-studios .accordion-item.active .accordion-content .container-img .media {
+  .section-studios .accordion-list-studios .accordion-item.active .accordion-content .container-img>* {
     opacity: 1;
     transform: scale(1);
   }
 }
 
-.section-studios .accordion-list-studios .accordion-item.active .accordion-content .accordion-text {
+.section-studios .accordion-list-studios .accordion-item.active .accordion-content .container-accordion-text {
   opacity: 1;
   -webkit-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
@@ -23700,19 +23763,9 @@ only screen and (max-width: 767.98px) {
 }
 
 @media only screen and (max-width: 1025px) {
-  .section-studios .accordion-list-studios .accordion-item.active .accordion-content .accordion-text {
+  .section-studios .accordion-list-studios .accordion-item.active .accordion-content .container-accordion-text {
     transition-delay: 0.4s;
   }
-}
-
-.section-studios .accordion-list-studios .accordion-item.active .accordion-content a {
-  opacity: 1;
-  -webkit-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  -moz-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  -ms-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  -o-transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
-  transition-delay: 0.5s;
 }
 
 @media only screen and (min-width: 1025.1px) {

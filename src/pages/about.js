@@ -44,7 +44,7 @@ export const getStaticProps = async () => {
 
     return {
         props: { aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed },
-        revalidate: 60 * 5,
+        revalidate: 60 * 60,
     };
 };
 

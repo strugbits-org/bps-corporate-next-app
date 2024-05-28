@@ -63,7 +63,7 @@ export const getStaticProps = async ({ params }) => {
     ]);
     return {
       props: { homeSectionDetails, serviceData, servicesSectionDetails, servicesSlider, peopleReviewSliderData, studiosSectionData, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed },
-      revalidate: 60 * 5,
+      revalidate: 60 * 60,
     };
 
   } catch (error) {
