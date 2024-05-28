@@ -103,7 +103,7 @@ export const getStaticProps = async ({ params }) => {
         socialSectionBlogs,
         instaFeed,
       },
-      revalidate: 60 * 5,
+      revalidate: 60 * 60,
     };
   } catch (error) {
     console.error("Error:", error);
