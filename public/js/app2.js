@@ -12915,22 +12915,6 @@ var require_app2 = __commonJS({
     const pageName$6 = "project";
     function main$6() {
       sliderFeaturedProducts();
-      // copyLink();
-      let readMore = document.querySelectorAll(".container-read-more");
-      if (readMore) {
-        readMore.forEach((element) => {
-          // let textHeight = element.querySelector(".text").clientHeight;
-          // let btnReadMore = element.querySelector(".btn-read-more");
-          // element.style.setProperty("--h", textHeight + "px");
-          // btnReadMore.addEventListener("click", function () {
-          //   if (element.classList.contains("active")) {
-          //     element.removeActive();
-          //   } else {
-          //     element.addActive();
-          //   }
-          // });
-        });
-      }
     }
     const pgPortfolioPost = new Page({
       pageName: pageName$6,
@@ -15686,7 +15670,7 @@ var require_app2 = __commonJS({
     }
     function accordionGsap(list, toggle = true) {
       let isAnimating = false;
-
+      
       if (!list)
         list = document;
       let toggleItems = list.querySelectorAll(":scope > .accordion-item");
@@ -15717,7 +15701,7 @@ var require_app2 = __commonJS({
           }
           header.addEventListener("click", function () {
             if (isAnimating) return;
-
+            
             let content = element.querySelector(":scope > .accordion-content");
             if (element.classList.contains("active")) {
               element.removeActive();
@@ -15745,7 +15729,9 @@ var require_app2 = __commonJS({
                   });
                 });
               }
+              console.log("element",element);
               element.addActive();
+              console.log("element",element);
               isAnimating = true;
               element.style.pointerEvents = "none";
               gsapWithCSS.set(content, { height: "auto" });
