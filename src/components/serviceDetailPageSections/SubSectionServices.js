@@ -1,6 +1,8 @@
 import { generateImageURL } from "@/common/functions/imageURL";
 
-export const SubSectionServices = ({data}) => {
+export const SubSectionServices = ({ data }) => {
+
+  if (data?.subServices?.length === 0) return;
 
   return (
     <section className="services-description pt-lg-210 pt-tablet-105 pt-phone-200">

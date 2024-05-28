@@ -1,6 +1,7 @@
 import { generateImageURL } from "@/common/functions/imageURL";
 import React from "react";
-const StudioSection = ({studioData, homeSectionDetails}) => {
+import DelayedLink from "../common/DelayedLink";
+const StudioSection = ({ studioData, homeSectionDetails }) => {
   return (
 
     <section
@@ -30,30 +31,28 @@ const StudioSection = ({studioData, homeSectionDetails}) => {
             <ul className="accordion-list-studios" data-aos="d:loop">
               {studioData.map((data, index) => {
                 return (
-                  <li
-                    key={index}
-                    className={`accordion-item `}
-                  >
-                    <div className="accordion-header">
-                      <h3
-                        className="accordion-title split-words"
-                        data-aos="d:loop"
-                      >
-                        {data?.cardName}
-                      </h3>
+                  <li key={index} class="accordion-item">
+                    <div class="accordion-header">
+                      <h3 class="accordion-title split-words" data-aos="d:loop">{data?.cardName}</h3>
                     </div>
-                    <div className="accordion-content">
-                      <div className="container-img bg-blue">
+                    <div class="accordion-content">
+                      <div class="container-img bg-blue">
                         <img
                           src={generateImageURL({ wix_url: data?.image, h: "900", fit: "fit", q: "95" })}
-                          data-preload
-                          className="media"
-                          alt=""
-                        />
+                          data-preload class=" media"
+                          alt="" />
                       </div>
-                      <p className="accordion-text">
-                        {data?.cardDescription}
-                      </p>
+                      <div class="container-accordion-text">
+                        <p class="accordion-text">
+                          {data?.cardDescription}
+                        </p>
+                        <DelayedLink
+                          to={`/services/${data.slug}`}
+                          className="btn-border-blue">
+                          <span>See more</span>
+                          <i class="icon-arrow-right"></i>
+                        </DelayedLink>
+                      </div>
                     </div>
                   </li>
                 );

@@ -1,3 +1,15 @@
+
+
+
+/* App.css replace */
+
+/* market-post -> market */
+/* portfolio-post -> project */
+/* services-post -> services */
+/* blog-post -> article */
+
+/* App.css replace */
+
 modal-group .section-modal-contact .column-contact .contact-info .column-2 .container-info a span {
     display: inline;
     color: var(--btn-color, var(--black-1));

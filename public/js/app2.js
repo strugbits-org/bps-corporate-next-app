@@ -15729,9 +15729,7 @@ var require_app2 = __commonJS({
                   });
                 });
               }
-              console.log("element",element);
               element.addActive();
-              console.log("element",element);
               isAnimating = true;
               element.style.pointerEvents = "none";
               gsapWithCSS.set(content, { height: "auto" });
