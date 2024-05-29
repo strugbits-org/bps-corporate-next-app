@@ -36,6 +36,6 @@ export const getStaticProps = async () => {
 
     return {
         props: { careersPageContent, careersIntroSection, whoWorksSection, aboutUsCardsSection, socialSectionBlogs, socialSectionDetails, instaFeed },
-        revalidate: 60 * 60,
+        revalidate: parseInt(process.env.NEXT_PUBLIC_REVALIDATE_TIME),
     };
 };

@@ -3,7 +3,7 @@ import cache from 'node-cache';
 const base_url = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 const apiCache = new cache();
-const ttl = 60 * 60;
+const ttl = parseInt(process.env.NEXT_PUBLIC_TTL_PRIVATE_CACHING);
 
 // apiCache.on("flush", function () {
 //   console.log("All Data Flushed");

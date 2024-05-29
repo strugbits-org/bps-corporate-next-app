@@ -86,6 +86,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { data, contactData, socialLinks },
-    revalidate: 60 * 60,
+    revalidate: parseInt(process.env.NEXT_PUBLIC_REVALIDATE_TIME),
   };
 }

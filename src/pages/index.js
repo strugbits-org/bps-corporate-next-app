@@ -49,6 +49,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { homeSectionDetails, heroSectionData, getInTouchData, studiosSectionData, portfolioCollection, peopleReviewSliderData, marketsSectionData, rentalStoreData, rentalStoreFancyTitle, dreamBigData, socialSectionBlogs, socialSectionDetails, instaFeed },
-    revalidate: 60 * 60,
+    revalidate: parseInt(process.env.NEXT_PUBLIC_REVALIDATE_TIME),
   };
 };
