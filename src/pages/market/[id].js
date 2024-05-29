@@ -142,7 +142,7 @@ export const getStaticProps = async ({ params }) => {
         socialSectionBlogs,
         instaFeed,
       },
-      revalidate: 60 * 60,
+      revalidate: parseInt(process.env.NEXT_PUBLIC_REVALIDATE_TIME),
     };
   } catch (error) {
     console.error("Error:", error);

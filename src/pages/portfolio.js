@@ -69,6 +69,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { portfolios, homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed },
-    revalidate: 60 * 60,
+    revalidate: parseInt(process.env.NEXT_PUBLIC_REVALIDATE_TIME),
   };
 }

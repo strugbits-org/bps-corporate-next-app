@@ -29,6 +29,7 @@ const About = ({ aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSecti
 };
 
 export const getStaticProps = async () => {
+    console.log("parseInt(process.env.NEXT_PUBLIC_REVALIDATE_TIME)", parseInt(process.env.NEXT_PUBLIC_REVALIDATE_TIME));
     const [aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed] = await Promise.all([
         getAboutUsCardsSection(),
         getAboutUsIntroSection(),
@@ -44,7 +45,7 @@ export const getStaticProps = async () => {
 
     return {
         props: { aboutUsCardsSection, aboutUsIntroSection, aboutUsDreamTeamSection, aboutUsRestOfFamily, aboutSlider, aboutUsSectionDetails, dreamBigData, socialSectionDetails, socialSectionBlogs, instaFeed },
-        revalidate: 60 * 60,
+        revalidate: parseInt(process.env.NEXT_PUBLIC_REVALIDATE_TIME),
     };
 };
 
