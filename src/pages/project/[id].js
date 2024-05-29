@@ -11,11 +11,11 @@ import {
   getPortfolio,
   getPortfolioSectionDetails,
   getSinglePortfolio,
+  listAllPortfolios,
 } from "@/api/portfolio";
 import GallerySection from "@/components/portfolioDetailPageSections/GallerySection";
 import ExploreProjectsSection from "@/components/portfolioDetailPageSections/ExploreProjectsSection";
 import Head from "next/head";
-import { listPortfolios } from "@/api/listing";
 
 const Portfolio = ({
   singlePortfolio,
@@ -56,10 +56,10 @@ const Portfolio = ({
 };
 
 export async function getStaticPaths() {
-  const projects = await listPortfolios({ pageSize: "50" });
+  const projects = await listAllPortfolios();
 
-  const paths = projects._items.map((project) => ({
-    params: { id: project.data.slug },
+  const paths = projects.map((project) => ({
+    params: { id: project.slug },
   }));
 
   return { paths, fallback: 'blocking' }

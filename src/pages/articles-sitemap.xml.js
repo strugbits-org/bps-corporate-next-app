@@ -1,4 +1,4 @@
-import { listBlogs } from "@/api/listing";
+import { getAllBlogs } from "@/api/blog";
 
 function generateSiteMap(origin, urlset) {
   let currentDate = new Date().toISOString().split('T')[0];
@@ -28,8 +28,8 @@ export async function getServerSideProps({ req, res }) {
   const protocol = req.headers['x-forwarded-proto'] ? req.headers['x-forwarded-proto'] : req.connection.encrypted ? 'https' : 'http';
   const origin = `${protocol}://${host}`;
 
-  const blogs = await listBlogs({ pageSize: "50" });
-  const blogs_routes = blogs._items.map((x) => "article/" + x.data.slug);
+  const blogs = await getAllBlogs();
+  const blogs_routes = blogs.map((x) => "article/" + x.slug);
 
   const sitemap = generateSiteMap(origin, blogs_routes);
   res.setHeader('Content-Type', 'text/xml');

@@ -1,10 +1,11 @@
 import { getAllPagesMetaData } from "@/api";
+import { getAllBlogs } from "@/api/blog";
 import { getStudiosSectionData } from "@/api/home.js";
-import { listBlogs, listPortfolios } from "@/api/listing";
 import { getMarketCollection } from "@/api/market";
+import { listAllPortfolios } from "@/api/portfolio";
 
 export default async function handler(req, res) {
-    if (req.query.secret !== process.env.NEXT_PUBLIC_REVALIDATE_TOKEN) {
+    if (req.query.secret === undefined || req.query.secret !== process.env.NEXT_PUBLIC_REVALIDATE_TOKEN) {
         return res.status(401).json({ message: 'Invalid token' })
     }
     try {
@@ -22,8 +23,8 @@ export default async function handler(req, res) {
             getAllPagesMetaData(),
             getStudiosSectionData(),
             getMarketCollection(),
-            listPortfolios({ pageSize: "50" }),
-            listBlogs({ pageSize: "50" })
+            listAllPortfolios(),
+            getAllBlogs()
         ]);
 
         const subpages = new Set(["/market", "/services", "/project", "/article"]);
@@ -36,10 +37,10 @@ export default async function handler(req, res) {
         const markets_routes = markets.map(market => "/market/" + market.slug);
         routes.push(...markets_routes);
 
-        const portfolios_routes = portfolios._items.map((x) => "/project/" + x.data.slug);
+        const portfolios_routes = portfolios.map((x) => "/project/" + x.slug);
         routes.push(...portfolios_routes);
 
-        const blogs_routes = blogs._items.map((x) => "/article/" + x.data.slug);
+        const blogs_routes = blogs.map((x) => "/article/" + x.slug);
         routes.push(...blogs_routes);
 
 

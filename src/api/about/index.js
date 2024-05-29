@@ -48,7 +48,7 @@ export const getAboutUsDreamTeamSection = async () => {
             "find": {},
             "contains": null,
             "eq": null,
-            "limit": 100
+            "limit": 1000
         }
         const response = await fetchCollection(data);
         return response._items.map((x) => x.data).sort((a, b) => a.orderNumber - b.orderNumber);
