@@ -50,7 +50,7 @@ export default async function handler(req, res) {
                     await res.revalidate(route);
                     success.push(route);
                 } catch (error) {
-                    failedPaths.push(route);
+                    failed.push(route);
                     console.error(`Failed to revalidate path: ${route}`, error);
                 }
             })
