@@ -116,25 +116,6 @@ export const closeModals = () => {
   }
 }
 
-export const setSeo = ({ title = 'Blueprint Studios', description = '', noFollowTag = false, subpage = false, seo_title = "", seo_description = "", no_follow_subpage = false, }) => {
-  if (typeof window !== 'undefined') {
-    if (subpage) {
-      document.title = title + seo_title;
-      document.querySelector('meta[name="description"]').setAttribute('content', seo_description);
-      document.querySelector('meta[property="og:title"]').setAttribute('content', title + seo_title);
-      document.querySelector('meta[property="og:description"]').setAttribute('content', seo_description);
-      document.querySelector('meta[name="robots"]').setAttribute('content', no_follow_subpage ? "noindex,nofollow" : "all");
-    } else {
-      document.title = title;
-      document.querySelector('meta[name="description"]').setAttribute('content', description);
-      document.querySelector('meta[property="og:title"]').setAttribute('content', title);
-      document.querySelector('meta[property="og:description"]').setAttribute('content', description);
-      document.querySelector('meta[name="robots"]').setAttribute('content', noFollowTag ? "noindex,nofollow" : "all");
-    }
-  }
-
-}
-
 export const changeProgress = (percent) => {
   if (typeof window !== 'undefined') {
     document.body.style.setProperty("--percentage", percent / 100);
@@ -230,3 +211,88 @@ export const pageLoadEnd = () => {
     }, 900);
   }
 }
+
+export const renderNode = (node) => {
+
+  const HeadingComponent = ({ level, children }) => {
+    const HeadingTag = `h${level}`;
+    return <HeadingTag>{children}</HeadingTag>;
+  };
+
+  const renderTextWithDecorations = (textData) => {
+    if (!textData.decorations || textData.decorations.length === 0) {
+      return textData.text;
+    }
+
+    return textData.decorations.reduce((acc, decoration) => {
+      switch (decoration.type) {
+        case "ITALIC":
+          return <i>{acc}</i>;
+        case "BOLD":
+          return <b>{acc}</b>;
+        case "LINK":
+          return (
+            <a
+              href={decoration.linkData.link.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {acc}
+            </a>
+          );
+        default:
+          return acc;
+      }
+    }, textData.text);
+  };
+
+  switch (node.type) {
+    case "HEADING":
+      const headingClass = `fs--${30 + node.headingData.level * 2
+        } text-center text-uppercase white-1 split-chars`;
+      return (
+        <HeadingComponent
+          level={node.headingData.level}
+          className={headingClass}
+        >
+          {renderTextWithDecorations(node.nodes[0].textData)}
+        </HeadingComponent>
+      );
+    case "PARAGRAPH":
+      return (
+        <p>
+          {node.nodes.map((n, idx) => (
+            <span key={idx}>{renderTextWithDecorations(n.textData)}</span>
+          ))}
+        </p>
+      );
+    case "ORDERED_LIST":
+      return (
+        <ol>
+          {node.nodes.map((listItem) => (
+            <li key={listItem.id}>
+              {listItem.nodes[0].nodes.map((n, idx) => (
+                <span key={idx}>{renderTextWithDecorations(n.textData)}</span>
+              ))}
+            </li>
+          ))}
+        </ol>
+      );
+    case "BULLETED_LIST":
+      return (
+        <ul>
+          {node.nodes.map((listItem) => (
+            <li key={listItem.id}>
+              {listItem.nodes[0].nodes.map((n, idx) => (
+                <span key={idx}>{renderTextWithDecorations(n.textData)}</span>
+              ))}
+            </li>
+          ))}
+        </ul>
+      );
+    case "DIVIDER":
+      return <hr />;
+    default:
+      return null;
+  }
+};
