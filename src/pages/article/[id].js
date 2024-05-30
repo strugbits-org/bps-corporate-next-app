@@ -1,4 +1,5 @@
 import {
+  getAllBlogs,
   getBlogPostData,
   getBlogProductData,
   getBlogSectionDetails,
@@ -9,7 +10,6 @@ import {
   getSocialSectionBlogs,
   getSocialSectionDetails,
 } from "@/api/home.js";
-import { listBlogs } from "@/api/listing";
 import PostDetails from "@/components/blogDetailPageSections/PostDetails";
 import RecentPosts from "@/components/blogDetailPageSections/RecentPosts";
 import SocialSection from "@/components/commonComponents/SocialSection";
@@ -59,10 +59,10 @@ const Portfolio = ({
 };
 
 export async function getStaticPaths() {
-  const articles = await listBlogs({ pageSize: "50" });
+  const articles = await getAllBlogs();
 
-  const paths = articles._items.map((article) => ({
-    params: { id: article.data.slug },
+  const paths = articles.map((article) => ({
+    params: { id: article.slug },
   }));
 
   return { paths, fallback: 'blocking' }

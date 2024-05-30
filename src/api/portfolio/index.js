@@ -1,6 +1,24 @@
 import { fetchCollection } from "..";
 import { listPortfolios } from "../listing";
 
+export const listAllPortfolios = async () => {
+  try {
+    const data = {
+      dataCollectionId: "PortfolioCollection",
+      includeReferencedItems: null,
+      returnTotalCount: null,
+      find: {},
+      contains: null,
+      eq: null,
+      limit: 1000,
+    };
+    const response = await fetchCollection(data);
+    return response._items.map((x) => x.data);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export const getPortfolioSectionDetails = async () => {
   try {
     const data = {

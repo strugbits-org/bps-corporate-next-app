@@ -1,4 +1,4 @@
-import { listPortfolios } from "@/api/listing";
+import { listAllPortfolios } from "@/api/portfolio";
 
 function generateSiteMap(origin, urlset) {
   let currentDate = new Date().toISOString().split('T')[0];
@@ -28,8 +28,8 @@ export async function getServerSideProps({ req, res }) {
   const protocol = req.headers['x-forwarded-proto'] ? req.headers['x-forwarded-proto'] : req.connection.encrypted ? 'https' : 'http';
   const origin = `${protocol}://${host}`;
 
-  const portfolios = await listPortfolios({ pageSize: "50" });
-  const portfolios_routes = portfolios._items.map((x) => "project/" + x.data.slug);
+  const portfolios = await listAllPortfolios();
+  const portfolios_routes = portfolios.map((x) => "project/" + x.slug);
 
   const sitemap = generateSiteMap(origin, portfolios_routes);
   res.setHeader('Content-Type', 'text/xml');
