@@ -81,7 +81,7 @@ const BlogListing = ({ data, seeMore, applyFilters }) => {
                                     onClick={() => { setSudiosDropdownActive(!studiosDropdownActive) }}
                                     className={`btn-tag-mobile no-desktop ${studiosDropdownActive ? "active" : ""}`}
                                 >
-                                    <span>All Studios</span>
+                                    <span>{selectedStudios.length === 0 || data.studios.length === selectedStudios.length ? "All " : ""}Studios</span>
                                     <i className="icon-arrow-down"></i>
                                 </button>
                                 <div className={`list-dropdown ${studiosDropdownActive ? "active" : ""}`}>
@@ -119,7 +119,7 @@ const BlogListing = ({ data, seeMore, applyFilters }) => {
                                     onClick={() => { setMarketsDropdownActive(!marketsDropdownActive) }}
                                     className={`btn-tag-mobile no-desktop ${marketsDropdownActive ? "active" : ""}`}
                                 >
-                                    <span>All Markets</span>
+                                    <span>{selectedMarkets.length === 0 || data.markets.length === selectedMarkets.length ? "All " : ""}Markets</span>
                                     <i className="icon-arrow-down"></i>
                                 </button>
                                 <div className={`list-dropdown ${marketsDropdownActive ? "active" : ""}`}>
