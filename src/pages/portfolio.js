@@ -9,12 +9,12 @@ import { useEffect, useState } from "react";
 
 export default function Portfolio({ portfolios, homeSectionDetails, portfolioSectionDetails, marketsSectionData, studios, socialSectionDetails, socialSectionBlogs, instaFeed }) {
 
-  const [portfolioResponse, setPortfolioResponse] = useState(portfolios);
+  const [portfolioResponse, setPortfolioResponse] = useState();
   const [portfolioCollection, setPortfolioCollection] = useState([]);
+  const [loadingData, setLoadingData] = useState(false);
 
   const pageSize = 8;
   const data = {
-    pageSize: 8,
     markets: marketsSectionData,
     portfolioSectionDetails,
     items: portfolioCollection,
@@ -23,32 +23,44 @@ export default function Portfolio({ portfolios, homeSectionDetails, portfolioSec
   }
 
   const handleSeeMore = async ({ selectedStudios = [], selectedMarkets = [], disableLoader = false }) => {
-    const response = await listPortfolios({ pageSize, skip: portfolioCollection.length, studios: selectedStudios, markets: selectedMarkets, disableLoader });
-    setPortfolioCollection(prev => [...prev, ...response._items.map(item => item.data)]);
-    setPortfolioResponse(response);
-    updatedWatched();
+    try {
+      setLoadingData(true);
+      const response = await listPortfolios({ pageSize, skip: portfolioCollection.length, studios: selectedStudios, markets: selectedMarkets, disableLoader });
+      setPortfolioCollection(prev => [...prev, ...response._items.map(item => item.data)]);
+      setPortfolioResponse(response);
+      updatedWatched();
+      setLoadingData(false);
+    } catch (error) {
+      setLoadingData(false);
+      console.error(error);
+    }
   }
 
   const applyFilters = async ({ selectedStudios = [], selectedMarkets = [] }) => {
     try {
       pageLoadStart();
+      setLoadingData(true);
       const response = await listPortfolios({ pageSize, studios: selectedStudios, markets: selectedMarkets });
       setPortfolioCollection(response._items.filter(item => item.data.portfolioRef._id !== undefined).map(item => item.data));
+      setPortfolioResponse(response);
       pageLoadEnd()
       updatedWatched();
+      setLoadingData(false);
     } catch (error) {
+      setLoadingData(false);
       console.error(error);
     }
   }
 
   useEffect(() => {
     setPortfolioCollection(portfolios._items.filter(item => item.data.portfolioRef._id !== undefined).map(item => item.data));
+    setPortfolioResponse(portfolios);
     markPageLoaded();
   }, [portfolios]);
 
   return (
     <>
-      <PortfolioListing data={data} applyFilters={applyFilters} seeMore={handleSeeMore} />
+      <PortfolioListing data={data} applyFilters={applyFilters} seeMore={handleSeeMore} loading={loadingData} />
       <MarketSection data={marketsSectionData} homeSectionDetails={homeSectionDetails} />
       <SocialSection data={socialSectionDetails} posts={socialSectionBlogs} insta_feed={instaFeed} />
     </>

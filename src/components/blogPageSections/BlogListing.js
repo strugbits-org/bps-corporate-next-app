@@ -4,7 +4,7 @@ import { useDetectClickOutside } from 'react-detect-click-outside';
 import DelayedLink from "../common/DelayedLink";
 import formatDate from "@/common/functions/dateFormat";
 
-const BlogListing = ({ data, seeMore, applyFilters }) => {
+const BlogListing = ({ data, seeMore, applyFilters, loading }) => {
     const [selectedStudios, setSelectedStudios] = useState([]);
     const [selectedMarkets, setSelectedMarkets] = useState([]);
 
@@ -229,7 +229,7 @@ const BlogListing = ({ data, seeMore, applyFilters }) => {
                         </ul>
                         {data.items.length === 0 && <h6 className="fs--40 text-center split-words not_found_text" data-aos="d:loop">No Data found</h6>}
                     </div>
-                    {data?.totalCount > data.pageSize && data.items.length !== data?.totalCount && (
+                    {data.items.length < data?.totalCount && !loading && (
                         <div className="col-lg-2 offset-lg-5 flex-center mt-lg-70 mt-tablet-60 mt-phone-85">
                             <button
                                 onClick={() => seeMore({ selectedStudios, selectedMarkets, disableLoader: true })}
