@@ -3,7 +3,7 @@ import { useDetectClickOutside } from 'react-detect-click-outside';
 import DelayedLink from "../common/DelayedLink";
 import { generateImageUrl2 } from "@/common/functions/imageURL";
 
-const PortfolioListing = ({ data, seeMore, applyFilters }) => {
+const PortfolioListing = ({ data, seeMore, applyFilters,loading }) => {
   const [selectedStudios, setSelectedStudios] = useState([]);
   const [selectedMarkets, setSelectedMarkets] = useState([]);
 
@@ -248,7 +248,7 @@ const PortfolioListing = ({ data, seeMore, applyFilters }) => {
               </h6>
             )}
           </div>
-          {data?.totalCount > data.pageSize && data.items.length !== data?.totalCount && (
+          {data.items.length < data?.totalCount && !loading && (
             <div
               className="col-lg-2 offset-lg-5 flex-center mt-lg-60 mt-mobile-40"
               data-aos="fadeIn .8s ease-in-out .2s, d:loop"
