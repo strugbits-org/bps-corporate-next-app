@@ -15,7 +15,6 @@ import RecentPosts from "@/components/blogDetailPageSections/RecentPosts";
 import SocialSection from "@/components/commonComponents/SocialSection";
 import { markPageLoaded } from "@/utils/utilityFunctions";
 import Head from "next/head";
-import { useRouter } from "next/router";
 
 const Portfolio = ({
   blogSectionDetails,
@@ -27,7 +26,6 @@ const Portfolio = ({
   instaFeed,
   meta_data
 }) => {
-  const router = useRouter();
   markPageLoaded();
 
   return (
@@ -46,7 +44,6 @@ const Portfolio = ({
       <RecentPosts
         posts={blogPostData}
         blogSectionDetails={blogSectionDetails}
-        id={router.query.id}
       />
 
       <SocialSection
@@ -87,7 +84,7 @@ export const getStaticProps = async ({ params }) => {
       instaFeed,
     ] = await Promise.all([
       getBlogSectionDetails(),
-      getBlogPostData({ pageSize: 4 }),
+      getBlogPostData({ pageSize: 4, slug: params.id }),
       getBlogTags({ ids: blogProductData.blogRef.tags }),
       getSocialSectionDetails(),
       getSocialSectionBlogs(),

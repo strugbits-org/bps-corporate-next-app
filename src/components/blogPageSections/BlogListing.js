@@ -198,7 +198,7 @@ const BlogListing = ({ data, seeMore, applyFilters, loading }) => {
                                         </DelayedLink>
                                         <ul style={{ marginTop: 2 }} className="list-tags-small">
                                             {item.markets.map((market, index) => (
-                                                <li key={index} onClick={() => { handleMarketFilter(market._id) }} className={`tag-small ${selectedMarkets.includes(market._id)
+                                                <li key={index} onClick={() => { handleMarketFilter(market._id) }} className={`tag-small cursor-pointer ${selectedMarkets.includes(market._id)
                                                     ? "active"
                                                     : ""
                                                     }`}  >
@@ -208,7 +208,7 @@ const BlogListing = ({ data, seeMore, applyFilters, loading }) => {
                                             {item.studios.sort(sortTags).map((studio, index) => (
                                                 <React.Fragment key={index}>
                                                     {index < 2 && (
-                                                        <li onClick={() => { handleStudioFilter(studio._id) }} className={`tag-small ${selectedStudios.includes(studio._id)
+                                                        <li onClick={() => { handleStudioFilter(studio._id) }} className={`tag-small cursor-pointer ${selectedStudios.includes(studio._id)
                                                             ? "active"
                                                             : ""
                                                             }`} >
@@ -218,7 +218,7 @@ const BlogListing = ({ data, seeMore, applyFilters, loading }) => {
                                                 </React.Fragment>
                                             ))}
                                             {item.studios.length > 2 ? (
-                                                <li className="tag-small">
+                                                <li className="tag-small cursor-default">
                                                     <span>+{item.studios.length - 2} studios</span>
                                                 </li>
                                             ) : null}

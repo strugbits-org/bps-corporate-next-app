@@ -857,6 +857,14 @@ modal-group .section-modal-contact .column-contact btn-modal-close .text-hide {
     cursor: pointer;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
 .section-error-404 {
     display: flex;
     justify-content: center;

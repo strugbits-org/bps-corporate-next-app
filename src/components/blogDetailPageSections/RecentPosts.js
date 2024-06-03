@@ -4,7 +4,7 @@ import { generateImageUrl2 } from "@/common/functions/imageURL";
 import formatDate from "@/common/functions/dateFormat";
 import { DefaultButton } from "../commonComponents/DefaultButton";
 
-const RecentPosts = ({ id, posts, blogSectionDetails }) => {
+const RecentPosts = ({ posts, blogSectionDetails }) => {
   return (
     <section
       className={`article-recent-posts pt-lg-245 pt-tablet-105 pt-phone-150 pb-lg-150 pb-mobile-100 ${
