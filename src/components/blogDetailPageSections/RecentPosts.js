@@ -101,7 +101,7 @@ const RecentPosts = ({ posts, blogSectionDetails }) => {
                                                             : ""
                                                             }`}
                                     >
-                                      <span>{studio.cardName}</span>a
+                                      <span>{studio.cardName}</span>
                                     </li>
                                   )}
                                 </React.Fragment>
