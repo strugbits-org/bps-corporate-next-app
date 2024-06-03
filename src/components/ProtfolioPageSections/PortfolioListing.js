@@ -199,7 +199,7 @@ const PortfolioListing = ({ data, seeMore, applyFilters,loading }) => {
                               onClick={() => {
                                 handleMarketFilter(market._id);
                               }}
-                              className={`tag-small ${selectedMarkets.includes(market._id)
+                              className={`tag-small cursor-pointer ${selectedMarkets.includes(market._id)
                                 ? "active"
                                 : ""
                                 }`}
@@ -214,7 +214,7 @@ const PortfolioListing = ({ data, seeMore, applyFilters,loading }) => {
                                   onClick={() => {
                                     handleStudioFilter(studio._id);
                                   }}
-                                  className={`tag-small ${selectedStudios.includes(studio._id)
+                                  className={`tag-small cursor-pointer ${selectedStudios.includes(studio._id)
                                     ? "active"
                                     : ""
                                     }`}
@@ -225,7 +225,7 @@ const PortfolioListing = ({ data, seeMore, applyFilters,loading }) => {
                             </React.Fragment>
                           ))}
                           {item.studios.length > 2 ? (
-                            <li className="tag-small">
+                            <li className="tag-small cursor-default">
                               <span>+{item.studios.length - 2} studios</span>
                             </li>
                           ) : null}
