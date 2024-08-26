@@ -9,7 +9,7 @@ const ProductCartSlider = ({ data }) => {
     <div className="slider-featured-products" data-aos="d:loop">
       <div className="swiper-container">
         <div className="swiper-wrapper">
-          {data?.storeProducts?.map((item, index) => {
+          {data?.storeProducts?.filter(x => x._id).map((item, index) => {
             return (
               <div key={index} className="swiper-slide">
                 <div className="rental-product-link">
@@ -53,33 +53,33 @@ const ProductCartSlider = ({ data }) => {
                       <ul className="list-thumb">
                         {item.productOptions.Color
                           ? item.productOptions.Color.choices.map(
-                              (option, index) => (
-                                <React.Fragment key={index}>
-                                  {index < 4 && (
-                                    <li key={index}>
-                                      <div className="container-img">
-                                        <img
-                                          src={generateImageURL({
-                                            wix_url: option.mainMedia
-                                              ? option.mainMedia
-                                              : item.mainMedia,
-                                            w: "24",
-                                            h: "24",
-                                            fit: "fit",
-                                            q: "95",
-                                          })}
-                                          data-preload
-                                          className="media"
-                                          alt=""
-                                        />
-                                      </div>
-                                    </li>
-                                  )}
-                                </React.Fragment>
-                              )
+                            (option, index) => (
+                              <React.Fragment key={index}>
+                                {index < 4 && (
+                                  <li key={index}>
+                                    <div className="container-img">
+                                      <img
+                                        src={generateImageURL({
+                                          wix_url: option.mainMedia
+                                            ? option.mainMedia
+                                            : item.mainMedia,
+                                          w: "24",
+                                          h: "24",
+                                          fit: "fit",
+                                          q: "95",
+                                        })}
+                                        data-preload
+                                        className="media"
+                                        alt=""
+                                      />
+                                    </div>
+                                  </li>
+                                )}
+                              </React.Fragment>
                             )
+                          )
                           : item.productOptions["Color "]
-                          ? item.productOptions["Color "].choices.map(
+                            ? item.productOptions["Color "].choices.map(
                               (option, index) => (
                                 <React.Fragment key={index}>
                                   {index < 4 && (
@@ -105,10 +105,10 @@ const ProductCartSlider = ({ data }) => {
                                 </React.Fragment>
                               )
                             )
-                          : null}
+                            : null}
                       </ul>
                       {item.productOptions.Color &&
-                      item.productOptions.Color.choices.length > 4 ? (
+                        item.productOptions.Color.choices.length > 4 ? (
                         <div className="colors-number">
                           <span>
                             +{item.productOptions.Color.choices.length - 4}
