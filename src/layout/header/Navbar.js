@@ -2,9 +2,22 @@ import DelayedLink from "@/components/common/DelayedLink";
 import Services from "./models/Services";
 import Market from "./models/Market";
 import Search from "./models/Search";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Navbar = ({ studios, markets, searchContent }) => {
   const EXTERNAL_SITE_URL = "https://www.rentals.blueprintstudios.com";
+  const router = useRouter();
+
+  useEffect(() => {
+    const { modal } = router.query;
+    if (modal) {
+      const menu = document.querySelector(`[data-get-submenu='${modal}']`);
+      setTimeout(() => {
+        if (menu) menu.classList.add("active");
+      }, 500);
+    }
+  }, [router])
 
   return (
     <>

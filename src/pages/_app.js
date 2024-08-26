@@ -15,6 +15,7 @@ import { getPageMetaData } from "@/api";
 import Head from "next/head";
 import AboutUsMagazineModal from "@/components/Lightbox/modalComponents/AboutUsMagazineModal";
 import MarketsVideoModal from "@/components/Lightbox/modalComponents/MarketsVideoModal";
+import Chat from "@/components/common/Chat";
 
 export default function App({ Component, pageProps, studios, markets, searchContent, footerData, contactData, socialLinks, contactUsContent, aboutUsIntroSection, aboutUsSectionDetails, meta_data, navigationMenu }) {
   const router = useRouter();
@@ -34,7 +35,8 @@ export default function App({ Component, pageProps, studios, markets, searchCont
           </>)}
         {environment === "PRODUCTION" ?
           (meta_data?.noFollowTag && <meta name="robots" content="noindex,nofollow" />)
-          : <meta name="robots" content="noindex,nofollow" />}
+          :
+          <meta name="robots" content="noindex,nofollow" />}
       </Head>
       <Loading />
       <Cookies />
@@ -54,6 +56,7 @@ export default function App({ Component, pageProps, studios, markets, searchCont
           </main>
         </div>
       </div>
+      <Chat />
     </>
   );
 }
