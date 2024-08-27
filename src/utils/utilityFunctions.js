@@ -125,6 +125,14 @@ export const changeProgress = (percent) => {
   }
 }
 
+export const enableChat = () => {
+  if (typeof window !== 'undefined') {
+    setTimeout(() => {
+      document.querySelector(".activateChat").click();
+    }, 200);
+  }
+};
+
 export const initAnimations = () => {
   if (typeof window !== 'undefined') {
     setTimeout(() => {

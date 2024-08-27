@@ -2,7 +2,33 @@ import React from 'react'
 import image1 from "@/assets/svg/btn-chat-1.svg"
 import image2 from "@/assets/svg/btn-chat-2.svg"
 import image3 from "@/assets/svg/btn-chat-3.svg"
+import { useEffect, useState } from 'react';
+import { enableChat } from '@/utils/utilityFunctions';
+import { getChatConfiguration } from '@/api';
+
 const Chat = () => {
+  const [chatEnabled, setChatEnabled] = useState(false);
+
+  const getConfig = async () => {
+    try {
+      const currentOrigin = window.location.origin;
+      const config = await getChatConfiguration(currentOrigin);
+      if (config && config.enable) {
+        setChatEnabled(true);
+        enableChat();
+      }
+    } catch (error) {
+      // console.log("err", error);
+    }
+  }
+  useEffect(() => {
+    getConfig();
+  }, [])
+
+  if (!chatEnabled) {
+    return null;
+  }
+
   return (
     <div className="chat" data-cursor-style="off">
       <button className="btn-chat">

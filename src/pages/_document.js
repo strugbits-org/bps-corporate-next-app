@@ -26,6 +26,7 @@ export default function Document() {
       <body data-scroll-direction="initial" data-search-container>
         <span className="updateWatchedTrigger d-none"></span>
         <span className="initScript d-none"></span>
+        <span className="activateChat d-none"></span>
         <Main />
         <NextScript />
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBJ97DL"

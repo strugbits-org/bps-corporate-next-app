@@ -163,3 +163,21 @@ export const getAllPagesMetaData = async () => {
     throw new Error(error.message);
   }
 };
+export const getChatConfiguration = async (origin) => {
+  try {
+    const data = {
+      "dataCollectionId": "ChatbotConfiguration",
+      "includeReferencedItems": null,
+      "returnTotalCount": null,
+      "find": {},
+      "contains": null,
+      "eq": ["origin", origin],
+      "limit": null
+    }
+    const response = await fetchCollection(data);
+
+    return response._items[0].data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
