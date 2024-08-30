@@ -12,10 +12,10 @@ const Navbar = ({ studios, markets, searchContent }) => {
   useEffect(() => {
     const { modal } = router.query;
     if (modal) {
-      const menu = document.querySelector(`[data-get-submenu='${modal}']`);
+      const menu = document.querySelector(`[data-get-submenu='${modal}']`);      
       setTimeout(() => {
         if (menu) menu.classList.add("active");
-      }, 500);
+      }, 1000);
     }
   }, [router])
 
