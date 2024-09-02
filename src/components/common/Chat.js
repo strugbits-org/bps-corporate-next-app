@@ -81,7 +81,7 @@ const Chat = () => {
         </body>
       </html>'
           width="100%"
-          height="500px"
+          height="100%"
           noscroll
           allowtransparency="true"
           frameborder="0"
