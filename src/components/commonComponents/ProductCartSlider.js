@@ -19,7 +19,7 @@ const ProductCartSlider = ({ data }) => {
                   </button> */}
 
                   <DelayedLink
-                    to={EXTERNAL_SITE_URL + item.productPageUrl}
+                    to={`${EXTERNAL_SITE_URL}/product/${item.slug}`}
                     target={"blank"}
                     className="product-link"
                   >

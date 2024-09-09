@@ -226,7 +226,7 @@ const Search = ({ studios, markets, searchContent }) => {
                                   className="swiper-slide grid-item"
                                 >
                                   <div className="rental-product-link">
-                                    <DelayedLink to={EXTERNAL_SITE_URL + item.product.productPageUrl} target={"blank"} className="product-link">
+                                    <DelayedLink to={`${EXTERNAL_SITE_URL}/product/${item.product.slug}`} target={"blank"} className="product-link">
                                       <h3 className="product-name">
                                         {item.product.name}
                                       </h3>
