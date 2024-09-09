@@ -3,7 +3,7 @@ import DelayedLink from "../common/DelayedLink";
 import React from "react";
 
 const ProductCartSlider = ({ data }) => {
-  const EXTERNAL_SITE_URL = "https://www.rentals.blueprintstudios.com";
+  const EXTERNAL_SITE_URL = process.env.NEXT_PUBLIC_RENTALS_URL;
 
   return (
     <div className="slider-featured-products" data-aos="d:loop">

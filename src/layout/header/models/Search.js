@@ -7,7 +7,7 @@ import formatDate from "@/common/functions/dateFormat";
 
 const Search = ({ studios, markets, searchContent }) => {
 
-  const EXTERNAL_SITE_URL = "https://www.rentals.blueprintstudios.com";
+  const EXTERNAL_SITE_URL = process.env.NEXT_PUBLIC_RENTALS_URL;
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedStudios, setSelectedStudios] = useState([]);
@@ -201,7 +201,7 @@ const Search = ({ studios, markets, searchContent }) => {
                           {searchContent?.rentalTitle} <span>{`"${searchTerm}"`}</span>
                         </h2>
                         <DelayedLink
-                          to="https://www.rentals.blueprintstudios.com/"
+                          to={`${EXTERNAL_SITE_URL}/search/${searchTerm}`}
                           target="blank"
                           className="btn-border-blue"
                           attributes={{
