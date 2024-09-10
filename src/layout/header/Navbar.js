@@ -106,7 +106,7 @@ const Navbar = ({ studios, markets, searchContent }) => {
                     <li>
                       <DelayedLink
                         to={EXTERNAL_SITE_URL}
-                        target={"blank"}
+                        // target={"blank"}
                         className="header-link"
                         attributes={{
                           "data-menu-close": "",
