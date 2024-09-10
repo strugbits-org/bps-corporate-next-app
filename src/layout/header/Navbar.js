@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 const Navbar = ({ studios, markets, searchContent }) => {
-  const EXTERNAL_SITE_URL = "https://www.rentals.blueprintstudios.com";
+  const EXTERNAL_SITE_URL = process.env.NEXT_PUBLIC_RENTALS_URL;
   const router = useRouter();
 
   useEffect(() => {
