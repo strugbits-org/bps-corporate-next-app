@@ -202,7 +202,7 @@ const Search = ({ studios, markets, searchContent }) => {
                         </h2>
                         <DelayedLink
                           to={`${EXTERNAL_SITE_URL}/search/${searchTerm}`}
-                          target="blank"
+                          // target="blank"
                           className="btn-border-blue"
                           attributes={{
                             "data-aos": "",
@@ -226,7 +226,9 @@ const Search = ({ studios, markets, searchContent }) => {
                                   className="swiper-slide grid-item"
                                 >
                                   <div className="rental-product-link">
-                                    <DelayedLink to={`${EXTERNAL_SITE_URL}/product/${item.product.slug}`} target={"blank"} className="product-link">
+                                    <DelayedLink to={`${EXTERNAL_SITE_URL}/product/${item.product.slug}`}
+                                      // target={"blank"}
+                                      className="product-link">
                                       <h3 className="product-name">
                                         {item.product.name}
                                       </h3>
