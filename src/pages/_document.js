@@ -31,6 +31,10 @@ export default function Document() {
         <NextScript />
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBJ97DL"
           height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
+        <noscript>
+          <img height="1" width="1" style={{ display: "none" }} alt=""
+            src="https://ct.pinterest.com/v3/?event=init&tid=2613816880133&noscript=1" />
+        </noscript>
       </body>
     </Html>
   );
