@@ -55,7 +55,7 @@ export const listProducts = async ({ pageSize = 10, searchTerm = "" }) => {
             "returnTotalCount": true,
             "find": {},
             "contains": ['search', searchTerm],
-            "eq": null,
+            "eq": ["isF1Exclusive", false],
             "limit": pageSize
         }
         const response = await fetchCollection(data);
