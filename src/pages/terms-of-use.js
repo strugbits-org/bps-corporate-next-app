@@ -8,11 +8,11 @@ export default function TermsofUse({ content, socialSectionDetails, socialSectio
     const nodes = content.nodes;
     return (
         <>
-            <section class="section-terms-and-policy">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-6 col-11 offset-lg-3 mx-mobile-auto">
-                            {nodes[0].nodes && (<h1 class="title split-words" data-aos="d:loop">
+            <section className="section-terms-and-policy">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-lg-6 col-11 offset-lg-3 mx-mobile-auto">
+                            {nodes[0].nodes && (<h1 className="title split-words" data-aos="d:loop">
                                 {nodes[0].nodes[0].textData.text}
                             </h1>)}
                             <div

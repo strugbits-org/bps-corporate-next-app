@@ -30,23 +30,23 @@ const ContentComponent = ({ content, title, maxWords }) => {
   }, [content, maxWords]);
 
   return (
-    <div class={`container-text ${isReadMore ? "container-read-more" : ""}`}>
-      <h2 class="title">
+    <div className={`container-text ${isReadMore ? "container-read-more" : ""}`}>
+      <h2 className="title">
         {title}
       </h2>
-      <div class={`wrapper-text ${showAll ? "active" : ""}`}>
+      <div className={`wrapper-text ${showAll ? "active" : ""}`}>
         <p>{paragraphs[0]}</p>
         <div className={"readmore-paragraphs text"}>
           {paragraphs.slice(1).map((paragraph, index) => <React.Fragment key={index}><br /><p>{paragraph}</p></React.Fragment>)}
         </div>
       </div>
       {isReadMore && (
-        <button onClick={() => setShowAll(!showAll)} class="btn-read-more">
-          <div class="btn-text">
-            <span class="read-more">Read More</span>
-            <span class="to-go-back">To go back</span>
+        <button onClick={() => setShowAll(!showAll)} className="btn-read-more">
+          <div className="btn-text">
+            <span className="read-more">Read More</span>
+            <span className="to-go-back">To go back</span>
           </div>
-          <i class="icon-arrow-down"></i>
+          <i className="icon-arrow-down"></i>
         </button>
       )}
     </div>
