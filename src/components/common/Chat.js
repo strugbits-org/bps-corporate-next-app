@@ -5,8 +5,10 @@ import image3 from "@/assets/svg/btn-chat-3.svg"
 import { useEffect, useState } from 'react';
 import { enableChat } from '@/utils/utilityFunctions';
 import { getChatConfiguration } from '@/api';
+import parse from 'html-react-parser';
 
 const Chat = () => {
+  const [chatConfig, setChatConfig] = useState();
   const [chatEnabled, setChatEnabled] = useState(false);
 
   const getConfig = async () => {
@@ -14,6 +16,7 @@ const Chat = () => {
       const currentOrigin = window.location.origin;
       const config = await getChatConfiguration(currentOrigin);
       if (config && config.enable) {
+        setChatConfig(config);
         setChatEnabled(true);
         enableChat();
       }
@@ -62,31 +65,11 @@ const Chat = () => {
           </div>
         </div>
       </button>
-      <div className="container-chat">
-        <iframe type="text/html"
-          srcdoc='
-      <html>
-        <head>
-         <link rel="stylesheet" href="https://live.illumeetxp.com/widget/widget.css" />
-        </head>
-        <body>
-          <div id="illumeet-widget"></div>
-          <script>
-          window.config = {
-            agentId: "6671d5366c32fc00087b2dbc",
-              mode:"Inline"
-          };
-          </script>
-          <script src="https://live.illumeetxp.com/widget/widget.js"></script>
-        </body>
-      </html>'
-          width="100%"
-          height="100%"
-          noscroll
-          allowtransparency="true"
-          frameborder="0"
-        ></iframe>
-      </div>
+      {chatConfig.widget && (
+        <div className="container-chat">
+          {parse(chatConfig.widget)}
+        </div>
+      )}
     </div>
   )
 }
