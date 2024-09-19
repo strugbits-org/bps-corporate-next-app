@@ -22,7 +22,10 @@ export default function App({ Component, pageProps, studios, markets, searchCont
   const pathname = router.pathname.trim() === "/" ? "home" : router.pathname.substring(1);
   const page_name = pathname.split("/")[0].trim();
 
-  const environment = process.env.NEXT_PUBLIC_ENVIRONMENT
+  const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const canonicalUrl = `${baseUrl}${router.asPath}`;
+
   return (
     <>
       <Head>
@@ -37,6 +40,7 @@ export default function App({ Component, pageProps, studios, markets, searchCont
           (meta_data?.noFollowTag && <meta name="robots" content="noindex,nofollow" />)
           :
           <meta name="robots" content="noindex,nofollow" />}
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
       <Loading />
       <Cookies />
