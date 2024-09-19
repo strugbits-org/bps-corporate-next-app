@@ -2,17 +2,17 @@ function generateSiteMap(origin, urlset) {
   let currentDate = new Date().toISOString().split('T')[0];
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      ${urlset.map((url) => {
     return `
-       <url>
+       <sitemap>
            <loc>${url === "home" ? origin : `${origin}/${url}`}</loc>
            <lastmod>${currentDate}</lastmod>
-       </url>
+       </sitemap>
      `;
   })
       .join('')}
-   </urlset>
+   </sitemapindex>
  `;
 }
 
