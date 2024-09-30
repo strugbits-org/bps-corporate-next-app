@@ -5,6 +5,8 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <script async src="/js/googleTagManager.js"></script>
+        <script src='//fw-cdn.com/11846215/4437905.js' chat='false'></script>
+
         <link rel='shortcut icon' href='/favicon.png' />
         <link rel="modulepreload" href="/js/app2.js" />
         <link rel="modulepreload" href="/js/all.js" />
